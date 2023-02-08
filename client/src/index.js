@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import * as redux from "redux";
@@ -14,13 +15,15 @@ const createStoreWithMiddleware = redux.applyMiddleware(
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider
-    store={createStoreWithMiddleware(
-      Reducer,
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )}
-  >
-    <App />
-  </Provider>
+  <BrowserRouter>
+    <Provider
+      store={createStoreWithMiddleware(
+        Reducer,
+        window.__REDUX_DEVTOOLS_EXTENSION__ &&
+          window.__REDUX_DEVTOOLS_EXTENSION__()
+      )}
+    >
+      <App />
+    </Provider>
+  </BrowserRouter>
 );
