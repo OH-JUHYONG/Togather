@@ -7,13 +7,15 @@ import * as redux from "redux";
 import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
 import Reducer from "./_reducers";
+import { createRoot } from "react-dom/client";
 
 const createStoreWithMiddleware = redux.applyMiddleware(
   promiseMiddleware,
   ReduxThunk
 )(redux.createStore);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
 root.render(
   <BrowserRouter>
     <Provider
