@@ -9,23 +9,21 @@ import ReduxThunk from "redux-thunk";
 import Reducer from "./_reducers";
 import { createRoot } from "react-dom/client";
 
-const createStoreWithMiddleware = redux.applyMiddleware(
-  promiseMiddleware,
-  ReduxThunk
-)(redux.createStore);
+// Redux를 연결해 주는 역할
+const createStoreWithMiddleware = redux.applyMiddleware(promiseMiddleware, ReduxThunk)(redux.createStore);
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 root.render(
-  <BrowserRouter>
-    <Provider
-      store={createStoreWithMiddleware(
-        Reducer,
-        window.__REDUX_DEVTOOLS_EXTENSION__ &&
-          window.__REDUX_DEVTOOLS_EXTENSION__()
-      )}
-    >
-      <App />
-    </Provider>
-  </BrowserRouter>
+    <BrowserRouter>
+        <Provider
+            // Redux를 연결해 주는 역할
+            store={createStoreWithMiddleware(
+                Reducer,
+                window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+            )}
+        >
+            <App />
+        </Provider>
+    </BrowserRouter>,
 );
