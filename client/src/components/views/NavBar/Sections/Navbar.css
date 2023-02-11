@@ -6,16 +6,21 @@
 
 .navbar-left_button {
   border: none;
+  background-color: transparent;
 }
 
 .beforlogin-state button {
   margin-left: 25px;
   position: relative;
+  border: none;
+  background-color: transparent;
 }
 
 .logout-button {
   margin-left: 50px;
   position: relative;
+  border: none;
+  background-color: transparent;
 }
 
 .navbar-dropdown {
@@ -34,6 +39,8 @@
   text-align: left;
   cursor: pointer;
   font-size: 12px;
+  border: none;
+  background-color: transparent;
 }
 
 .navbar-dropdown__dropbtn__content {
