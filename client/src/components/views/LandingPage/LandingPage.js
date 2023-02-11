@@ -1,17 +1,18 @@
 import React from 'react';
+import './LandingPage.css';
 
 function LandingPage() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100vh',
-      }}
-    >
-      <h2>시작 페이지</h2>
+    <div className="high-category">
+      <div className="high-category__name">
+        <span>교육</span>
+      </div>
+      <div className="high-category__name">
+        <span>취미</span>
+      </div>
+      <div className="high-category__name">
+        <span>동아리</span>
+      </div>
     </div>
   );
 }
