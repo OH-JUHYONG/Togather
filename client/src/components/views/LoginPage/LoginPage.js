@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../../_actions/user_action";
+import { loginUser,kakaoLogin } from "../../../_actions/user_action";
 
 function LoginPage(props) {
   const dispatch = useDispatch();
@@ -35,15 +35,13 @@ function LoginPage(props) {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-      }}
-    >
+    <div style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100vh",
+    }} >
       <form
         style={{ display: "flex", flexDirection: "column" }}
         onSubmit={onSubmitHandler}
@@ -54,6 +52,9 @@ function LoginPage(props) {
         <input type="password" value={Password} onChange={onPasswordHandler} />
         <br />
         <button type="submit">Login</button>
+        <button type="kakaoLogin" onClick={kakaoLogin}>
+          <img src="image/kakao_login_button"/>
+        </button>
       </form>
     </div>
   );
