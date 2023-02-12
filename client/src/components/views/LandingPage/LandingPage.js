@@ -29,7 +29,6 @@ function LandingPage() {
           <span onClick={alertPage}>동아리</span>
         </div>
       </div>
-
       {visibleEdu && <MiddleCategoryEdu />}
     </>
   );
