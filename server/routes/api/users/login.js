@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../../../models/User'); //express.js식 표현
+const {User} = require('../../../models/User'); //express.js식 표현
 
 router.post('/', (req, res) => {
   // 요청된 이메일을 데이터 베이스에 있는지 찾는다.
