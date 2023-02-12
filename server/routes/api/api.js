@@ -7,10 +7,10 @@ const logoutRouter = require("./users/logout");
 const registerRouter = require("./users/register");
 // 해당 주소로 가기위한 미들웨어 장착
 
-router.use("/auth",authRouter);
-router.use("/login",loginRouter);
-router.use("/logout",logoutRouter);
-router.use("/register",registerRouter);
+router.use('/users/auth', authRouter);
+router.use('/users/login', loginRouter);
+router.use('/users/logout', logoutRouter);
+router.use('/users/register', registerRouter);
 
 //각 부분마다 라우터 사용
 
