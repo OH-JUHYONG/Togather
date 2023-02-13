@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import './LandingPage.css';
 
 import MiddleCategoryEdu from '../Category/MiddleCategoryEdu';
+import MiddleCategoryHob from '../Category/MiddleCategoryHob';
+import MiddleCategoryClub from '../Category/MiddleCategoryClub';
 
 function LandingPage() {
   const [visibleEdu, setVisibleEdu] = useState(false);
+  const [visibleHob, setVisibleHob] = useState(false);
+  const [visibleClub, setVisibleClub] = useState(false);
 
-  const alertPage = () => {
-    alert('서비스 준비 중입니다.');
-  };
   return (
     <>
       <div className="high-category">
@@ -23,13 +24,28 @@ function LandingPage() {
           </button>
         </div>
         <div className="high-category__name">
-          <span onClick={alertPage}>취미</span>
+          <span
+            onClick={() => {
+              setVisibleHob(!visibleHob);
+            }}
+          >
+            취미
+          </span>
         </div>
         <div className="high-category__name">
-          <span onClick={alertPage}>동아리</span>
+          <span
+            onClick={() => {
+              setVisibleClub(!visibleClub);
+            }}
+          >
+            동아리
+          </span>
         </div>
       </div>
+
       {visibleEdu && <MiddleCategoryEdu />}
+      {visibleHob && <MiddleCategoryHob />}
+      {visibleClub && <MiddleCategoryClub />}
     </>
   );
 }

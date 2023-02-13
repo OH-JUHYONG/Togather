@@ -1,21 +1,20 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const config = require("../config/key");
-const apiRouter = require("./api/api") // api.js로 가기위한 미들웨어 장착
+const config = require('../config/key');
+const apiRouter = require('./api/api'); // api.js로 가기위한 미들웨어 장착
 
-
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 mongoose
   .connect(config.mongoURI, {})
-  .then(() => console.log("MongoDB Connected..."))
+  .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log(err)); // 에러가 발생할 경우 어떤 에러가 발생하는지 알 수 있는 코드
 
-router.get("/", (req, res) => {
-  res.send("Hello World!!!");
+router.get('/', (req, res) => {
+  res.send('Hello World!!!');
 });
 
-router.use("/api",apiRouter); // routes/api폴더의 api.js에서 페이지 미들웨어역할 수행
+router.use('/api', apiRouter); // routes/api폴더의 api.js에서 페이지 미들웨어역할 수행
 
 module.exports = router;
 

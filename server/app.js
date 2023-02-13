@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 
 const app = express();
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const indexRouter = require('./routes/index');
 
 app.set('port', process.env.PORT || 5000);
@@ -16,10 +16,10 @@ app.use(cookieParser());
 
 app.use('/', indexRouter); // 루트 경로를 index.js가 사용하도록 만들어줌
 
-app.use((req,res,next) => {
-    res.status(404).send('Wrong Adress');
+app.use((req, res, next) => {
+  res.status(404).send('Wrong Adress');
 });
 
 app.listen(app.get('port'), () => {
-    console.log(`Example app listening on port`,app.get('port'));
-})
+  console.log(`Example app listening on port`, app.get('port'));
+});

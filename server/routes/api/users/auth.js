@@ -1,6 +1,6 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const {auth} = require("../../../middleware/auth");
+const { auth } = require('../../../middleware/auth');
 
 // role 0: 일반유저
 // role 0이 아니면 관리자
@@ -17,5 +17,5 @@ router.get('/', auth, (req, res) => {
     image: req.user.image,
   });
 });
-  
-  module.exports = router;
+
+module.exports = router;
