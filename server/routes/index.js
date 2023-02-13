@@ -16,6 +16,8 @@ router.get('/', (req, res) => {
 
 router.use('/api', apiRouter); // routes/api폴더의 api.js에서 페이지 미들웨어역할 수행
 
+// 추가한 부분 -> Router로
+
 module.exports = router;
 
 //라우터로 로그인 관련 파일 나눠놓음에 따라서 import USER부분은 각 api/users폴더 내 파일에 있음

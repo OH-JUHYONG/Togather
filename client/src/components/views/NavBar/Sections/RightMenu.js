@@ -44,7 +44,7 @@ const RightMenu = () => {
             글쓰기
           </button>
           <div className="navbar-dropdown__dropbtn__content">
-            <a href="/">교육(학교수업, 대회&공모전, 스터디)</a>
+            <a href="/post/upload">교육(학교수업, 대회&공모전, 스터디)</a>
             <a href="/">취미(운동, 음악, 미술, 봉사활동, 기타...)</a>
             <a href="/">동아리</a>
           </div>

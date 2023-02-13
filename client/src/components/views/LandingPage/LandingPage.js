@@ -43,7 +43,7 @@ function LandingPage() {
         </div>
       </div>
 
-      {visibleEdu && <MiddleCategoryEdu />}
+      {!visibleEdu && <MiddleCategoryEdu />}
       {visibleHob && <MiddleCategoryHob />}
       {visibleClub && <MiddleCategoryClub />}
     </>
