@@ -4,6 +4,7 @@ import { Button, Form, Input } from 'antd';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
+// import HashTagForm from './HashTagForm/HashTagForm';
 
 const { TextArea } = Input;
 
@@ -44,31 +45,27 @@ const UploadPostPage = () => {
   const [StartDate, setStartDate] = useState(new Date()); // 모집 기한
   const [Progress, setProgress] = useState(0); // 진행 방식
   const [Contact, setContact] = useState(0); // 연락 방법
+  const [Contactinfo, setContactinfo] = useState(''); // 연락 정보
+
   const [Description, setDescription] = useState(''); // 상세 설명
 
-  const divisionChangeHandler = (event) => {
+  const divisionChangeHandler = (event) =>
     setDivision(event.currentTarget.value);
-  };
 
-  const titleChangeHandler = (event) => {
-    setTitle(event.currentTarget.value);
-  };
+  const titleChangeHandler = (event) => setTitle(event.currentTarget.value);
 
-  const headcounterChangeHandler = (event) => {
+  const headcounterChangeHandler = (event) =>
     setHeadCount(event.currentTarget.value);
-  };
 
-  const progressChangeHandler = (event) => {
+  const progressChangeHandler = (event) =>
     setProgress(event.currentTarget.value);
-  };
 
-  const contactChangeHandler = (event) => {
-    setContact(event.currentTarget.value);
-  };
+  const contactChangeHandler = (event) => setContact(event.currentTarget.value);
+  const contactinfoChangeHandler = (event) =>
+    setContactinfo(event.currentTarget.value);
 
-  const descriptionChangeHandler = (event) => {
+  const descriptionChangeHandler = (event) =>
     setDescription(event.currentTarget.value);
-  };
 
   return (
     <>
@@ -95,8 +92,8 @@ const UploadPostPage = () => {
             value={Division}
             placeholder="ex)... 게임혼합현실 / 7분반"
           />
-
           <br />
+
           <br />
           <label>제목</label>
           <br />
@@ -105,8 +102,8 @@ const UploadPostPage = () => {
             value={Title}
             placeholder="제목을 입력해 주세요"
           />
-
           <br />
+
           <br />
           <label>모집인원</label>
           <select onChange={headcounterChangeHandler} value={HeadCount}>
@@ -116,6 +113,7 @@ const UploadPostPage = () => {
               </option>
             ))}
           </select>
+          <br />
 
           <br />
           <label>모집기한</label>
@@ -123,6 +121,7 @@ const UploadPostPage = () => {
             selected={StartDate}
             onChange={(date) => setStartDate(date)}
           />
+          <br />
 
           <br />
           <label>진행 방식</label>
@@ -133,9 +132,10 @@ const UploadPostPage = () => {
               </option>
             ))}
           </select>
+          <br />
 
           <br />
-          <label>연락방법</label>
+          <label>연락 방법</label>
           <select onChange={contactChangeHandler} value={Contact}>
             {Contacts.map((item) => (
               <option key={item.key} value={item.key}>
@@ -143,20 +143,27 @@ const UploadPostPage = () => {
               </option>
             ))}
           </select>
-
           <br />
+          <Input
+            onChange={contactinfoChangeHandler}
+            value={Contactinfo}
+            placeholder="연락처를 입력해 주세요"
+          />
+          <br />
+
           <br />
           <label>본인 / 팀 소개(5개 이하)</label>
-          <Input placeholder="# 해시태그로 본인 / 팀을 소개하세요" />
-          <Button>추가하기</Button>
 
-          <br />
           <br />
           <label>상세 설명</label>
           <br />
-          <TextArea onChange={descriptionChangeHandler} value={Description} />
-
+          <TextArea
+            style={{ height: '100vh' }}
+            onChange={descriptionChangeHandler}
+            value={Description}
+          />
           <br />
+
           <br />
           <Button>글등록</Button>
         </Form>
