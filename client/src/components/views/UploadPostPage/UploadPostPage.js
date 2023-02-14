@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './UploadPostPage.css';
 import { Button, Form, Input } from 'antd';
-import DatePicker from 'react-datepicker';
+import DatePicker from 'react-datepicker'; // 달려을 가져오기 위한 명령어
+import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
 // import HashTagForm from './HashTagForm/HashTagForm';
@@ -32,13 +34,30 @@ const Progresses = [
 
 // 연락 방법 option
 const Contacts = [
-  { key: 1, value: '카카오톡 오픈채팅' },
-  { key: 2, value: '디스코드' },
-  { key: 3, value: '이메일' },
-  { key: 4, value: '전화번호' },
+  {
+    key: 1,
+    value: '카카오톡 오픈채팅',
+    placeholder: '오픈 채팅 링크를 입력해주세요.',
+  },
+  { key: 2, value: '디스코드', placeholder: '디스코드 링크를 입력해주세요.' },
+  { key: 3, value: '이메일', placeholder: '이메일 주소를 입력해주세요.' },
+  { key: 4, value: '전화번호', placeholder: '전화번호를 입력해주새요.' },
 ];
 
-const UploadPostPage = () => {
+/*
+const Contactinfos = [
+  { key: 1, value: '오픈 채팅 링크를 입력해주세요.' },
+  { key: 2, value: '디스코드 링크를 입력해주세요.' },
+  { key: 3, value: '이메일 주소를 입력해주세요.' },
+  { key: 4, value: '전화번호를 입력해주새요.' },
+];
+*/
+
+const UploadPostPage = (props) => {
+  const navigate = useNavigate();
+
+  const [MiddleCategory, setMiddleCategory] = useState('');
+
   const [Division, setDivision] = useState(''); // 수업명 / 분반
   const [Title, setTitle] = useState(''); // 제목
   const [HeadCount, setHeadCount] = useState(0); // 모집 인원
@@ -48,6 +67,10 @@ const UploadPostPage = () => {
   const [Contactinfo, setContactinfo] = useState(''); // 연락 정보
 
   const [Description, setDescription] = useState(''); // 상세 설명
+
+  const middleCategoryClick = (buttonName) => {
+    setMiddleCategory(buttonName);
+  };
 
   const divisionChangeHandler = (event) =>
     setDivision(event.currentTarget.value);
@@ -60,26 +83,77 @@ const UploadPostPage = () => {
   const progressChangeHandler = (event) =>
     setProgress(event.currentTarget.value);
 
-  const contactChangeHandler = (event) => setContact(event.currentTarget.value);
+  const contactChangeHandler = (event) => {
+    setContact(event.currentTarget.value);
+  };
+
   const contactinfoChangeHandler = (event) =>
     setContactinfo(event.currentTarget.value);
 
   const descriptionChangeHandler = (event) =>
     setDescription(event.currentTarget.value);
 
+  const submitHandler = (event) => {
+    event.preventDefault(); // 초기화 방지
+
+    if (
+      !MiddleCategory ||
+      !Division ||
+      !Title ||
+      !HeadCount ||
+      !StartDate ||
+      !Progress ||
+      !Contact ||
+      !Contactinfo ||
+      !Description
+    ) {
+      return alert('모든 값을 넣어주셔야 합니다.');
+    }
+
+    // 서버에 채운 값들을 request로 보낸다.
+    const body = {
+      // 로그인 된 사람의 ID
+      writer: props.user.userData._id,
+      m_category: MiddleCategory,
+      divison: Division,
+      title: Title,
+      headcount: HeadCount,
+      day: StartDate,
+      progress: Progress,
+      contact: Contact,
+      Contactinfo: Contactinfo,
+      description: Description,
+    };
+
+    Axios.post('/api/postpage', body).then((response) => {
+      if (response.data.succces) {
+        alert('글 작성이 완료되었습니다.');
+        navigate('/');
+      } else {
+        alert('글 작성이 실패 했습니다.');
+      }
+    });
+  };
+
   return (
     <>
       <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-        <Form>
-          <div className="high-category">
-            <div className="high-category__name">
-              <Button>학교 수업</Button>
+        <Form onSubmit={submitHandler}>
+          <div className="middle-category">
+            <div className="middle-category__name">
+              <Button onClick={() => middleCategoryClick('학교 수업')}>
+                학교 수업
+              </Button>
             </div>
-            <div className="high-category__name">
-              <Button>대회&공모전</Button>
+            <div className="middle-category__name">
+              <Button onClick={() => middleCategoryClick('대회&공모전')}>
+                대회&공모전
+              </Button>
             </div>
-            <div className="high-category__name">
-              <Button>스터디</Button>
+            <div className="middle-category__name">
+              <Button onClick={() => middleCategoryClick('스터디')}>
+                스터디
+              </Button>
             </div>
           </div>
 
@@ -144,11 +218,7 @@ const UploadPostPage = () => {
             ))}
           </select>
           <br />
-          <Input
-            onChange={contactinfoChangeHandler}
-            value={Contactinfo}
-            placeholder="연락처를 입력해 주세요"
-          />
+          <Input onChange={contactinfoChangeHandler} value={Contactinfo} />
           <br />
 
           <br />
@@ -167,7 +237,7 @@ const UploadPostPage = () => {
           <br />
 
           <br />
-          <Button>글등록</Button>
+          <Button type="submit">글등록</Button>
         </Form>
       </div>
     </>

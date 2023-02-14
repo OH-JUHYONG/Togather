@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../_actions/user_action';
 import { useNavigate } from 'react-router-dom';
 
-export default function foo(SpecificComponent, option, adminRoute = null) {
+export default function foo(ComposedClass, reload, adminRoute = null) {
   /*
     option의 종류
     
@@ -12,17 +12,17 @@ export default function foo(SpecificComponent, option, adminRoute = null) {
     - false: 로그인한 유저는 출입 불가능한 페이지
     */
 
-  function AuthenticationCheck() {
+  function AuthenticationCheck(props) {
+    let user = useSelector((state) => state.user); // 유저의 정보를 모두 넣어줌
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(auth()).then((response) => {
-        console.log('auth? ', response);
-
+      dispatch(auth()).then(async (response) => {
         // 로그인 하지 않은 상태
-        if (!response.payload.isAuth) {
-          if (option) {
+        if (await !response.payload.isAuth) {
+          if (reload) {
             navigate('/login');
           }
         } else {
@@ -30,7 +30,7 @@ export default function foo(SpecificComponent, option, adminRoute = null) {
           if (adminRoute && !response.payload.isAdmin) {
             navigate('/');
           } else {
-            if (option === false) {
+            if (reload === false) {
               navigate('/');
             }
           }
@@ -38,7 +38,7 @@ export default function foo(SpecificComponent, option, adminRoute = null) {
       });
     }, []);
 
-    return <SpecificComponent />;
+    return <ComposedClass {...props} user={user} />;
   }
 
   return <AuthenticationCheck />;
