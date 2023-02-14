@@ -12,6 +12,7 @@
   "author": "ohanthony",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "concurrently": "^7.6.0",
@@ -26,6 +27,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "nodemon": "^2.0.20",
-    "prettier": "2.8.3"
+    "prettier": "2.8.3",
+    "react-error-overlay": "^6.0.9"
   }
 }

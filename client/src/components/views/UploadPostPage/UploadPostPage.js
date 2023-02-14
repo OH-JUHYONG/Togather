@@ -153,9 +153,11 @@ const UploadPostPage = () => {
 
           <br />
           <label>본인 / 팀 소개(5개 이하)</label>
+          <br />
 
           <br />
           <label>상세 설명</label>
+
           <br />
           <TextArea
             style={{ height: '100vh' }}
