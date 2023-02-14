@@ -57,13 +57,12 @@ const UploadPostPage = (props) => {
   const navigate = useNavigate();
 
   const [MiddleCategory, setMiddleCategory] = useState('');
-
   const [Division, setDivision] = useState(''); // 수업명 / 분반
   const [Title, setTitle] = useState(''); // 제목
-  const [HeadCount, setHeadCount] = useState(0); // 모집 인원
-  const [StartDate, setStartDate] = useState(new Date()); // 모집 기한
-  const [Progress, setProgress] = useState(0); // 진행 방식
-  const [Contact, setContact] = useState(0); // 연락 방법
+  const [HeadCount, setHeadCount] = useState(1); // 모집 인원
+  const [SelectedDate, setSelectedDate] = useState(null); //모집 기한
+  const [Progress, setProgress] = useState(1); // 진행 방식
+  const [Contact, setContact] = useState(1); // 연락 방법
   const [Contactinfo, setContactinfo] = useState(''); // 연락 정보
 
   const [Description, setDescription] = useState(''); // 상세 설명
@@ -72,36 +71,55 @@ const UploadPostPage = (props) => {
     setMiddleCategory(buttonName);
   };
 
-  const divisionChangeHandler = (event) =>
+  const divisionChangeHandler = (event) => {
     setDivision(event.currentTarget.value);
+  };
 
-  const titleChangeHandler = (event) => setTitle(event.currentTarget.value);
+  const titleChangeHandler = (event) => {
+    setTitle(event.currentTarget.value);
+  };
 
-  const headcounterChangeHandler = (event) =>
+  const headcounterChangeHandler = (event) => {
     setHeadCount(event.currentTarget.value);
+  };
 
-  const progressChangeHandler = (event) =>
+  const selectedDateChangeHandler = (date) => {
+    setSelectedDate(date);
+  };
+
+  const progressChangeHandler = (event) => {
     setProgress(event.currentTarget.value);
+  };
 
   const contactChangeHandler = (event) => {
     setContact(event.currentTarget.value);
   };
 
-  const contactinfoChangeHandler = (event) =>
+  const contactinfoChangeHandler = (event) => {
     setContactinfo(event.currentTarget.value);
+  };
 
-  const descriptionChangeHandler = (event) =>
+  const descriptionChangeHandler = (event) => {
     setDescription(event.currentTarget.value);
+  };
 
   const submitHandler = (event) => {
     event.preventDefault(); // 초기화 방지
+
+    if (!MiddleCategory) console.log(MiddleCategory);
+    if (!Division) console.log(Division);
+    if (!Title) console.log(Title);
+    if (!HeadCount) console.log(HeadCount);
+    if (!Progress) console.log(Progress);
+    if (!Contact) console.log(Contact);
+    if (!Contactinfo) console.log(Contactinfo);
+    if (!Description) console.log(Description);
 
     if (
       !MiddleCategory ||
       !Division ||
       !Title ||
       !HeadCount ||
-      !StartDate ||
       !Progress ||
       !Contact ||
       !Contactinfo ||
@@ -118,10 +136,10 @@ const UploadPostPage = (props) => {
       divison: Division,
       title: Title,
       headcount: HeadCount,
-      day: StartDate,
+      day: SelectedDate,
       progress: Progress,
       contact: Contact,
-      Contactinfo: Contactinfo,
+      contactinfo: Contactinfo,
       description: Description,
     };
 
@@ -192,8 +210,8 @@ const UploadPostPage = (props) => {
           <br />
           <label>모집기한</label>
           <DatePicker
-            selected={StartDate}
-            onChange={(date) => setStartDate(date)}
+            selected={SelectedDate}
+            onChange={selectedDateChangeHandler}
           />
           <br />
 
@@ -237,7 +255,7 @@ const UploadPostPage = (props) => {
           <br />
 
           <br />
-          <Button type="submit">글등록</Button>
+          <Button onClick={submitHandler}>글등록</Button>
         </Form>
       </div>
     </>

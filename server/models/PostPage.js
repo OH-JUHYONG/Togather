@@ -28,22 +28,25 @@ const postpageSchema = mongoose.Schema(
 
     //모집 인원
     headcount: {
-      type: String,
+      type: Number,
+      default: 0,
     },
 
     // 모집 기한
     day: {
-      type: Number,
+      type: String,
     },
 
     // 진행 방식
     progress: {
-      type: String,
+      type: Number,
+      default: 0,
     },
 
     // 연락 방법
     contact: {
-      type: String,
+      type: Number,
+      default: 0,
     },
 
     // 연락 정보

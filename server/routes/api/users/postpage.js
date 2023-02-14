@@ -1,7 +1,4 @@
 const express = require('express');
-const {
-  default: UploadPostPage,
-} = require('../../../../client/src/components/views/UploadPostPage/UploadPostPage');
 const router = express.Router();
 const { auth } = require('../../../middleware/auth');
 const { User } = require('../../../models/User');
