@@ -134,7 +134,7 @@ const UploadPostPage = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault(); // 초기화 방지
-    
+
     if (
       !MiddleCategory ||
       !Division ||
@@ -144,26 +144,28 @@ const UploadPostPage = (props) => {
       !Contact ||
       !Contactinfo ||
       !Description
-    ) { return alert('모든 값을 넣어주셔야 합니다.'); }
+    ) {
+      return alert('모든 값을 넣어주셔야 합니다.');
+    }
     // 서버에 채운 값들을 request로 보낸다.
-    
+
     const body = {
-          // 로그인 된 사람의 ID
-          writer: props.user.userData._id,
-          m_category: MiddleCategory,
-          divison: Division,
-          title: Title,
-          headcount: HeadCount,
-          day: SelectedDate,
-          progress: Progress,
-          contact: Contact,
-          contactinfo: Contactinfo,
-          description: Description,
-        };
-    console.log("start");
+      // 로그인 된 사람의 ID
+      writer: props.user.userData._id,
+      m_category: MiddleCategory,
+      divison: Division,
+      title: Title,
+      headcount: HeadCount,
+      day: SelectedDate,
+      progress: Progress,
+      contact: Contact,
+      contactinfo: Contactinfo,
+      description: Description,
+    };
+    console.log('start');
     Axios.post('/api/users/postpage', body).then((response) => {
       console.log(response.status);
-      if (response.status===200) {
+      if (response.status === 200) {
         alert('글 작성이 완료되었습니다.');
         navigate('/');
       } else {
