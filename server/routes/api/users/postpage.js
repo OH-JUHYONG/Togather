@@ -8,7 +8,6 @@ router.post('/', (req, res) => {
 
   postpage.save((err) => {
     if (err) return res.status(400).json({ success: false, err });
-
     return res.status(200).json({ success: true });
   });
 });
