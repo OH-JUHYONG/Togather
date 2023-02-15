@@ -106,15 +106,6 @@ const UploadPostPage = (props) => {
   const submitHandler = (event) => {
     event.preventDefault(); // 초기화 방지
 
-    if (!MiddleCategory) console.log(MiddleCategory);
-    if (!Division) console.log(Division);
-    if (!Title) console.log(Title);
-    if (!HeadCount) console.log(HeadCount);
-    if (!Progress) console.log(Progress);
-    if (!Contact) console.log(Contact);
-    if (!Contactinfo) console.log(Contactinfo);
-    if (!Description) console.log(Description);
-
     if (
       !MiddleCategory ||
       !Division ||
@@ -143,7 +134,7 @@ const UploadPostPage = (props) => {
       description: Description,
     };
 
-    Axios.post('/api/postpage', body).then((response) => {
+    Axios.post('/api/users/postpage', body).then((response) => {
       if (response.data.succces) {
         alert('글 작성이 완료되었습니다.');
         navigate('/');
