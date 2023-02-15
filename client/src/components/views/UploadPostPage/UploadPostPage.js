@@ -57,6 +57,10 @@ const UploadPostPage = (props) => {
   const navigate = useNavigate();
 
   const [MiddleCategory, setMiddleCategory] = useState('');
+  const [ClassnameCategory, setClassnameCategory] = useState(false);
+  const [CompetitionCategory, setCompetitionCategory] = useState(false);
+  const [StudyCategory, setStudyCategory] = useState(false);
+
   const [Division, setDivision] = useState(''); // 수업명 / 분반
   const [Title, setTitle] = useState(''); // 제목
   const [HeadCount, setHeadCount] = useState(1); // 모집 인원
@@ -67,8 +71,33 @@ const UploadPostPage = (props) => {
 
   const [Description, setDescription] = useState(''); // 상세 설명
 
+  // 선택한 중 카테고리 저장
   const middleCategoryClick = (buttonName) => {
     setMiddleCategory(buttonName);
+  };
+
+  const handleClassButtonClick = () => {
+    setClassnameCategory(true);
+    setCompetitionCategory(false);
+    setStudyCategory(false);
+
+    middleCategoryClick('학교 수업');
+  };
+
+  const handleCompetitionButtonClick = () => {
+    setClassnameCategory(false);
+    setCompetitionCategory(true);
+    setStudyCategory(false);
+
+    middleCategoryClick('대회&공모전');
+  };
+
+  const handleStudyButtonClick = () => {
+    setClassnameCategory(false);
+    setCompetitionCategory(false);
+    setStudyCategory(true);
+
+    middleCategoryClick('스터디');
   };
 
   const divisionChangeHandler = (event) => {
@@ -150,17 +179,23 @@ const UploadPostPage = (props) => {
         <Form onSubmit={submitHandler}>
           <div className="middle-category">
             <div className="middle-category__name">
-              <Button onClick={() => middleCategoryClick('학교 수업')}>
+              <Button
+                onClick={handleClassButtonClick}
+                disabled={ClassnameCategory}
+              >
                 학교 수업
               </Button>
             </div>
             <div className="middle-category__name">
-              <Button onClick={() => middleCategoryClick('대회&공모전')}>
+              <Button
+                onClick={handleCompetitionButtonClick}
+                disabled={CompetitionCategory}
+              >
                 대회&공모전
               </Button>
             </div>
             <div className="middle-category__name">
-              <Button onClick={() => middleCategoryClick('스터디')}>
+              <Button onClick={handleStudyButtonClick} disabled={StudyCategory}>
                 스터디
               </Button>
             </div>
