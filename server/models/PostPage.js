@@ -17,6 +17,7 @@ const postpageSchema = mongoose.Schema(
     // 수업명 / 분반
     divison: {
       type: String,
+      minlength: 5,
     },
 
     // 제목

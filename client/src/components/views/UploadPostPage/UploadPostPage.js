@@ -147,8 +147,16 @@ const UploadPostPage = (props) => {
     ) {
       return alert('모든 값을 넣어주셔야 합니다.');
     }
-    // 서버에 채운 값들을 request로 보낸다.
 
+    if (Division.length < 5) {
+      return alert('수업명 / 분반은 최소 5글자 이상이어야 합니다.');
+    }
+
+    if (Title.length < 5) {
+      return alert('제목은 최소 5글자 이상이어야 합니다.');
+    }
+
+    // 서버에 채운 값들을 request로 보낸다.
     const body = {
       // 로그인 된 사람의 ID
       writer: props.user.userData._id,
