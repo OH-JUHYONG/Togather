@@ -162,9 +162,8 @@ const UploadPostPage = (props) => {
       contactinfo: Contactinfo,
       description: Description,
     };
-    console.log('start');
+
     Axios.post('/api/users/postpage', body).then((response) => {
-      console.log(response.status);
       if (response.status === 200) {
         alert('글 작성이 완료되었습니다.');
         navigate('/');

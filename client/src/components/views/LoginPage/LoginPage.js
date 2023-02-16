@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { kakaoKey, loginUser } from '../../../_actions/user_action';
+import { kakaoLogin, loginUser } from '../../../_actions/user_action';
 import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
@@ -59,7 +59,7 @@ function LoginPage() {
         <br />
         <button type="submit">Login</button>
       </form>
-      <button type="kakao" onClick={() => kakaoKey().then(appdata =>  window.open(appdata,'_blank','width=430,height=500,location=no,status=no,scrollbars=yes'))}> 카카오 로그인 </button>
+      <button type="kakao" onClick={() => kakaoLogin().then(appdata =>  window.open(appdata,'_blank','width=430,height=500,location=no,status=no,scrollbars=yes'))}> 카카오 로그인 </button>
     </div>
   );
 }

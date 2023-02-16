@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER, KAKAO_LOGIN_USER } from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
 export function registerUser(dataToSubmit) {
@@ -48,18 +48,8 @@ export function logoutUser() {
 
 // ---------------밑에 부분은 action기능 필요에 의해 추가
 
+
 export function kakaoLogin() {
-  const request = axios
-    .post(`${USER_SERVER}/kakao/login`)
-    .then((response) => response.data);
-
-  return {
-    type: KAKAO_LOGIN_USER,
-    payload: request,
-  };
-}
-
-export function kakaoKey() {
   return axios
     .get(`${USER_SERVER}/kakao/login/key`)
     .then((response) => response.data)
@@ -67,5 +57,4 @@ export function kakaoKey() {
       alert("창을 여는 중에 오류가 발생하였습니다.");
       console.log(err);
     });
-
-}
+} //아직 팝업창 끄고 홈으로 navigate하는 것을 미구현
