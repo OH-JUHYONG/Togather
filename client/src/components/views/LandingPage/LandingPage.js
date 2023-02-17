@@ -22,21 +22,16 @@ function LandingPage() {
   }, []);
 
   const renderCards = Postpages.map((postpage, index) => {
-    console.log('postpage', postMessage);
-
+    console.log('postpage', postpage);
     return (
       <Col lg={8} md={12} xs={24} key={index}>
-        <Card
-          action={[
-            <div>
-              <div>{postpage.m_category}</div>
-              <div>{postpage.division}</div>
-              <div>{postpage.title}</div>
-            </div>,
-          ]}
-        >
-          <Meta />
-        </Card>
+        <div>
+          <div>{postpage.m_category}</div>
+          <div>{postpage.divison}</div>
+          <div>{postpage.title}</div>
+          <div>모집 인원 {postpage.headcount}</div>
+        </div>
+        <br />
       </Col>
     );
   });

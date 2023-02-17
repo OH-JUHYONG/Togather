@@ -11,7 +11,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const { TextArea } = Input;
 
 // 모집 인원 option
-const HeadCounts = [
+const HeadCountArray = [
   { key: 1, value: '인원 미정' },
   { key: 2, value: '2명' },
   { key: 3, value: '3명' },
@@ -25,7 +25,7 @@ const HeadCounts = [
 ];
 
 // 진행 방식 option
-const Progresses = [
+const ProgessArray = [
   { key: 1, value: '대면' },
   { key: 2, value: '비대면' },
   { key: 3, value: '혼용' },
@@ -33,7 +33,7 @@ const Progresses = [
 ];
 
 // 연락 방법 option
-const Contacts = [
+const ContactArray = [
   {
     key: 1,
     value: '카카오톡 오픈채팅',
@@ -44,22 +44,13 @@ const Contacts = [
   { key: 4, value: '전화번호', placeholder: '전화번호를 입력해주새요.' },
 ];
 
-/*
-const Contactinfos = [
-  { key: 1, value: '오픈 채팅 링크를 입력해주세요.' },
-  { key: 2, value: '디스코드 링크를 입력해주세요.' },
-  { key: 3, value: '이메일 주소를 입력해주세요.' },
-  { key: 4, value: '전화번호를 입력해주새요.' },
-];
-*/
-
 const UploadPostPage = (props) => {
   const navigate = useNavigate();
 
   const [MiddleCategory, setMiddleCategory] = useState('');
-  const [ClassnameCategory, setClassnameCategory] = useState(false);
-  const [CompetitionCategory, setCompetitionCategory] = useState(false);
-  const [StudyCategory, setStudyCategory] = useState(false);
+  const [ClassnameCategory, setClassnameCategory] = useState(false); // 중 카테고리 - 학교 수업
+  const [CompetitionCategory, setCompetitionCategory] = useState(false); // 중 카테고리 - 대회 & 공모전
+  const [StudyCategory, setStudyCategory] = useState(false); // 중 카테고리 - 스터디
 
   const [Division, setDivision] = useState(''); // 수업명 / 분반
   const [Title, setTitle] = useState(''); // 제목
@@ -163,10 +154,10 @@ const UploadPostPage = (props) => {
       m_category: MiddleCategory,
       divison: Division,
       title: Title,
-      headcount: HeadCount,
+      headcount: HeadCountArray[HeadCount - 1].value,
       day: SelectedDate,
-      progress: Progress,
-      contact: Contact,
+      progress: ProgessArray[Progress - 1].value,
+      contact: ContactArray[Contact - 1].value,
       contactinfo: Contactinfo,
       description: Description,
     };
@@ -233,7 +224,7 @@ const UploadPostPage = (props) => {
           <br />
           <label>모집인원</label>
           <select onChange={headcounterChangeHandler} value={HeadCount}>
-            {HeadCounts.map((item) => (
+            {HeadCountArray.map((item) => (
               <option key={item.key} value={item.key}>
                 {item.value}
               </option>
@@ -252,7 +243,7 @@ const UploadPostPage = (props) => {
           <br />
           <label>진행 방식</label>
           <select onChange={progressChangeHandler} value={Progress}>
-            {Progresses.map((item) => (
+            {ProgessArray.map((item) => (
               <option key={item.key} value={item.key}>
                 {item.value}
               </option>
@@ -263,19 +254,27 @@ const UploadPostPage = (props) => {
           <br />
           <label>연락 방법</label>
           <select onChange={contactChangeHandler} value={Contact}>
-            {Contacts.map((item) => (
+            {ContactArray.map((item) => (
               <option key={item.key} value={item.key}>
                 {item.value}
               </option>
             ))}
           </select>
           <br />
-          <Input onChange={contactinfoChangeHandler} value={Contactinfo} />
+          <Input
+            onChange={contactinfoChangeHandler}
+            value={Contactinfo}
+            placeholder={ContactArray[Contact - 1].placeholder}
+          />
           <br />
+
+          {/* 
+          추후에 넣을 예정
 
           <br />
           <label>본인 / 팀 소개(5개 이하)</label>
-          <br />
+          <br /> 
+          */}
 
           <br />
           <label>상세 설명</label>

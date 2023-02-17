@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-// import { css } from '@emotion/react';
+import { css } from '@emotion/react';
 
 function HashTagForm() {
   // onChange로 관리할 문자열
@@ -10,6 +10,7 @@ function HashTagForm() {
   const onChangeHashtag = useCallback((e) => {
     // space 입력시 '' 빈문자열로 변환하여 Hashtage state에 저장한다
     const replaceStr = e.target.value.replace(/(\s*)/g, '');
+    console.log(replaceStr);
     setHashtag(replaceStr);
   }, []);
 
@@ -105,41 +106,39 @@ const hashDivrap = css`
 `;
 */
 
-/*
-import React, { useState } from 'react';
-import { Button, Form, Input } from 'antd';
+// import React, { useState } from 'react';
+// import { Button, Form, Input } from 'antd';
 
-function HashTagForm() {
-  const [HashTag, setHashTag] = useState(''); // 해시 태그
-  const [HashTagArr, setHashTagArr] = useState([]); // 해시 태그를 담는 배열
+// function HashTagForm() {
+//   const [HashTag, setHashTag] = useState(''); // 해시 태그
+//   const [HashTagArr, setHashTagArr] = useState([]); // 해시 태그를 담는 배열
 
-  const hashtagChangeHandler = (event) => setHashTag(event.target.value);
-  const hashtagSubmit = (event) => {
-    event.preventDefault();
-    if (HashTag === '') {
-      return;
-    }
-    setHashTagArr((currentArray) => [HashTag, ...currentArray]);
-    setHashTag('');
-  };
+//   const hashtagChangeHandler = (event) => setHashTag(event.target.value);
+//   const hashtagSubmit = (event) => {
+//     event.preventDefault();
+//     if (HashTag === '') {
+//       return;
+//     }
+//     setHashTagArr((currentArray) => [HashTag, ...currentArray]);
+//     setHashTag('');
+//   };
 
-  return (
-    <Form onSubmit={hashtagSubmit}>
-      <Input
-        onChange={hashtagChangeHandler}
-        value={HashTag}
-        type="text"
-        placeholder="# 해시태그로 본인 / 팀을 소개하세요"
-      />
-      <Button>추가하기</Button>
-      <ul>
-        {HashTagArr.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-    </Form>
-  );
-}
+//   return (
+//     <Form onSubmit={hashtagSubmit}>
+//       <Input
+//         onChange={hashtagChangeHandler}
+//         value={HashTag}
+//         type="text"
+//         placeholder="# 해시태그로 본인 / 팀을 소개하세요"
+//       />
+//       <Button>추가하기</Button>
+//       <ul>
+//         {HashTagArr.map((item, index) => (
+//           <li key={index}>{item}</li>
+//         ))}
+//       </ul>
+//     </Form>
+//   );
+// }
 
-export default HashTagForm;
-*/
+// export default HashTagForm;
