@@ -50,11 +50,12 @@ export function logoutUser() {
 
 
 export function kakaoLogin() {
-  return axios
-    .get(`${USER_SERVER}/kakao/login/key`)
-    .then((response) => response.data)
+  const request = axios
+    .get(`${USER_SERVER}/kakao/login/`)
+    .then((response) => response.data  )
     .catch(err => {
       alert("창을 여는 중에 오류가 발생하였습니다.");
       console.log(err);
     });
-} //아직 팝업창 끄고 홈으로 navigate하는 것을 미구현
+   return request; 
+} //팝업창을 없애고 라우터 리다이렉트로 홈으로 돌아가도록 구현
