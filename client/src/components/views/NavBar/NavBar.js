@@ -1,5 +1,5 @@
 import React from 'react';
-import './Sections/Navbar.css';
+import './Navbar.css';
 import RightMenu from './Sections/RightMenu';
 import { useNavigate } from 'react-router-dom';
 

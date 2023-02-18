@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../_actions/user_action';
 import { useNavigate } from 'react-router-dom';
+import './RegisterPage.css';
 
 function RegisterPage() {
   const dispatch = useDispatch();
@@ -53,36 +54,37 @@ function RegisterPage() {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100vh',
-      }}
-    >
-      <form
-        style={{ display: 'flex', flexDirection: 'column' }}
-        onSubmit={onSubmitHandler}
-      >
-        <label>Name</label>
-        <input type="text" value={Name} onChange={onNameHandler} />
-
-        <label>Email</label>
-        <input type="email" value={Email} onChange={onEmailHandler} />
-
-        <label>Password</label>
-        <input type="password" value={Password} onChange={onPasswordHandler} />
-
-        <label>Confirm Password</label>
+    <div className="registerpage-body">
+      <form className="registerpage-body_form" onSubmit={onSubmitHandler}>
+        <h1>Sign Up</h1>
+        <input
+          type="text"
+          value={Name}
+          onChange={onNameHandler}
+          placeholder="Name"
+        />
+        <input
+          type="email"
+          value={Email}
+          onChange={onEmailHandler}
+          placeholder="Email"
+        />
+        <input
+          type="password"
+          value={Password}
+          onChange={onPasswordHandler}
+          placeholder="Password"
+        />
         <input
           type="password"
           value={ConfirmPassword}
           onChange={onConfirmPasswordHandler}
+          placeholder="Confirm your password"
         />
         <br />
-        <button type="submit">회원 가입</button>
+        <button className="registerpage-body_button" type="submit">
+          Register
+        </button>
       </form>
     </div>
   );
