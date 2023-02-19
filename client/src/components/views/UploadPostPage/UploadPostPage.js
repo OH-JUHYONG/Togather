@@ -67,7 +67,7 @@ const UploadPostPage = (props) => {
     setMiddleCategory(buttonName);
   };
 
-  const handleClassButtonClick = () => {
+  const handleClassButtonClick = (event) => {
     setClassnameCategory(true);
     setCompetitionCategory(false);
     setStudyCategory(false);
