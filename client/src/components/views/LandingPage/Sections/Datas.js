@@ -1,4 +1,4 @@
-const m_category = [
+const m_category_Num = [
   {
     _id: 1,
     name: '학교 수업',
@@ -13,4 +13,4 @@ const m_category = [
   },
 ];
 
-export { m_category };
+export { m_category_Num };

@@ -20,12 +20,11 @@ router.post('/postpages', (req, res) => {
   for (let key in req.body.filters) {
     if (req.body.filters[key].length > 0) {
       findArgs[key] = req.body.filters[key];
-      console.log(req.body.filters[key]);
     }
   }
   console.log('findArgs', findArgs);
 
-  PostPage.find()
+  PostPage.find(findArgs)
     .populate('writer')
     .skip(skip)
     .limit(limit)

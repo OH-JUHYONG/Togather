@@ -14,6 +14,12 @@ const postpageSchema = mongoose.Schema(
       type: String,
     },
 
+    // middle Category의 key값.... ex) 학교 수업, 대회&공모전, 스터디
+    m_category_Num: {
+      type: Number,
+      default: 1,
+    },
+
     // 수업명 / 분반
     divison: {
       type: String,

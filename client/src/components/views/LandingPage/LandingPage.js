@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Row, Col } from 'antd';
-import Meta from 'antd/lib/card/Meta';
 
 // 상>>중 카테고리
 import HighCategory from '../Category/HighCategory/HighCategory';
 
 import Checkbox from './Sections/CheckBox';
-import { m_category } from './Sections/Datas';
+import { m_category_Num } from './Sections/Datas';
 
 function LandingPage() {
   const [Postpages, setPostPages] = useState([]); // 여러 게시글을 담을 수 있게 배열 사용
@@ -17,11 +16,10 @@ function LandingPage() {
 
   /*
   필터 박스 기능
-
-  const [Filters, setFilters] = useState({
-    m_category: [],
-  });
   */
+  const [Filters, setFilters] = useState({
+    m_category_Num: [],
+  });
 
   // landgin page에 작성한 글들을 모아 볼 수 있게 UploadPostPage에서 작성하고 DB에 저장한 정보를 불러옴
   useEffect(() => {
@@ -78,6 +76,7 @@ function LandingPage() {
 
   /*
   필터 박스 기능
+  */
 
   const showFilterResults = (filters) => {
     let body = {
@@ -85,6 +84,8 @@ function LandingPage() {
       limit: Limit,
       filters: filters,
     };
+
+    console.log(filters);
 
     getPage(body);
     setSkip(0);
@@ -96,17 +97,16 @@ function LandingPage() {
 
     showFilterResults(newFilters);
   };
-  */
 
   return (
     <>
       <HighCategory />
 
       <div style={{ width: '75%', margin: '3rem auto' }}>
-        {/* <Checkbox
-          list={m_category}
-          handleFilters={(filters) => handleFilters(filters, 'm_category')}
-        /> */}
+        <Checkbox
+          list={m_category_Num}
+          handleFilters={(filters) => handleFilters(filters, 'm_category_Num')}
+        />
 
         <Row gutter={[16, 16]}>{renderCards}</Row>
 
