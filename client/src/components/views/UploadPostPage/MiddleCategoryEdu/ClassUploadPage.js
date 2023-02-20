@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import DatePicker from 'react-datepicker'; // 달려을 가져오기 위한 명령어
 import Axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'; // user 정보를 가져오기 위한 설정
 import { useNavigate } from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -45,7 +45,7 @@ const ContactArray = [
 ];
 
 const ClassUploadPage = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user); // 유저 정보를 가져오기 위한 명령어
 
   const navigate = useNavigate();
 
@@ -99,6 +99,7 @@ const ClassUploadPage = () => {
       !Title ||
       !HeadCount ||
       !Progress ||
+      !SelectedDate ||
       !Contact ||
       !Contactinfo ||
       !Description
@@ -181,7 +182,7 @@ const ClassUploadPage = () => {
         <br />
 
         <br />
-        <label>모집기한</label>
+        <label>모집 마감일</label>
         <DatePicker
           selected={SelectedDate}
           onChange={selectedDateChangeHandler}
@@ -221,7 +222,7 @@ const ClassUploadPage = () => {
 
         <br />
         <TextArea
-          style={{ height: '100vh' }}
+          style={{ height: '50vh' }}
           onChange={descriptionChangeHandler}
           value={Description}
         />

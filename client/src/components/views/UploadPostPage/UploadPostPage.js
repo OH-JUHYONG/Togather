@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 // import HashTagForm from './HashTagForm/HashTagForm';
 
 import ClassUploadPage from './MiddleCategoryEdu/ClassUploadPage';
+import StudyUploadPage from './MiddleCategoryEdu/StudyUploadPage';
 
 const UploadPostPage = () => {
   const [ClassCategory, setClassCategory] = useState(true); // 중 카테고리 - 학교 수업
@@ -29,6 +30,7 @@ const UploadPostPage = () => {
     setCompetitionCategory(false);
     setStudyCategory(true);
   };
+
   return (
     <>
       <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
@@ -54,6 +56,7 @@ const UploadPostPage = () => {
         </div>
 
         {ClassCategory && <ClassUploadPage />}
+        {StudyCategory && <StudyUploadPage />}
       </div>
     </>
   );

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 
 // 상>>중 카테고리
 import HighCategory from '../Category/HighCategory/HighCategory';
 
+import SearchFeature from './Sections/SearchFeature';
 import Checkbox from './Sections/CheckBox';
 import { m_category_Num } from './Sections/Datas';
 
@@ -14,12 +15,11 @@ function LandingPage() {
   const [Limit, setLimit] = useState(6); // 기본으로 보여주는 postpage 개수
   const [PostSize, setPostSize] = useState();
 
-  /*
-  필터 박스 기능
-  */
-  const [Filters, setFilters] = useState({
-    m_category_Num: [],
-  });
+  //필터 박스 기능
+  const [Filters, setFilters] = useState({ m_category_Num: [] });
+
+  // 검색 기능
+  const [SearchTerm, setSearchTerm] = useState('');
 
   // landgin page에 작성한 글들을 모아 볼 수 있게 UploadPostPage에서 작성하고 DB에 저장한 정보를 불러옴
   useEffect(() => {
@@ -47,8 +47,9 @@ function LandingPage() {
     });
   };
 
+  // 더보기 버튼튼
   const loadMoreHandler = () => {
-    let skip = Skip + Limit;
+    let skip = Skip + Limit; // 기존의 불러온 정보 갯수 + Limit
 
     let body = {
       skip: skip,
@@ -61,17 +62,41 @@ function LandingPage() {
 
   const renderCards = Postpages.map((postpage, index) => {
     console.log('postpage', postpage);
-    return (
-      <Col lg={8} md={12} xs={24} key={index}>
-        <div>
-          <div>{postpage.m_category}</div>
-          <div>{postpage.divison}</div>
-          <div>{postpage.title}</div>
-          <div>모집 인원: {postpage.headcount}</div>
-        </div>
-        <br />
-      </Col>
-    );
+
+    // 교육>>학교 수업 게시글 형태
+    if (postpage.m_category_Num === 1) {
+      return (
+        <Col lg={8} md={12} xs={24} key={index}>
+          <div>
+            <a href={`/post/${postpage._id}`}>
+              <div>{postpage.m_category}</div>
+              <div>{postpage.divison}</div>
+              <div>{postpage.title}</div>
+              <div>모집 인원: {postpage.headcount}</div>
+              <div>마감일: {postpage.day.substring(0, 10)} 까지</div>
+            </a>
+          </div>
+          <br />
+        </Col>
+      );
+    }
+    //  교육>>스터디 게시글 형태
+    else {
+      return (
+        <Col lg={8} md={12} xs={24} key={index}>
+          <div>
+            <a href={`/post/${postpage._id}`}>
+              <div>{postpage.m_category}</div>
+              <div>{postpage.field}</div>
+              <div>{postpage.title}</div>
+              <div>모집 인원: {postpage.headcount}</div>
+              <div>마감일: {postpage.day.substring(0, 10)} 까지</div>
+            </a>
+          </div>
+          <br />
+        </Col>
+      );
+    }
   });
 
   /*
@@ -98,6 +123,22 @@ function LandingPage() {
     showFilterResults(newFilters);
   };
 
+  // 검색 기능
+  const updateSearchTerm = (newSearchTerm) => {
+    setSearchTerm(newSearchTerm);
+
+    let body = {
+      skip: 0,
+      limit: Limit,
+      filters: Filters,
+      searchTerm: newSearchTerm,
+    };
+
+    setSkip(0);
+    setSearchTerm(newSearchTerm);
+    getPage(body);
+  };
+
   return (
     <>
       <HighCategory />
@@ -108,11 +149,19 @@ function LandingPage() {
           handleFilters={(filters) => handleFilters(filters, 'm_category_Num')}
         />
 
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            margin: '1rem auto',
+          }}
+        >
+          <SearchFeature refreshFunction={updateSearchTerm} />
+        </div>
+
         <Row gutter={[16, 16]}>{renderCards}</Row>
-
         <br />
         <br />
-
         {PostSize >= Limit && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button onClick={loadMoreHandler}>더보기</button>
