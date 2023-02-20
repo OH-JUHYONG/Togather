@@ -7,8 +7,8 @@ const dev = require('../../../../../config/dev');
 
 router.get('/', async(req,res) => {
     const code = req.query.code;
-    const email= await kakaomodel.kakaoLogin(code); //카카오 인가코드 및 토큰 발행 처리 함수
-    
+    const token= await kakaomodel.getToken(code); //카카오 인가코드 및 토큰 발행 처리 함수
+    const email = await kakaomodel.getKakaoInfo(token);
     User.findOne( {email: email}, (err,user) => {
         if (!user) {
           user = new User({

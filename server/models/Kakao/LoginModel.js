@@ -1,15 +1,6 @@
 const axios = require('axios');
 const dev = require('../../config/dev');
 
-const kakaoLogin = async (code) => {
-  try {
-    const access_token = await getToken(code); //인가코드를 통해 토큰을 받아옴
-    const email = await getKakaoInfo(access_token); //토큰을 이용해서 카톡 사용자 정보 받아옴
-    return email;
-  } catch (err) {
-    code.throw(500, err);
-  }
-  };
 
 const getToken = async (code) => {
     const url = 'https://kauth.kakao.com/oauth/token';
@@ -48,5 +39,6 @@ const getKakaoInfo = async (req) => {
 };
 
 module.exports = {
-  kakaoLogin,
+  getToken,
+  getKakaoInfo,
 };
