@@ -1,12 +1,17 @@
 import React from 'react';
 import { Button, Description } from 'antd';
 
+import './PostPageInfoEdu.css';
+
 function PostPageInfoEduClass(props) {
   return (
     <div>
+      <div className="divisonline"></div>
       <br />
       <br />
-      <label>수업명 / 분반: {props.detail.divison}</label>
+      <span className="test">수업명 / 분반</span>
+      <span className="test1">{props.detail.divison}</span>
+
       {/* <br />
       <Input
         onChange={divisionChangeHandler}

@@ -4,6 +4,10 @@ import { USER_SERVER } from '../../../Config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { Menu, Button } from 'antd';
+
+const { SubMenu } = Menu;
+
 const RightMenu = () => {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -37,8 +41,26 @@ const RightMenu = () => {
   } else {
     // 로그인 한 경우
     return (
-      <div>
-        <div className="navbar-dropdown">
+      <div className="afterlogin-state">
+        <Menu className="writing_menu" mode="horizontal">
+          <SubMenu key="test" title="글쓰기">
+            <Menu.ItemGroup title="교육">
+              <Menu.Item>
+                <a href="/post/upload">학교 수업</a>
+              </Menu.Item>
+              <Menu.Item>대회&창업</Menu.Item>
+              <Menu.Item>
+                <a href="/post/upload">스터디</a>
+              </Menu.Item>
+            </Menu.ItemGroup>
+            <Menu.ItemGroup title="취미(추후 공개예정)" />
+            <Menu.ItemGroup title="동아리(추후 공개예정)" />
+          </SubMenu>
+        </Menu>
+
+        {/* 
+          // 기존 방식
+          
           <button className="navbar-dropdown__dropbtn">
             <span></span>
             글쓰기
@@ -47,11 +69,10 @@ const RightMenu = () => {
             <a href="/post/upload">교육(학교수업, 대회&공모전, 스터디)</a>
             <a href="/">취미(운동, 음악, 미술, 봉사활동, 기타...)</a>
             <a href="/">동아리</a>
-          </div>
-        </div>
-        <button className="logout-button" onClick={logoutHandler}>
+          </div> */}
+        <Button className="logout_button" onClick={logoutHandler}>
           로그아웃
-        </button>
+        </Button>
       </div>
     );
   }
