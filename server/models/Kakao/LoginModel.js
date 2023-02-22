@@ -1,7 +1,6 @@
 const axios = require('axios');
 const dev = require('../../config/dev');
 
-
 const getToken = async (code) => {
     const url = 'https://kauth.kakao.com/oauth/token';
     const params = {
@@ -37,6 +36,7 @@ const getKakaoInfo = async (req) => {
     console.error(err);
   }
 };
+
 
 module.exports = {
   getToken,

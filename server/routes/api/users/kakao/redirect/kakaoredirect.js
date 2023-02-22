@@ -18,14 +18,17 @@ router.get('/', async(req,res) => {
           });
           user.save();
         } //카카오 유저에 대한 정보 db에서 찾아봐서 없으면 만들고 기존 정보가 있으면 그걸로 토큰 생성
-        user.generateToken((err, user) => {
-
-          // 토큰을 저장한다.어디에? 쿠키, 로컬스토리지
-          res
-            .cookie('x_auth', user.token)
-            .status(200)
-            .redirect(dev.client_URL);
-        });
+        
+        user.token= encodeURIComponent(token['data']['access_token']);
+        console.log("old: "+user._id);
+        console.log("old: "+user.token);
+        console.log("old: "+token['data']['access_token']);
+        user.save();
+        res
+          .cookie('x_auth', user.token)
+          .cookie('x_auth_type', 'kakao')
+          .status(200)
+          .redirect(dev.client_URL);
       });
 })
 
