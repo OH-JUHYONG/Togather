@@ -3,7 +3,7 @@ import { Button, Description } from 'antd';
 
 import './PostPageInfoEdu.css';
 
-function PostPageInfoEduStudy(props) {
+function PostPageInfoEduCompetition(props) {
   return (
     <>
       <div className="PostPageInfo_Edu">
@@ -17,15 +17,9 @@ function PostPageInfoEduStudy(props) {
               </span>
             </li>
             <li className="PostPageInfo_Edu_li">
-              <span className="PostPageInfo_Edu_content1">모집 분야</span>
+              <span className="PostPageInfo_Edu_content1">대회 명칭</span>
               <span className="PostPageInfo_Edu_content2">
-                {props.detail.field}
-              </span>
-            </li>
-            <li className="PostPageInfo_Edu_li">
-              <span className="PostPageInfo_Edu_content1">모집 대상</span>
-              <span className="PostPageInfo_Edu_content2">
-                {props.detail.target}
+                {props.detail.competition}
               </span>
             </li>
             <li className="PostPageInfo_Edu_li">
@@ -65,4 +59,4 @@ function PostPageInfoEduStudy(props) {
   );
 }
 
-export default PostPageInfoEduStudy;
+export default PostPageInfoEduCompetition;

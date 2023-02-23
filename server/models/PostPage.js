@@ -73,6 +73,12 @@ const postpageSchema = mongoose.Schema(
       minlength: 5,
     },
 
+    // 교육>>대회&공모전
+    // 대회명
+    competition: {
+      type: String,
+    },
+
     // 교육>>스터디
     // 분야 ex) 어학, 취업, 프로그래밍, 고시/공무원, IT프로젝트, 편입, 자격증, 기타
     field: {
@@ -81,6 +87,9 @@ const postpageSchema = mongoose.Schema(
 
     // 모집 대상 ex) 1학년, 2학년, 3학년 이상...
     target: {
+      type: String,
+    },
+    target_Num: {
       type: Number,
       default: 1,
     },

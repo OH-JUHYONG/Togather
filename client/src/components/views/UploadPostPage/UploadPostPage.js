@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 // import HashTagForm from './HashTagForm/HashTagForm';
 
 import ClassUploadPage from './MiddleCategoryEdu/ClassUploadPage';
+import CompetitionUploadPage from './MiddleCategoryEdu/CompetitionUploadPage';
 import StudyUploadPage from './MiddleCategoryEdu/StudyUploadPage';
 
 const UploadPostPage = () => {
@@ -56,6 +57,7 @@ const UploadPostPage = () => {
         </div>
 
         {ClassCategory && <ClassUploadPage />}
+        {CompetitionCategory && <CompetitionUploadPage />}
         {StudyCategory && <StudyUploadPage />}
       </div>
     </>

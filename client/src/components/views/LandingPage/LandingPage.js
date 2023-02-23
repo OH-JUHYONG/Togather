@@ -5,7 +5,7 @@ import { Row, Col } from 'antd';
 // 상>>중 카테고리
 import HighCategory from '../Category/HighCategory/HighCategory';
 
-import SearchFeature from './Sections/SearchFeature';
+// import SearchFeature from './Sections/SearchFeature';
 import Checkbox from './Sections/CheckBox';
 import { m_category_Num } from './Sections/Datas';
 
@@ -19,7 +19,7 @@ function LandingPage() {
   const [Filters, setFilters] = useState({ m_category_Num: [] });
 
   // 검색 기능
-  const [SearchTerm, setSearchTerm] = useState('');
+  // const [SearchTerm, setSearchTerm] = useState('');
 
   // landgin page에 작성한 글들을 모아 볼 수 있게 UploadPostPage에서 작성하고 DB에 저장한 정보를 불러옴
   useEffect(() => {
@@ -80,6 +80,25 @@ function LandingPage() {
         </Col>
       );
     }
+
+    // 교육>>대회&공모전게시글 형태
+    else if (postpage.m_category_Num === 2) {
+      return (
+        <Col lg={8} md={12} xs={24} key={index}>
+          <div>
+            <a href={`/post/${postpage._id}`}>
+              <div>{postpage.m_category}</div>
+              <div>{postpage.competition}</div>
+              <div>{postpage.title}</div>
+              <div>모집 인원: {postpage.headcount}</div>
+              <div>마감일: {postpage.day.substring(0, 10)} 까지</div>
+            </a>
+          </div>
+          <br />
+        </Col>
+      );
+    }
+
     //  교육>>스터디 게시글 형태
     else {
       return (
@@ -99,10 +118,7 @@ function LandingPage() {
     }
   });
 
-  /*
-  필터 박스 기능
-  */
-
+  // 필터 박스 기능
   const showFilterResults = (filters) => {
     let body = {
       skip: 0,
@@ -124,6 +140,7 @@ function LandingPage() {
   };
 
   // 검색 기능
+  /*
   const updateSearchTerm = (newSearchTerm) => {
     setSearchTerm(newSearchTerm);
 
@@ -138,6 +155,7 @@ function LandingPage() {
     setSearchTerm(newSearchTerm);
     getPage(body);
   };
+  */
 
   return (
     <>
@@ -149,6 +167,8 @@ function LandingPage() {
           handleFilters={(filters) => handleFilters(filters, 'm_category_Num')}
         />
 
+        {/* 
+        검색 기능
         <div
           style={{
             display: 'flex',
@@ -157,7 +177,8 @@ function LandingPage() {
           }}
         >
           <SearchFeature refreshFunction={updateSearchTerm} />
-        </div>
+        </div> 
+        */}
 
         <Row gutter={[16, 16]}>{renderCards}</Row>
         <br />

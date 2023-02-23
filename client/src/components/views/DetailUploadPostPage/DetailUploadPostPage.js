@@ -3,6 +3,7 @@ import Axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 import PostPageInfoEduClass from './Sections/PostPageInfoEduClass';
+import PostPageInfoEduCompetition from './Sections/PostPageInfoEduCompetition';
 import PostPageInfoEduStudy from './Sections/PostPageInfoEduStudy';
 
 import { Row, Col } from 'antd';
@@ -25,33 +26,11 @@ function DetailUploadPostPage() {
   }, []);
 
   if (PostpageInfo.m_category_Num === 1) {
-    return (
-      <div style={{ width: '100%', padding: '3rem 4rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <h1>{PostpageInfo.title}</h1>
-        </div>
-        <br />
-        <Row gutter={[16, 16]}>
-          <Col lg={12} sm={24}>
-            <PostPageInfoEduClass detail={PostpageInfo} />
-          </Col>
-        </Row>
-      </div>
-    );
+    return <PostPageInfoEduClass detail={PostpageInfo} />;
+  } else if (PostpageInfo.m_category_Num === 2) {
+    return <PostPageInfoEduCompetition detail={PostpageInfo} />;
   } else if (PostpageInfo.m_category_Num === 3) {
-    return (
-      <div style={{ width: '100%', padding: '3rem 4rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <h1>{PostpageInfo.title}</h1>
-        </div>
-        <br />
-        <Row gutter={[16, 16]}>
-          <Col lg={12} sm={24}>
-            <PostPageInfoEduStudy detail={PostpageInfo} />
-          </Col>
-        </Row>
-      </div>
-    );
+    return <PostPageInfoEduStudy detail={PostpageInfo} />;
   }
 }
 

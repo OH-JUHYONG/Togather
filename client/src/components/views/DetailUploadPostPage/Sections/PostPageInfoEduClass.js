@@ -5,78 +5,57 @@ import './PostPageInfoEdu.css';
 
 function PostPageInfoEduClass(props) {
   return (
-    <div>
-      <div className="divisonline"></div>
-      <br />
-      <br />
-      <span className="test">수업명 / 분반</span>
-      <span className="test1">{props.detail.divison}</span>
-
-      {/* <br />
-      <Input
-        onChange={divisionChangeHandler}
-        value={Division}
-        placeholder="ex)... 게임혼합현실 / 7분반"
-      />
-      <br />
-
-      <br />
-      <label>모집인원</label>
-      <select onChange={headcounterChangeHandler} value={HeadCount}>
-        {HeadCountArray.map((item) => (
-          <option key={item.key} value={item.key}>
-            {item.value}
-          </option>
-        ))}
-      </select>
-      <br />
-
-      <br />
-      <label>모집 마감일</label>
-      <DatePicker
-        selected={SelectedDate}
-        onChange={selectedDateChangeHandler}
-      />
-      <br />
-
-      <br />
-      <label>진행 방식</label>
-      <select onChange={progressChangeHandler} value={Progress}>
-        {ProgessArray.map((item) => (
-          <option key={item.key} value={item.key}>
-            {item.value}
-          </option>
-        ))}
-      </select>
-      <br />
-
-      <br />
-      <label>연락 방법</label>
-      <select onChange={contactChangeHandler} value={Contact}>
-        {ContactArray.map((item) => (
-          <option key={item.key} value={item.key}>
-            {item.value}
-          </option>
-        ))}
-      </select>
-      <br />
-      <Input
-        onChange={contactinfoChangeHandler}
-        value={Contactinfo}
-        placeholder={ContactArray[Contact - 1].placeholder}
-      />
-      <br />
-
-      <br />
-      <label>상세 설명</label>
-
-      <br />
-      <TextArea
-        style={{ height: '50vh' }}
-        onChange={descriptionChangeHandler}
-        value={Description}
-      /> */}
-    </div>
+    <>
+      <div className="PostPageInfo_Edu">
+        <section className="PostPageInfo_Edu_postheader">
+          <div className="PostPageInfo_Edu_title">{props.detail.title}</div>
+          <ul className="PostPageInfo_Edu_ul">
+            <li className="PostPageInfo_Edu_li">
+              <span className="PostPageInfo_Edu_content1">모집 구분</span>
+              <span className="PostPageInfo_Edu_content2">
+                {props.detail.m_category}
+              </span>
+            </li>
+            <li className="PostPageInfo_Edu_li">
+              <span className="PostPageInfo_Edu_content1">수업 분반</span>
+              <span className="PostPageInfo_Edu_content2">
+                {props.detail.divison}
+              </span>
+            </li>
+            <li className="PostPageInfo_Edu_li">
+              <span className="PostPageInfo_Edu_content1">모집 인원</span>
+              <span className="PostPageInfo_Edu_content2">
+                {props.detail.headcount}
+              </span>
+            </li>
+            <li className="PostPageInfo_Edu_li">
+              <span className="PostPageInfo_Edu_content1">모집 마감</span>
+              <span className="PostPageInfo_Edu_content2">
+                {props.detail.day.substring(0, 10)} 까지
+              </span>
+            </li>
+            <li className="PostPageInfo_Edu_li">
+              <span className="PostPageInfo_Edu_content1">진행 방식</span>
+              <span className="PostPageInfo_Edu_content2">
+                {props.detail.progress}
+              </span>
+            </li>
+            <li className="PostPageInfo_Edu_li">
+              <span className="PostPageInfo_Edu_content1">연락 방법</span>
+              <span className="PostPageInfo_Edu_content2">
+                {props.detail.contact}({props.detail.contactinfo})
+              </span>
+            </li>
+          </ul>
+        </section>
+        <div className="PostPageInfo_Edu_detailcontent">
+          <h2 className="PostPageInfo_Edu_h2">상세 설명</h2>
+          <div className="PostPageInfo_Edu_detail">
+            {props.detail.description}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

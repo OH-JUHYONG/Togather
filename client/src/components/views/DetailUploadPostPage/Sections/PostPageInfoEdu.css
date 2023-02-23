@@ -1,12 +1,75 @@
-.divisonline {
+.PostPageInfo_Edu {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 5rem;
+}
+
+.PostPageInfo_Edu_postheader {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.PostPageInfo_Edu_title {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  font-weight: 800;
+  line-height: 126.5%;
+  letter-spacing: -0.005em;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 24px;
+  border-bottom: 3px solid #f2f2f2;
+}
+
+.PostPageInfo_Edu_divisonline {
   border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-.test {
+.PostPageInfo_Edu_ul {
+  padding-top: 10px;
+}
+
+.PostPageInfo_Edu_li {
+  padding-top: 10px;
+  font-size: 16px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  font-weight: 700;
+}
+
+.PostPageInfo_Edu_content1 {
   color: #717171;
   margin-right: 40px;
 }
 
-.test1 {
+.PostPageInfo_Edu_content2 {
   color: #333;
+}
+
+.PostPageInfo_Edu_detailcontent {
+  margin-top: 80px;
+  font-size: 1.125rem;
+  word-break: break-all;
+  line-height: 1.7;
+  letter-spacing: -0.004em;
+}
+
+.PostPageInfo_Edu_h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+  font-weight: 700;
+  padding-bottom: 24px;
+  border-bottom: 3px solid #f2f2f2;
+}
+
+.PostPageInfo_Edu_detail {
+  width: 100%;
+  margin: 40px auto 0;
 }

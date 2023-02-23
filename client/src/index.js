@@ -8,6 +8,8 @@ import ReduxThunk from 'redux-thunk';
 import Reducer from './_reducers';
 import { createRoot } from 'react-dom/client';
 
+import './index.css';
+
 import NavBar from './components/views/NavBar/NavBar';
 
 // Redux를 연결해 주는 역할

@@ -8,6 +8,16 @@ import { useNavigate } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 // import HashTagForm from './HashTagForm/HashTagForm';
 
+// Text Editor(TOAST UI Editor)
+/*
+import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax'; // 플러그인 추가(Color picker)
+import 'tui-color-picker/dist/tui-color-picker.css';
+import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+import '@toast-ui/editor/dist/i18n/ko-kr'; // 기본언어 영어를 한국어로 바꿔줌
+*/
+
 const { TextArea } = Input;
 
 // 모집 인원 option
@@ -46,8 +56,8 @@ const ContactArray = [
 
 const ClassUploadPage = () => {
   const user = useSelector((state) => state.user); // 유저 정보를 가져오기 위한 명령어
-
   const navigate = useNavigate();
+  // const editorRef = useRef();
 
   const [Division, setDivision] = useState(''); // 수업명 / 분반
   const [Title, setTitle] = useState(''); // 제목
@@ -90,6 +100,11 @@ const ClassUploadPage = () => {
   const descriptionChangeHandler = (event) => {
     setDescription(event.currentTarget.value);
   };
+
+  // const onChange = () => {
+  //   const data = editorRef.current.getInstance().getHTML();
+  //   console.log(data);
+  // };
 
   const submitHandler = (event) => {
     event.preventDefault(); // 초기화 방지
@@ -221,6 +236,19 @@ const ClassUploadPage = () => {
         <label>상세 설명</label>
 
         <br />
+        {/* <Editor
+          placeholder="상세한 설명을 해주세요!"
+          previewStyle="vertical"
+          height="600px"
+          initialEditType="wysiwyg"
+          useCommandShortcut={false}
+          plugins={[colorSyntax]}
+          onChange={onChange}
+          language="ko-KR"
+          hideModeSwitch="true" // 'markdown' 'wysiwyg' 중 한가지 타입만 사용하고 싶을때
+          ref={editorRef} // 작업한 텍스트를 가져오기 위한 ref
+        /> */}
+
         <TextArea
           style={{ height: '50vh' }}
           onChange={descriptionChangeHandler}
