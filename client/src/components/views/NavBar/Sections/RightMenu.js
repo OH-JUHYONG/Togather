@@ -48,7 +48,9 @@ const RightMenu = () => {
               <Menu.Item>
                 <a href="/post/upload">학교 수업</a>
               </Menu.Item>
-              <Menu.Item>대회&창업</Menu.Item>
+              <Menu.Item>
+                <a href="/post/upload">대회&창업</a>
+              </Menu.Item>
               <Menu.Item>
                 <a href="/post/upload">스터디</a>
               </Menu.Item>

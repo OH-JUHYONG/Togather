@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Select } from 'antd';
 import DatePicker from 'react-datepicker'; // 달려을 가져오기 위한 명령어
 import Axios from 'axios';
 import { useSelector } from 'react-redux'; // user 정보를 가져오기 위한 설정
@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 // import HashTagForm from './HashTagForm/HashTagForm';
 
+const { Option } = Select; // antd 'Select' 적용하기 위한 Option
 const { TextArea } = Input;
 
 const CompetitionArray = [
@@ -67,28 +68,28 @@ const CompetitionUploadPage = () => {
 
   const [Description, setDescription] = useState(''); // 상세 설명
 
-  const competitionChangeHandler = (event) => {
-    setCompetition(event.currentTarget.value);
+  const competitionChangeHandler = (key) => {
+    setCompetition(key);
   };
 
   const titleChangeHandler = (event) => {
     setTitle(event.currentTarget.value);
   };
 
-  const headcounterChangeHandler = (event) => {
-    setHeadCount(event.currentTarget.value);
+  const headcounterChangeHandler = (key) => {
+    setHeadCount(key);
   };
 
   const selectedDateChangeHandler = (date) => {
     setSelectedDate(date);
   };
 
-  const progressChangeHandler = (event) => {
-    setProgress(event.currentTarget.value);
+  const progressChangeHandler = (key) => {
+    setProgress(key);
   };
 
-  const contactChangeHandler = (event) => {
-    setContact(event.currentTarget.value);
+  const contactChangeHandler = (key) => {
+    setContact(key);
   };
 
   const contactinfoChangeHandler = (event) => {
@@ -151,90 +152,95 @@ const CompetitionUploadPage = () => {
 
   return (
     <>
-      <Form onSubmit={submitHandler}>
-        <br />
-        <br />
-        <label>대회&공모전 이름</label>
-        <br />
-        <select onChange={competitionChangeHandler} value={Competition}>
-          {CompetitionArray.map((item) => (
-            <option key={item.key} value={item.key}>
-              {item.value}
-            </option>
-          ))}
-        </select>
-        <br />
+      <Form style={{ paddingTop: '30px' }} onSubmit={submitHandler}>
+        <Form.Item label="대회&공모전 이름">
+          <Select
+            style={{ width: '400px' }}
+            onChange={competitionChangeHandler}
+            value={Competition}
+          >
+            {CompetitionArray.map((item) => (
+              <Option key={item.key} value={item.key}>
+                {item.value}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
 
-        <br />
-        <label>제목</label>
-        <br />
-        <Input
-          onChange={titleChangeHandler}
-          value={Title}
-          placeholder="제목을 입력해 주세요"
-        />
-        <br />
+        <Form.Item label="제목">
+          <Input
+            onChange={titleChangeHandler}
+            value={Title}
+            placeholder="제목을 입력해 주세요"
+          />
+        </Form.Item>
 
-        <br />
-        <label>모집인원</label>
-        <select onChange={headcounterChangeHandler} value={HeadCount}>
-          {HeadCountArray.map((item) => (
-            <option key={item.key} value={item.key}>
-              {item.value}
-            </option>
-          ))}
-        </select>
-        <br />
+        <Form.Item label="모집 인원">
+          <Select
+            style={{ width: '110px' }}
+            onChange={headcounterChangeHandler}
+            value={HeadCount}
+          >
+            {HeadCountArray.map((item) => (
+              <Option key={item.key} value={item.key}>
+                {item.value}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
 
-        <br />
-        <label>모집 마감일</label>
-        <DatePicker
-          selected={SelectedDate}
-          onChange={selectedDateChangeHandler}
-        />
-        <br />
+        <Form.Item label="모집 마감일">
+          <DatePicker
+            selected={SelectedDate}
+            onChange={selectedDateChangeHandler}
+          />
+        </Form.Item>
 
-        <br />
-        <label>진행 방식</label>
-        <select onChange={progressChangeHandler} value={Progress}>
-          {ProgessArray.map((item) => (
-            <option key={item.key} value={item.key}>
-              {item.value}
-            </option>
-          ))}
-        </select>
-        <br />
+        <Form.Item label="진행 방식">
+          <Select
+            style={{ width: '110px' }}
+            onChange={progressChangeHandler}
+            value={Progress}
+          >
+            {ProgessArray.map((item) => (
+              <Option key={item.key} value={item.key}>
+                {item.value}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
 
-        <br />
-        <label>연락 방법</label>
-        <select onChange={contactChangeHandler} value={Contact}>
-          {ContactArray.map((item) => (
-            <option key={item.key} value={item.key}>
-              {item.value}
-            </option>
-          ))}
-        </select>
-        <br />
-        <Input
-          onChange={contactinfoChangeHandler}
-          value={Contactinfo}
-          placeholder={ContactArray[Contact - 1].placeholder}
-        />
-        <br />
+        <Form.Item label="연락 방법">
+          <Select
+            style={{ width: '170px' }}
+            onChange={contactChangeHandler}
+            value={Contact}
+          >
+            {ContactArray.map((item) => (
+              <Option key={item.key} value={item.key}>
+                {item.value}
+              </Option>
+            ))}
+          </Select>
+          <Input
+            style={{ width: '500px' }}
+            onChange={contactinfoChangeHandler}
+            value={Contactinfo}
+            placeholder={ContactArray[Contact - 1].placeholder}
+          />
+        </Form.Item>
 
-        <br />
-        <label>상세 설명</label>
+        <Form.Item label="상세 설명">
+          <TextArea
+            style={{ height: '50vh' }}
+            onChange={descriptionChangeHandler}
+            value={Description}
+          />
+        </Form.Item>
 
-        <br />
-        <TextArea
-          style={{ height: '100vh' }}
-          onChange={descriptionChangeHandler}
-          value={Description}
-        />
-        <br />
-
-        <br />
-        <Button onClick={submitHandler}>글등록</Button>
+        <Button style={{ float: 'right' }} onClick={submitHandler}>
+          글등록
+        </Button>
       </Form>
     </>
   );
