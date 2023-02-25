@@ -44,7 +44,11 @@ const RightMenu = () => {
     return (
       <div className="afterlogin-state">
         <Menu className="writing_menu" mode="horizontal">
-          <SubMenu key="test" title="글쓰기">
+          <SubMenu
+            key="test"
+            title="글쓰기"
+            style={{ fontSize: '18px', fontWeight: 600 }}
+          >
             <Menu.ItemGroup title="교육">
               <Menu.Item>
                 <a href="/post/upload">학교 수업</a>

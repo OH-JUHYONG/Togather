@@ -74,9 +74,9 @@ export function getbookmarkItems(bookmarkItems, userBookmark) {
     .get(`/api/users/postpage/postpage_by_id?id=${bookmarkItems}&type=array`) // single=>array 아닌 이유는 여러 유저 정보의 글들을 저장하기 때문
     .then((response) => {
       userBookmark.forEach((bookmarkItem) => {
-        response.data.postpageInfo.forEach((postpagedetail, index) => {
+        response.data.forEach((postpagedetail, index) => {
           if (bookmarkItem.id === postpagedetail._id) {
-            response.data.postpageInfo[index].quantity = bookmarkItem.quantity;
+            response.data[index].quantity = bookmarkItem.quantity;
           }
         });
       });

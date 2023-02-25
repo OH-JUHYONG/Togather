@@ -86,7 +86,7 @@ router.get('/postpage_by_id', (req, res) => {
     .populate('writer')
     .exec((err, postpageInfo) => {
       if (err) return res.status(400).send(err);
-      return res.status(200).json({ success: true, postpageInfo });
+      return res.status(200).send(postpageInfo);
     });
 });
 

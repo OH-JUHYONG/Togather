@@ -13,16 +13,11 @@ function DetailUploadPostPage() {
   const [PostpageInfo, setPostpageInfo] = useState({});
 
   useEffect(() => {
-    Axios.get(
-      `/api/users/postpage/postpage_by_id?id=${postpageID}&type=single`,
-    ).then((response) => {
-      if (response.status === 200) {
-        console.log('response.data', response.data);
-        setPostpageInfo(response.data.postpageInfo[0]);
-      } else {
-        alert('게시글 정보 가져오기를 실패했습니다.');
-      }
-    });
+    Axios.get(`/api/users/postpage/postpage_by_id?id=${postpageID}&type=single`)
+      .then((response) => {
+        setPostpageInfo(response.data[0]);
+      })
+      .catch((err) => alert(err));
   }, []);
 
   if (PostpageInfo.m_category_Num === 1) {

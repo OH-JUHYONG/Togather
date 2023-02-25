@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col } from 'antd';
+import { Col, Row } from 'antd';
 
 function UserCardBlock(props) {
   const renderItems = () =>
@@ -16,7 +16,7 @@ function UserCardBlock(props) {
       </Col>
     ));
 
-  return <div>{renderItems()}</div>;
+  return <Row gutter={[16, 16]}>{renderItems()}</Row>;
 }
 
 export default UserCardBlock;

@@ -24,11 +24,7 @@ function BookmarkPage(props) {
       <h1>저장 목록</h1>
 
       <div>
-        <UserCardBlock
-          postpages={
-            props.user.postpagedetail && props.user.postpagedetail.postpageInfo
-          }
-        />
+        <UserCardBlock postpages={props.user.postpagedetail} />
       </div>
     </div>
   );
