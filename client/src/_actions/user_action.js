@@ -59,7 +59,7 @@ export function addToBookmark(id) {
   };
 
   const request = axios
-    .post(`${USER_SERVER}/addToBookmark`, body)
+    .post(`${USER_SERVER}/bookmark`, body)
     .then((response) => response.data);
 
   return {

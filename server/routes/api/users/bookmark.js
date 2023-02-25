@@ -3,7 +3,7 @@ const router = express.Router();
 const { auth } = require('../../../middleware/auth');
 const { User } = require('../../../models/User');
 
-router.post('/addToBookmark', auth, (req, res) => {
+router.post('/', auth, (req, res) => {
   // 먼저 User Collection에 해당 유저의 정보를 가져오기
 
   User.findOne({ _id: req.user._id }, (err, userInfo) => {
