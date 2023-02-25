@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Description } from 'antd';
+
+// 북마크 기능
+import { useDispatch } from 'react-redux';
+import { addToBookmark } from '../../../../_actions/user_action';
 
 import './PostPageInfoEdu.css';
 
 function PostPageInfoEduClass(props) {
+  // const [isStarred, setIsStarred] = useState(false);
+  const dispatch = useDispatch();
+
+  const clickHandler = () => {
+    // setIsStarred(!isStarred); // 클림함에 따라 색이 바뀜
+
+    // 저장하고 싶은 글을 bookmark에 넣어줌
+    dispatch(addToBookmark(props.detail._id));
+  };
+
   return (
     <>
       <div className="PostPageInfo_Edu">
         <section className="PostPageInfo_Edu_postheader">
+          <div style={{ display: 'flex', justifyContent: 'right' }}>
+            <Button
+              size="large"
+              shape="round"
+              type="danger"
+              onClick={clickHandler}
+            >
+              글 저장
+            </Button>
+          </div>
           <div className="PostPageInfo_Edu_title">{props.detail.title}</div>
           <ul className="PostPageInfo_Edu_ul">
             <li className="PostPageInfo_Edu_li">

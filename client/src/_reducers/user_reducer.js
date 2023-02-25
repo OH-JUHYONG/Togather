@@ -3,6 +3,7 @@ import {
   REGISTER_USER,
   AUTH_USER,
   LOGOUT_USER,
+  ADD_TO_BOOKMARK,
 } from '../_actions/types';
 
 export default function foo(state = {}, action) {
@@ -15,8 +16,18 @@ export default function foo(state = {}, action) {
 
     case AUTH_USER:
       return { ...state, userData: action.payload };
+
     case LOGOUT_USER:
       return { ...state };
+
+    case ADD_TO_BOOKMARK:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          bookmark: action.payload,
+        },
+      };
     default:
       return state;
   }

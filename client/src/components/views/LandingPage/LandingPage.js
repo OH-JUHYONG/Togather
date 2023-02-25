@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Row, Col } from 'antd';
+import { Row, Col, Button } from 'antd';
 
 // 상>>중 카테고리
-import HighCategory from '../Category/HighCategory/HighCategory';
+// import HighCategory from '../Category/HighCategory/HighCategory';
 
 // import SearchFeature from './Sections/SearchFeature';
 import Checkbox from './Sections/CheckBox';
@@ -47,7 +47,7 @@ function LandingPage() {
     });
   };
 
-  // 더보기 버튼튼
+  // 더보기 버튼
   const loadMoreHandler = () => {
     let skip = Skip + Limit; // 기존의 불러온 정보 갯수 + Limit
 
@@ -159,7 +159,7 @@ function LandingPage() {
 
   return (
     <>
-      <HighCategory />
+      {/* <HighCategory /> */}
 
       <div style={{ width: '75%', margin: '3rem auto' }}>
         <Checkbox
@@ -185,7 +185,7 @@ function LandingPage() {
         <br />
         {PostSize >= Limit && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <button onClick={loadMoreHandler}>더보기</button>
+            <Button onClick={loadMoreHandler}>더보기</Button>
           </div>
         )}
       </div>

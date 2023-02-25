@@ -1,4 +1,4 @@
-/* .middle-category {
+.middle-category {
   padding-bottom: 10px;
   display: flex;
   justify-content: center;
@@ -16,4 +16,4 @@
 .middle-category__name button {
   border: none;
   background-color: transparent;
-} */
+}

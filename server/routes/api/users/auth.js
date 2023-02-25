@@ -15,6 +15,8 @@ router.get('/', auth, (req, res) => {
     lastname: req.user.lastname,
     role: req.user.role,
     image: req.user.image,
+    bookmark: req.user.bookmark,
+    history: req.user.history,
   });
 });
 

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'; // user 정보를 가져오기 위한
 import { useNavigate } from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
-// import HashTagForm from './HashTagForm/HashTagForm';
+// import HashTagForm from '../HashTagForm/HashTagForm';
 
 // Text Editor(TOAST UI Editor)
 /*
@@ -248,6 +248,11 @@ const ClassUploadPage = () => {
             placeholder={ContactArray[Contact - 1].placeholder}
           />
         </Form.Item>
+
+        {/* <Form.Item label="해시태그로 본인/팀 소개를 해보세요">
+          <HashTagForm />
+        </Form.Item> */}
+
         <Form.Item label="상세 설명">
           <TextArea
             style={{ height: '50vh' }}

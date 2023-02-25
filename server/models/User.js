@@ -36,6 +36,16 @@ const userSchema = mongoose.Schema({
   tokenExp: {
     type: Number,
   },
+
+  // 북마크 기능
+  bookmark: {
+    type: Array,
+    default: [],
+  },
+  history: {
+    type: Array,
+    default: [],
+  },
 });
 
 userSchema.pre('save', function (next) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './HighCategory.css';
+import { Button } from 'antd';
 
 // 중 카테고리
 import MiddleCategoryEdu from '../MiddleCategory/MiddleCategoryEdu';
@@ -21,43 +22,47 @@ function HighCategory() {
     setEduvisible(false);
     setHobvisible(true);
     setClubvisible(false);
+
+    alert('서비스 준비중입니다.');
   };
 
   const handleClubButtonClick = () => {
     setEduvisible(false);
     setHobvisible(false);
     setClubvisible(true);
+
+    alert('서비스 준비중입니다.');
   };
 
   return (
     <>
       <div className="high-category">
         <div className="high-category__name">
-          <button
+          <Button
             className="high-category__button"
             onClick={handleEduButtonClick}
             disabled={Eduvisible}
           >
             교육
-          </button>
+          </Button>
         </div>
         <div className="high-category__name">
-          <button
+          <Button
             className="high-category__button"
             onClick={handleHobButtonClick}
             disabled={Hobvisible}
           >
             취미
-          </button>
+          </Button>
         </div>
         <div className="high-category__name">
-          <button
+          <Button
             className="high-category__button"
             onClick={handleClubButtonClick}
             disabled={Clubvisible}
           >
             동아리
-          </button>
+          </Button>
         </div>
       </div>
 

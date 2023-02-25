@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { LOGIN_USER, REGISTER_USER, AUTH_USER, LOGOUT_USER } from './types';
+import {
+  LOGIN_USER,
+  REGISTER_USER,
+  AUTH_USER,
+  LOGOUT_USER,
+  ADD_TO_BOOKMARK,
+} from './types';
 import { USER_SERVER } from '../components/Config.js';
 
 export function registerUser(dataToSubmit) {
@@ -46,16 +52,31 @@ export function logoutUser() {
   };
 }
 
-// ---------------밑에 부분은 action기능 필요에 의해 추가
+// 북미크 기능
+export function addToBookmark(id) {
+  let body = {
+    postpageId: id,
+  };
 
+  const request = axios
+    .post(`${USER_SERVER}/addToBookmark`, body)
+    .then((response) => response.data);
+
+  return {
+    type: ADD_TO_BOOKMARK,
+    payload: request,
+  };
+}
+
+// ---------------밑에 부분은 action기능 필요에 의해 추가
 
 export function kakaoLogin() {
   const request = axios
     .get(`${USER_SERVER}/kakao/login/`)
-    .then((response) => response.data  )
-    .catch(err => {
-      alert("창을 여는 중에 오류가 발생하였습니다.");
+    .then((response) => response.data)
+    .catch((err) => {
+      alert('창을 여는 중에 오류가 발생하였습니다.');
       console.log(err);
     });
-   return request; 
+  return request;
 } //팝업창을 없애고 라우터 리다이렉트로 홈으로 돌아가도록 구현
