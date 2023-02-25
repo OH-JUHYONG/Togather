@@ -8,7 +8,6 @@ router.post('/', auth, (req, res) => {
 
   User.findOne({ _id: req.user._id }, (err, userInfo) => {
     let duplicate = false;
-    console.log(duplicate);
     userInfo.bookmark.forEach((item) => {
       // 가져온 정보에서 북마크에 넣으려 하는 글이 이미 들어있는지 확인
       if (item.id === req.body.postpageId) {

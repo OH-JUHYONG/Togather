@@ -15,7 +15,7 @@ router.get('/', auth, (req, res) => {
     lastname: req.user.lastname,
     role: req.user.role,
     image: req.user.image,
-    bookmark: req.user.bookmark,
+    bookmark: req.user.bookmark, //  다른 페이지 이동할때도 북마크 정보 저장을 위해 필요한 구문
     history: req.user.history,
   });
 });

@@ -5,6 +5,7 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   ADD_TO_BOOKMARK,
+  GET_BOOKMARK_ITEMS,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -64,6 +65,27 @@ export function addToBookmark(id) {
 
   return {
     type: ADD_TO_BOOKMARK,
+    payload: request,
+  };
+}
+
+export function getbookmarkItems(bookmarkItems, userBookmark) {
+  const request = axios
+    .get(`/api/users/postpage/postpage_by_id?id=${bookmarkItems}&type=array`) // single=>array 아닌 이유는 여러 유저 정보의 글들을 저장하기 때문
+    .then((response) => {
+      userBookmark.forEach((bookmarkItem) => {
+        response.data.postpageInfo.forEach((postpagedetail, index) => {
+          if (bookmarkItem.id === postpagedetail._id) {
+            response.data.postpageInfo[index].quantity = bookmarkItem.quantity;
+          }
+        });
+      });
+
+      return response.data;
+    });
+
+  return {
+    type: GET_BOOKMARK_ITEMS,
     payload: request,
   };
 }

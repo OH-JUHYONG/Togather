@@ -4,6 +4,7 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   ADD_TO_BOOKMARK,
+  GET_BOOKMARK_ITEMS,
 } from '../_actions/types';
 
 export default function foo(state = {}, action) {
@@ -28,6 +29,9 @@ export default function foo(state = {}, action) {
           bookmark: action.payload,
         },
       };
+
+    case GET_BOOKMARK_ITEMS:
+      return { ...state, postpagedetail: action.payload };
     default:
       return state;
   }

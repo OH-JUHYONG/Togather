@@ -4,7 +4,8 @@ import { USER_SERVER } from '../../../Config';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Menu, Button } from 'antd';
+import { Menu, Button, Badge } from 'antd';
+import { HeartFilled } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 
@@ -60,18 +61,19 @@ const RightMenu = () => {
           </SubMenu>
         </Menu>
 
-        {/* 
-          // 기존 방식
-          
-          <button className="navbar-dropdown__dropbtn">
-            <span></span>
-            글쓰기
-          </button>
-          <div className="navbar-dropdown__dropbtn__content">
-            <a href="/post/upload">교육(학교수업, 대회&공모전, 스터디)</a>
-            <a href="/">취미(운동, 음악, 미술, 봉사활동, 기타...)</a>
-            <a href="/">동아리</a>
-          </div> */}
+        <div style={{ paddingBottom: 5 }}>
+          <Badge style={{ marginTop: 10 }} count={5}>
+            <a
+              href="/users/bookmark"
+              style={{ color: '#66777', marginRight: 2 }}
+            >
+              <HeartFilled
+                style={{ color: '#ff7875', fontSize: 25, marginTop: 10 }}
+              />
+            </a>
+          </Badge>
+        </div>
+
         <Button className="logout_button" onClick={logoutHandler}>
           로그아웃
         </Button>

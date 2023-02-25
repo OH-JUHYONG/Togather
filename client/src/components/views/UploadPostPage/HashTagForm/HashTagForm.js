@@ -1,41 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { Input, Space, Tag, theme, Tooltip } from 'antd';
+import { Input, Tag, theme } from 'antd';
+import { TweenOneGroup } from 'rc-tween-one';
 
 function HashTagForm() {
   const { token } = theme.useToken();
-  const [tags, setTags] = useState(['5개이하', '#무임승차거부']);
+  const [tags, setTags] = useState(['Tag 1', 'Tag 2', 'Tag 3']);
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const [editInputIndex, setEditInputIndex] = useState(-1);
-  const [editInputValue, setEditInputValue] = useState('');
   const inputRef = useRef(null);
-  const editInputRef = useRef(null);
-
   useEffect(() => {
     if (inputVisible) {
       inputRef.current?.focus();
     }
   }, [inputVisible]);
-
-  useEffect(() => {
-    editInputRef.current?.focus();
-  }, [inputValue]);
-
   const handleClose = (removedTag) => {
     const newTags = tags.filter((tag) => tag !== removedTag);
     console.log(newTags);
     setTags(newTags);
   };
-
   const showInput = () => {
     setInputVisible(true);
   };
-
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
-
   const handleInputConfirm = () => {
     if (inputValue && tags.indexOf(inputValue) === -1) {
       setTags([...tags, inputValue]);
@@ -43,96 +32,83 @@ function HashTagForm() {
     setInputVisible(false);
     setInputValue('');
   };
-
-  const handleEditInputChange = (e) => {
-    setEditInputValue(e.target.value);
+  const forMap = (tag) => {
+    const tagElem = (
+      <Tag
+        closable
+        onClose={(e) => {
+          e.preventDefault();
+          handleClose(tag);
+        }}
+      >
+        {tag}
+      </Tag>
+    );
+    return (
+      <span
+        key={tag}
+        style={{
+          display: 'inline-block',
+        }}
+      >
+        {tagElem}
+      </span>
+    );
   };
-
-  const handleEditInputConfirm = () => {
-    const newTags = [...tags];
-    newTags[editInputIndex] = editInputValue;
-    setTags(newTags);
-    setEditInputIndex(-1);
-    setInputValue('');
-  };
-
-  const tagInputStyle = {
-    width: 78,
-    verticalAlign: 'top',
-  };
-
+  const tagChild = tags.map(forMap);
   const tagPlusStyle = {
     background: token.colorBgContainer,
     borderStyle: 'dashed',
   };
-
   return (
-    <Space size={[0, 8]} wrap>
-      <Space size={[0, 8]} wrap>
-        {tags.map((tag, index) => {
-          if (editInputIndex === index) {
-            return (
-              <Input
-                ref={editInputRef}
-                key={tag}
-                size="middle"
-                style={tagInputStyle}
-                value={editInputValue}
-                onChange={handleEditInputChange}
-                onBlur={handleEditInputConfirm}
-                onPressEnter={handleEditInputConfirm}
-              />
-            );
-          }
-          const isLongTag = tag.length > 20;
-          const tagElem = (
-            <Tag
-              key={tag}
-              closable={index !== 0}
-              style={{
-                userSelect: 'none',
-              }}
-              onClose={() => handleClose(tag)}
-            >
-              <span
-                onDoubleClick={(e) => {
-                  if (index !== 0) {
-                    setEditInputIndex(index);
-                    setEditInputValue(tag);
-                    e.preventDefault();
-                  }
-                }}
-              >
-                {isLongTag ? `${tag.slice(0, 20)}...` : tag}
-              </span>
-            </Tag>
-          );
-          return isLongTag ? (
-            <Tooltip title={tag} key={tag}>
-              {tagElem}
-            </Tooltip>
-          ) : (
-            tagElem
-          );
-        })}
-      </Space>
+    <>
+      <div
+        style={{
+          marginBottom: 16,
+        }}
+      >
+        <TweenOneGroup
+          enter={{
+            scale: 0.8,
+            opacity: 0,
+            type: 'from',
+            duration: 100,
+          }}
+          onEnd={(e) => {
+            if (e.type === 'appear' || e.type === 'enter') {
+              e.target.style = 'display: inline-block';
+            }
+          }}
+          leave={{
+            opacity: 0,
+            width: 0,
+            scale: 0,
+            duration: 200,
+          }}
+          appear={false}
+        >
+          {tagChild}
+        </TweenOneGroup>
+      </div>
       {inputVisible ? (
         <Input
           ref={inputRef}
           type="text"
-          size="middle"
-          style={tagInputStyle}
+          size="small"
+          style={{
+            width: 78,
+          }}
           value={inputValue}
           onChange={handleInputChange}
           onBlur={handleInputConfirm}
           onPressEnter={handleInputConfirm}
         />
       ) : (
-        <Tag style={tagPlusStyle} onClick={showInput}>
-          <PlusOutlined /> 해시태그 입력
+        <Tag onClick={showInput} style={tagPlusStyle}>
+          <PlusOutlined /> New Tag
         </Tag>
       )}
-    </Space>
+    </>
   );
 }
 

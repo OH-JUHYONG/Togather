@@ -41,6 +41,7 @@
 }
 
 .logout_button {
+  margin-left: 20px;
   padding-top: 10px;
   border: none;
   background-color: transparent;
