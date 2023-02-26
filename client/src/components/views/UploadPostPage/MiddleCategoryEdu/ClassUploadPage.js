@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, Form, Input, Select } from 'antd';
 import DatePicker from 'react-datepicker'; // 달려을 가져오기 위한 명령어
 import Axios from 'axios';
@@ -9,14 +9,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import HashTagForm from '../HashTagForm/HashTagForm';
 
 // Text Editor(TOAST UI Editor)
-/*
+
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax'; // 플러그인 추가(Color picker)
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/i18n/ko-kr'; // 기본언어 영어를 한국어로 바꿔줌
-*/
 
 const { Option } = Select; // antd 'Select' 적용하기 위한 Option
 const { TextArea } = Input;
@@ -58,7 +57,7 @@ const ContactArray = [
 const ClassUploadPage = () => {
   const user = useSelector((state) => state.user); // 유저 정보를 가져오기 위한 명령어
   const navigate = useNavigate();
-  // const editorRef = useRef();
+  const editorRef = useRef();
 
   const [Division, setDivision] = useState(''); // 수업명 / 분반
   const [Title, setTitle] = useState(''); // 제목
@@ -104,10 +103,10 @@ const ClassUploadPage = () => {
     setDescription(event.currentTarget.value);
   };
 
-  // const onChange = () => {
-  //   const data = editorRef.current.getInstance().getHTML();
-  //   console.log(data);
-  // };
+  const onChange = () => {
+    const data = editorRef.current.getInstance().getHTML();
+    setDescription(data);
+  };
 
   const submitHandler = (event) => {
     event.preventDefault(); // 초기화 방지
@@ -136,6 +135,7 @@ const ClassUploadPage = () => {
     if (user && user.userData) {
       const username = user.userData._id;
       // Perform action with the username
+
       // 서버에 채운 값들을 request로 보낸다.
       const body = {
         // 로그인 된 사람의 ID
@@ -257,25 +257,26 @@ const ClassUploadPage = () => {
         </Form.Item>
 
         <Form.Item label="상세 설명">
-          <TextArea
+          <Editor
+            placeholder="상세한 설명을 해주세요!"
+            previewStyle="vertical"
+            height="600px"
+            initialEditType="wysiwyg"
+            useCommandShortcut={false}
+            plugins={[colorSyntax]}
+            onChange={onChange}
+            language="ko-KR"
+            hideModeSwitch="true" // 'markdown' 'wysiwyg' 중 한가지 타입만 사용하고 싶을때
+            ref={editorRef} // 작업한 텍스트를 가져오기 위한 ref
+          />
+
+          {/* <TextArea
             style={{ height: '50vh' }}
             onChange={descriptionChangeHandler}
             value={Description}
-          />
+          /> */}
         </Form.Item>
 
-        {/* <Editor
-          placeholder="상세한 설명을 해주세요!"
-          previewStyle="vertical"
-          height="600px"
-          initialEditType="wysiwyg"
-          useCommandShortcut={false}
-          plugins={[colorSyntax]}
-          onChange={onChange}
-          language="ko-KR"
-          hideModeSwitch="true" // 'markdown' 'wysiwyg' 중 한가지 타입만 사용하고 싶을때
-          ref={editorRef} // 작업한 텍스트를 가져오기 위한 ref
-        /> */}
         <Button style={{ float: 'right' }} onClick={submitHandler}>
           글등록
         </Button>
