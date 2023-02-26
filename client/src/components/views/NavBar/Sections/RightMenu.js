@@ -51,13 +51,7 @@ const RightMenu = () => {
           >
             <Menu.ItemGroup title="교육">
               <Menu.Item>
-                <a href="/post/upload">학교 수업</a>
-              </Menu.Item>
-              <Menu.Item>
-                <a href="/post/upload">대회&창업</a>
-              </Menu.Item>
-              <Menu.Item>
-                <a href="/post/upload">스터디</a>
+                <a href="/post/upload">학교 수업 / 대회&창업 / 스터디</a>
               </Menu.Item>
             </Menu.ItemGroup>
             <Menu.ItemGroup title="취미(추후 공개예정)" />

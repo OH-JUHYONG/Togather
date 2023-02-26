@@ -8,12 +8,13 @@ import { addToBookmark } from '../../../../_actions/user_action';
 
 import './PostPageInfoEdu.css';
 
+// --- Toast UI -> 출력 하는 방법  --- //
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-
 function ContentsViewer({ contents }) {
   return <Viewer initialValue={contents || ''} />;
 }
+// -------------------------------- //
 
 function PostPageInfoEduClass(props) {
   const [IsClicked, setIsClicked] = useState(false);
@@ -90,7 +91,6 @@ function PostPageInfoEduClass(props) {
         <div className="PostPageInfo_Edu_detailcontent">
           <h2 className="PostPageInfo_Edu_h2">상세 설명</h2>
           <div className="PostPageInfo_Edu_detail display-linebreak">
-            {/* {props.detail.description} */}
             <ContentsViewer contents={props.detail.description} />
           </div>
         </div>

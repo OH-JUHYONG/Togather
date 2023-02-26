@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, Form, Input, Select } from 'antd';
 import DatePicker from 'react-datepicker'; // 달려을 가져오기 위한 명령어
 import Axios from 'axios';
@@ -6,11 +6,20 @@ import { useSelector } from 'react-redux'; // user 정보를 가져오기 위한
 import { useNavigate } from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
-// import HashTagForm from './HashTagForm/HashTagForm';
+import HashTagForm from '../HashTagForm/HashTagForm'; // 해시태그 폼
+
+// Text Editor(TOAST UI Editor)
+import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax'; // 플러그인 추가(Color picker)
+import 'tui-color-picker/dist/tui-color-picker.css';
+import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+import '@toast-ui/editor/dist/i18n/ko-kr'; // 기본언어 영어를 한국어로 바꿔줌
+// -------------------------------- //
 
 const { Option } = Select; // antd 'Select' 적용하기 위한 Option
-const { TextArea } = Input;
 
+// 대회&공모전 option
 const CompetitionArray = [
   { key: 1, value: '2023년 컴퓨터인공지능학부 작품경진대회' },
   { key: 2, value: '2023년 컴퓨터인공지능학부 게임경진대회' },
@@ -55,8 +64,9 @@ const ContactArray = [
 
 const CompetitionUploadPage = () => {
   const user = useSelector((state) => state.user); // 유저 정보를 가져오기 위한 명령어
-
   const navigate = useNavigate();
+
+  const editorRef = useRef(); // TOAST UI Editor
 
   const [Competition, setCompetition] = useState(1); // 대회명
   const [Title, setTitle] = useState(''); // 제목
@@ -67,6 +77,8 @@ const CompetitionUploadPage = () => {
   const [Contactinfo, setContactinfo] = useState(''); // 연락 정보
 
   const [Description, setDescription] = useState(''); // 상세 설명
+
+  const [tags, setTags] = useState([]); // Child가 사용할 parent의 variable 선언, Parent에서 미리 설정하여 넘겨줌
 
   const competitionChangeHandler = (key) => {
     setCompetition(key);
@@ -96,8 +108,10 @@ const CompetitionUploadPage = () => {
     setContactinfo(event.currentTarget.value);
   };
 
-  const descriptionChangeHandler = (event) => {
-    setDescription(event.currentTarget.value);
+  // Tosat UI
+  const descriptionChangeHandler = () => {
+    const data = editorRef.current.getInstance().getHTML();
+    setDescription(data);
   };
 
   const submitHandler = (event) => {
@@ -121,14 +135,13 @@ const CompetitionUploadPage = () => {
 
     if (user && user.userData) {
       const username = user.userData._id;
-      // Perform action with the username
 
       // 서버에 채운 값들을 request로 보낸다.
       const body = {
-        // 로그인 된 사람의 ID
-        writer: username,
+        writer: username, // 로그인 된 사람의 ID
         m_category: '대회&공모전',
         m_category_Num: 2,
+        m_hashtag: tags.map((tag) => (tag[0] === '#' ? tag : '#' + tag)), // 해시태그 저장시 '#' 붙여주기 위한 작업
         competition: CompetitionArray[Competition - 1].value,
         title: Title,
         headcount: HeadCountArray[HeadCount - 1].value,
@@ -230,11 +243,23 @@ const CompetitionUploadPage = () => {
           />
         </Form.Item>
 
+        {/* child에게 parent의 변수를 넘겨주기 (child가 사용하도록) */}
+        <Form.Item label="해시태그로 본인/팀 소개를 해보세요">
+          <HashTagForm tags={tags} setTags={setTags} />
+        </Form.Item>
+
         <Form.Item label="상세 설명">
-          <TextArea
-            style={{ height: '50vh' }}
+          <Editor
+            placeholder="상세한 설명을 해주세요!"
+            previewStyle="vertical"
+            height="600px"
+            initialEditType="wysiwyg"
+            useCommandShortcut={false}
+            plugins={[colorSyntax]}
             onChange={descriptionChangeHandler}
-            value={Description}
+            language="ko-KR"
+            hideModeSwitch="true" // 'markdown' 'wysiwyg' 중 한가지 타입만 사용하고 싶을때
+            ref={editorRef} // 작업한 텍스트를 가져오기 위한 ref
           />
         </Form.Item>
 

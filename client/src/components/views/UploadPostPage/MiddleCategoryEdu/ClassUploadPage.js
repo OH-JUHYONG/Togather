@@ -5,20 +5,19 @@ import Axios from 'axios';
 import { useSelector } from 'react-redux'; // user 정보를 가져오기 위한 설정
 import { useNavigate } from 'react-router-dom';
 
-import 'react-datepicker/dist/react-datepicker.css';
-import HashTagForm from '../HashTagForm/HashTagForm';
+import 'react-datepicker/dist/react-datepicker.css'; // 날짜 출력 template
+import HashTagForm from '../HashTagForm/HashTagForm'; // 해시태그 폼
 
 // Text Editor(TOAST UI Editor)
-
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax'; // 플러그인 추가(Color picker)
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/i18n/ko-kr'; // 기본언어 영어를 한국어로 바꿔줌
+// -------------------------------- //
 
 const { Option } = Select; // antd 'Select' 적용하기 위한 Option
-const { TextArea } = Input;
 
 // 모집 인원 option
 const HeadCountArray = [
@@ -57,7 +56,8 @@ const ContactArray = [
 const ClassUploadPage = () => {
   const user = useSelector((state) => state.user); // 유저 정보를 가져오기 위한 명령어
   const navigate = useNavigate();
-  const editorRef = useRef();
+
+  const editorRef = useRef(); // TOAST UI Editor
 
   const [Division, setDivision] = useState(''); // 수업명 / 분반
   const [Title, setTitle] = useState(''); // 제목
@@ -69,7 +69,7 @@ const ClassUploadPage = () => {
 
   const [Description, setDescription] = useState(''); // 상세 설명
 
-  const [tags, setTags] = useState([]); // Child가 사용할 parent의 variable 선언
+  const [tags, setTags] = useState([]); // Child가 사용할 parent의 variable 선언, Parent에서 미리 설정하여 넘겨줌
 
   const divisionChangeHandler = (event) => {
     setDivision(event.currentTarget.value);
@@ -99,11 +99,8 @@ const ClassUploadPage = () => {
     setContactinfo(event.currentTarget.value);
   };
 
-  const descriptionChangeHandler = (event) => {
-    setDescription(event.currentTarget.value);
-  };
-
-  const onChange = () => {
+  // Tosat UI
+  const descriptionChangeHandler = () => {
     const data = editorRef.current.getInstance().getHTML();
     setDescription(data);
   };
@@ -134,15 +131,13 @@ const ClassUploadPage = () => {
 
     if (user && user.userData) {
       const username = user.userData._id;
-      // Perform action with the username
 
       // 서버에 채운 값들을 request로 보낸다.
       const body = {
-        // 로그인 된 사람의 ID
-        writer: username,
+        writer: username, // 로그인 된 사람의 ID
         m_category: '학교 수업',
         m_category_Num: 1,
-        m_hashtag: tags.map((tag) => (tag[0] === '#' ? tag : '#' + tag)),
+        m_hashtag: tags.map((tag) => (tag[0] === '#' ? tag : '#' + tag)), // 해시태그 저장시 '#' 붙여주기 위한 작업
         divison: Division,
         title: Title,
         headcount: HeadCountArray[HeadCount - 1].value,
@@ -175,14 +170,6 @@ const ClassUploadPage = () => {
           />
         </Form.Item>
 
-        {/* <label>수업명 / 분반</label>
-        <br />
-        <Input
-          onChange={divisionChangeHandler}
-          value={Division}
-          placeholder="ex)... 게임혼합현실 / 7분반"
-        /> */}
-
         <Form.Item label="제목">
           <Input
             onChange={titleChangeHandler}
@@ -204,13 +191,6 @@ const ClassUploadPage = () => {
           </Select>
         </Form.Item>
 
-        {/* <select onChange={headcounterChangeHandler} value={HeadCount}>
-          {HeadCountArray.map((item) => (
-            <option key={item.key} value={item.key}>
-              {item.value}
-            </option>
-          ))}
-        </select> */}
         <Form.Item label="모집 마감일">
           <DatePicker
             selected={SelectedDate}
@@ -231,6 +211,7 @@ const ClassUploadPage = () => {
             ))}
           </Select>
         </Form.Item>
+
         <Form.Item label="연락 방법">
           <Select
             style={{ width: '170px' }}
@@ -264,17 +245,11 @@ const ClassUploadPage = () => {
             initialEditType="wysiwyg"
             useCommandShortcut={false}
             plugins={[colorSyntax]}
-            onChange={onChange}
+            onChange={descriptionChangeHandler}
             language="ko-KR"
             hideModeSwitch="true" // 'markdown' 'wysiwyg' 중 한가지 타입만 사용하고 싶을때
             ref={editorRef} // 작업한 텍스트를 가져오기 위한 ref
           />
-
-          {/* <TextArea
-            style={{ height: '50vh' }}
-            onChange={descriptionChangeHandler}
-            value={Description}
-          /> */}
         </Form.Item>
 
         <Button style={{ float: 'right' }} onClick={submitHandler}>
