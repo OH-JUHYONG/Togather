@@ -21,6 +21,11 @@ const postpageSchema = mongoose.Schema(
       default: 1,
     },
 
+    m_hashtag: {
+      type: Array,
+      default: [],
+    },
+
     // 제목
     title: {
       type: String,

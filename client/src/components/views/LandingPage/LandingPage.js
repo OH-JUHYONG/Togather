@@ -12,7 +12,7 @@ import { m_category_Num } from './Sections/Datas';
 function LandingPage() {
   const [Postpages, setPostPages] = useState([]); // 여러 게시글을 담을 수 있게 배열 사용
   const [Skip, setSkip] = useState(0);
-  const [Limit, setLimit] = useState(6); // 기본으로 보여주는 postpage 개수
+  // const [Limit, setLimit] = useState(6); // 기본으로 보여주는 postpage 개수
   const [PostSize, setPostSize] = useState();
 
   //필터 박스 기능
@@ -25,16 +25,23 @@ function LandingPage() {
   useEffect(() => {
     let body = {
       skip: Skip,
-      limit: Limit,
+      // limit: Limit,
     };
 
     getPage(body);
   }, []);
 
+  // TODO: 2번씩 업로드 되는 이유?
   const getPage = (body) => {
     axios.post('/api/users/postpage/postpages', body).then((response) => {
       console.log(response.status);
+
       if (response.status === 200) {
+        // 글 정렬(key: createdAt)
+        response.data.postpageinfo = response.data.postpageinfo.sort((a, b) =>
+          b.createdAt < a.createdAt ? -1 : 1,
+        );
+
         if (body.loadMore) {
           setPostPages([...Postpages, ...response.data.postpageinfo]);
         } else {
@@ -48,17 +55,17 @@ function LandingPage() {
   };
 
   // 더보기 버튼
-  const loadMoreHandler = () => {
-    let skip = Skip + Limit; // 기존의 불러온 정보 갯수 + Limit
+  // const loadMoreHandler = () => {
+  //   let skip = Skip + Limit; // 기존의 불러온 정보 갯수 + Limit
 
-    let body = {
-      skip: skip,
-      limit: Limit,
-      loadMore: true,
-    };
-    getPage(body);
-    setSkip(skip);
-  };
+  //   let body = {
+  //     skip: skip,
+  //     limit: Limit,
+  //     loadMore: true,
+  //   };
+  //   getPage(body);
+  //   setSkip(skip);
+  // };
 
   const renderCards = Postpages.map((postpage, index) => {
     console.log('postpage', postpage);
@@ -122,7 +129,7 @@ function LandingPage() {
   const showFilterResults = (filters) => {
     let body = {
       skip: 0,
-      limit: Limit,
+      // limit: Limit,
       filters: filters,
     };
 
@@ -183,11 +190,13 @@ function LandingPage() {
         <Row gutter={[16, 16]}>{renderCards}</Row>
         <br />
         <br />
+        {/* TODO: 더보기 버튼 refactoring
+        더보기 버튼
         {PostSize >= Limit && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button onClick={loadMoreHandler}>더보기</Button>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

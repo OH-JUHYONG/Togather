@@ -3,12 +3,12 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Input, Tag, theme } from 'antd';
 import { TweenOneGroup } from 'rc-tween-one';
 
-function HashTagForm() {
+function HashTagForm({ tags, setTags }) {
   const { token } = theme.useToken();
-  const [tags, setTags] = useState(['Tag 1', 'Tag 2', 'Tag 3']);
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef(null);
+
   useEffect(() => {
     if (inputVisible) {
       inputRef.current?.focus();
@@ -41,7 +41,7 @@ function HashTagForm() {
           handleClose(tag);
         }}
       >
-        {tag}
+        #{tag}
       </Tag>
     );
     return (

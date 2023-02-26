@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'; // user 정보를 가져오기 위한
 import { useNavigate } from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
-// import HashTagForm from '../HashTagForm/HashTagForm';
+import HashTagForm from '../HashTagForm/HashTagForm';
 
 // Text Editor(TOAST UI Editor)
 /*
@@ -69,6 +69,8 @@ const ClassUploadPage = () => {
   const [Contactinfo, setContactinfo] = useState(''); // 연락 정보
 
   const [Description, setDescription] = useState(''); // 상세 설명
+
+  const [tags, setTags] = useState([]); // Child가 사용할 parent의 variable 선언
 
   const divisionChangeHandler = (event) => {
     setDivision(event.currentTarget.value);
@@ -134,13 +136,13 @@ const ClassUploadPage = () => {
     if (user && user.userData) {
       const username = user.userData._id;
       // Perform action with the username
-
       // 서버에 채운 값들을 request로 보낸다.
       const body = {
         // 로그인 된 사람의 ID
         writer: username,
         m_category: '학교 수업',
         m_category_Num: 1,
+        m_hashtag: tags.map((tag) => (tag[0] === '#' ? tag : '#' + tag)),
         divison: Division,
         title: Title,
         headcount: HeadCountArray[HeadCount - 1].value,
@@ -249,9 +251,10 @@ const ClassUploadPage = () => {
           />
         </Form.Item>
 
-        {/* <Form.Item label="해시태그로 본인/팀 소개를 해보세요">
-          <HashTagForm />
-        </Form.Item> */}
+        {/* child에게 parent의 변수를 넘겨주기 (child가 사용하도록) */}
+        <Form.Item label="해시태그로 본인/팀 소개를 해보세요">
+          <HashTagForm tags={tags} setTags={setTags} />
+        </Form.Item>
 
         <Form.Item label="상세 설명">
           <TextArea

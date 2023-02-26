@@ -26,7 +26,6 @@ router.post('/postpages', (req, res) => {
     }
   }
   console.log('findArgs', findArgs);
-
   if (term) {
     PostPage.find(findArgs)
       .find({ $text: { $search: term } }) // 몽고DB에 접근하기 위한 코드

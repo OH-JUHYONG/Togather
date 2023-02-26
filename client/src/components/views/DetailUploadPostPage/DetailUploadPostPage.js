@@ -20,6 +20,13 @@ function DetailUploadPostPage() {
       .catch((err) => alert(err));
   }, []);
 
+  // TODO: 왜 \n\n가 들어가는지 알아보고 수정
+  if (PostpageInfo.description)
+    PostpageInfo.description = PostpageInfo.description.replaceAll(
+      '\n\n',
+      '\n',
+    );
+
   if (PostpageInfo.m_category_Num === 1) {
     return <PostPageInfoEduClass detail={PostpageInfo} />;
   } else if (PostpageInfo.m_category_Num === 2) {

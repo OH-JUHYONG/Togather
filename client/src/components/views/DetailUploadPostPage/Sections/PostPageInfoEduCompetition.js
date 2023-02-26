@@ -82,7 +82,7 @@ function PostPageInfoEduCompetition(props) {
         </section>
         <div className="PostPageInfo_Edu_detailcontent">
           <h2 className="PostPageInfo_Edu_h2">상세 설명</h2>
-          <div className="PostPageInfo_Edu_detail">
+          <div className="PostPageInfo_Edu_detail display-linebreak">
             {props.detail.description}
           </div>
         </div>
