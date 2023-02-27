@@ -5,7 +5,7 @@ import { Row, Col, Button } from 'antd';
 // 상>>중 카테고리
 // import HighCategory from '../Category/HighCategory/HighCategory';
 
-// import SearchFeature from './Sections/SearchFeature';
+// import SearchFeature from './Sections/SearchFeature'; // 검색 기능
 import Checkbox from './Sections/CheckBox';
 import { m_category_Num } from './Sections/Datas';
 
@@ -37,7 +37,7 @@ function LandingPage() {
       console.log(response.status);
 
       if (response.status === 200) {
-        // 글 정렬(key: createdAt)
+        // 글 정렬(key: createdAt), 최신글이 먼저 보일 수 있게 설정
         response.data.postpageinfo = response.data.postpageinfo.sort((a, b) =>
           b.createdAt < a.createdAt ? -1 : 1,
         );
@@ -88,7 +88,7 @@ function LandingPage() {
       );
     }
 
-    // 교육>>대회&공모전게시글 형태
+    // 교육>>대회&공모전 게시글 형태
     else if (postpage.m_category_Num === 2) {
       return (
         <Col lg={8} md={12} xs={24} key={index}>
@@ -166,16 +166,18 @@ function LandingPage() {
 
   return (
     <>
-      {/* <HighCategory /> */}
+      {/* TODO: 필터 박스 적용시 HighCategory를 어떻게 처리할 것인지 생각해보기 
+       <HighCategory /> 
+       */}
 
+      {/* 필터 박스 */}
       <div style={{ width: '75%', margin: '3rem auto' }}>
         <Checkbox
           list={m_category_Num}
           handleFilters={(filters) => handleFilters(filters, 'm_category_Num')}
         />
 
-        {/* 
-        검색 기능
+        {/* TODO: '검색 기능'의 성능을 높이기 위해 어떤 알고리즘을 사용할 것인지
         <div
           style={{
             display: 'flex',
@@ -187,6 +189,7 @@ function LandingPage() {
         </div> 
         */}
 
+        {/* 작성한 게시글을 불러옴 */}
         <Row gutter={[16, 16]}>{renderCards}</Row>
         <br />
         <br />

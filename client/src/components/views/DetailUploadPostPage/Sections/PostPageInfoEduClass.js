@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Button, Description } from 'antd';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
+import './PostPageInfoEdu.css';
 
 // 북마크 기능
 import { useDispatch } from 'react-redux';
 import { addToBookmark } from '../../../../_actions/user_action';
 
-import './PostPageInfoEdu.css';
+// 로그인 안한 상태로 북마크 클릭시 '로그인 페이지'로 이동
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // --- Toast UI -> 출력 하는 방법  --- //
 import { Viewer } from '@toast-ui/react-editor';
@@ -20,11 +23,18 @@ function PostPageInfoEduClass(props) {
   const [IsClicked, setIsClicked] = useState(false);
   const dispatch = useDispatch();
 
-  const getbookmarkhandler = () => {
-    setIsClicked(!IsClicked); // 클림함에 따라 색이 바뀜
+  const user = useSelector((state) => state.user); // 로그인 여부 파악
+  const navigate = useNavigate();
 
-    // 저장하고 싶은 글을 bookmark에 넣어줌
-    dispatch(addToBookmark(props.detail._id));
+  const getbookmarkhandler = () => {
+    // 로그인 안한 상태에서 북마크 클릭시 '로그인 페이지'로 이동
+    if (user.userData && !user.userData.isAuth) {
+      alert('로그인을 하셔야 합니다.');
+      navigate('/login');
+    }
+
+    setIsClicked(!IsClicked); // 클림함에 따라 색이 바뀜
+    dispatch(addToBookmark(props.detail._id)); // 저장하고 싶은 글을 bookmark에 넣어줌
   };
 
   const removebookmarkhandler = () => {

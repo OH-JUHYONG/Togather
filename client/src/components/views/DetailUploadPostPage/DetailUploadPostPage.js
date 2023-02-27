@@ -6,8 +6,6 @@ import PostPageInfoEduClass from './Sections/PostPageInfoEduClass';
 import PostPageInfoEduCompetition from './Sections/PostPageInfoEduCompetition';
 import PostPageInfoEduStudy from './Sections/PostPageInfoEduStudy';
 
-import { Row, Col } from 'antd';
-
 function DetailUploadPostPage() {
   const { postpageID } = useParams(); // 기존에 user.match.params.postpageID로 params를 가져오는 방식이 useParams로 바뀜
   const [PostpageInfo, setPostpageInfo] = useState({});
