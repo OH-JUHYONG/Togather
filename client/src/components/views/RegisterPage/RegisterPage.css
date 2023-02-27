@@ -1,24 +1,38 @@
-.registerpage-body {
+.registerpage {
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  padding: 20px 50px 20px 50px;
-  height: 100%;
+  height: 80vh;
   font-family: 'Montserrat', sans-serif;
 }
 
-.registerpage-body_form {
+.registerpage-form {
   background-color: #ffffff;
   display: flex;
   place-content: center;
   flex-direction: column;
   align-items: center;
-  padding: 100px 500px;
   text-align: center;
 }
 
-.registerpage-body_button {
+/* form Details */
+.registerpage-form_h1 {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.registerpage-form_input {
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0px;
+  width: 50vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.registerpage-form_button {
+  margin-top: 20px;
   border-radius: 20px;
   border: 1px solid #07553b;
   background-color: #07553b;

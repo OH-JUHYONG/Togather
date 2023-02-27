@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { kakaoLogin, loginUser } from '../../../_actions/user_action';
 import { useNavigate } from 'react-router-dom';
+import { Input } from 'antd';
+import kakaologo from './kakao.png';
+
+import './LoginPage.css';
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -35,33 +39,52 @@ function LoginPage() {
     });
   };
 
-  
-
-    
   // };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100vh',
-      }}
-    >
-      <form
-        style={{ display: 'flex', flexDirection: 'column' }}
-        onSubmit={onSubmitHandler}
-      >
-        <label>Email</label>
-        <input type="email" value={Email} onChange={onEmailHandler} />
-        <label>Password</label>
-        <input type="password" value={Password} onChange={onPasswordHandler} />
-        <br />
-        <button type="submit">Login</button>
-      </form>
-      <button type="kakao" onClick={() => kakaoLogin().then(appData => window.location.href=appData) }> 카카오 로그인 </button>
+    <div>
+      <div className="loginpage">
+        <h1 className="loginpage-form_h1">Sign In</h1>
+        <div className="loginpage-social-login">
+          <button
+            className="loginpage-social-login_button"
+            type="kakao"
+            onClick={() =>
+              kakaoLogin().then((appData) => (window.location.href = appData))
+            }
+          >
+            {/* TODO: kakaoIcon 오류 발생 */}
+            <kakaoIcon src={kakaologo}></kakaoIcon>
+          </button>
+        </div>
+        <form className="loginpage_form" onSubmit={onSubmitHandler}>
+          <span className="loginpage-form_span">or use your account</span>
+          <Input
+            className="loginpage-form_input"
+            type="email"
+            value={Email}
+            onChange={onEmailHandler}
+            placeholder="Email"
+          />
+          <Input
+            className="loginpage-form_input"
+            type="password"
+            value={Password}
+            onChange={onPasswordHandler}
+            placeholder="Password"
+          />
+          {/*
+          TODO: 유저 정보 잃어 버렸을때 찾는 방법
+    
+          <a className="loginpage-form_a" href="https://csai.jbnu.ac.kr">
+            Forgot your password?
+          </a>
+           */}
+          <button className="loginpage-form_button" type="submit">
+            Sign in
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
