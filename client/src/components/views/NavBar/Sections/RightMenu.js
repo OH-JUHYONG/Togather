@@ -60,7 +60,10 @@ const RightMenu = () => {
         </Menu>
 
         <div style={{ paddingBottom: 5 }}>
-          <Badge style={{ marginTop: 10 }} count={5}>
+          <Badge
+            style={{ marginTop: 10 }}
+            count={user.userData && user.userData.bookmark.length}
+          >
             <a
               href="/users/bookmark"
               style={{ color: '#66777', marginRight: 2 }}

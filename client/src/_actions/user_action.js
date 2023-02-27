@@ -6,6 +6,7 @@ import {
   LOGOUT_USER,
   ADD_TO_BOOKMARK,
   GET_BOOKMARK_ITEMS,
+  REMOVE_BOOKMARK_ITEM,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -86,6 +87,29 @@ export function getbookmarkItems(bookmarkItems, userBookmark) {
 
   return {
     type: GET_BOOKMARK_ITEMS,
+    payload: request,
+  };
+}
+
+// bookmark 글 삭제
+export function removeBookmarkItem(postpageId) {
+  const request = axios
+    .get(`/api/users/removeFromBookmark?id=${postpageId}`)
+    .then((response) => {
+      // postpageInfo, bookmark 정보를 조합해서  postpageDetail을 만든다
+      response.data.bookmark.forEach((item) => {
+        response.data.postpageInfo.forEach((postpage, index) => {
+          if (item.id === postpage._id) {
+            response.data.postpageInfo[index].quantity = item.quantity;
+          }
+        });
+      });
+
+      return response.data;
+    });
+
+  return {
+    type: REMOVE_BOOKMARK_ITEM,
     payload: request,
   };
 }

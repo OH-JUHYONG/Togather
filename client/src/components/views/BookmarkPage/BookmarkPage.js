@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getbookmarkItems } from '../../../_actions/user_action';
+import {
+  getbookmarkItems,
+  removeBookmarkItem,
+} from '../../../_actions/user_action';
 import UserCardBlock from './Sections/UserCardBlock';
 
 function BookmarkPage(props) {
@@ -19,12 +22,20 @@ function BookmarkPage(props) {
     }
   }, [props.user.userData]);
 
+  // 북마크에 저장된 글 삭제
+  const removeFromBookmark = (postpageId) => {
+    dispatch(removeBookmarkItem(postpageId)).then((response) => {});
+  };
+
   return (
     <div style={{ width: '85%', margin: '3rem auto' }}>
       <h1>저장 목록</h1>
 
       <div>
-        <UserCardBlock postpages={props.user.postpagedetail} />
+        <UserCardBlock
+          postpages={props.user.postpagedetail}
+          removeItem={removeFromBookmark}
+        />
       </div>
     </div>
   );

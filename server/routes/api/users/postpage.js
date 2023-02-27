@@ -79,6 +79,8 @@ router.get('/postpage_by_id', (req, res) => {
     });
   }
 
+  console.log('postpageIds', postpageIds);
+
   // postpageID를 이용해서 DB에서 postpageID와 같은 게시글의 정보를 가져온다.
 
   PostPage.find({ _id: { $in: postpageIds } })
