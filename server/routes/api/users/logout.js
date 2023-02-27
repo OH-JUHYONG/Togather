@@ -8,7 +8,7 @@ const axios = require('axios');
 
 router.get('/', auth, (req, res) => {
   try{
-    User.findOne({ token: req.token }, (err, user) => {
+    User.findOne({ token: req.token }, async (err, user) => {
       if (err) return res.json({ success: false, err });
       //토큰 복호화
       user.token = '';
@@ -17,10 +17,18 @@ router.get('/', auth, (req, res) => {
       })
       if(req.cookies.x_auth_type === 'kakao')
       {
-        console.log(req.cookies.x_auth_type);
-        const url = `https://kauth.kakao.com/oauth/logout?client_id=${dev.kakao_REST_API}&logout_redirect_uri=${dev.client_URL}`;
-        axios.get(url);
+        const url = `https://kapi.kakao.com/v1/user/logout`;
+        await axios.post(url,{},{
+          headers: {
+              Authorization: `Bearer ${req.cookies.x_auth}`,
+          }
+        });
+        console.log(msg);
       }
+      res.clearCookie('x_auth');
+      res.clearCookie('x_auth_type'); //인증 쿠키 로그아웃시에 삭제
+      console.log(req.cookies.x_auth);
+      console.log(req.cookies.x_auth_type);
       return res.status(200).send({
         success: true,
       });

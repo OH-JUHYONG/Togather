@@ -59,7 +59,16 @@
 
 /* Social Login Detail */
 .loginpage-social-login_button {
-  width: 48px;
-  height: 48px;
+  text-align: center;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+}
+
+.loginpage-social-login_img {
+  display: block;
+  margin: -10px auto;
+  margin-left: -6px;
+  width: 46px;
+  height: 46px;
 }

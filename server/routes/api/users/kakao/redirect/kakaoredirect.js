@@ -20,9 +20,6 @@ router.get('/', async(req,res) => {
         } //카카오 유저에 대한 정보 db에서 찾아봐서 없으면 만들고 기존 정보가 있으면 그걸로 토큰 생성
         
         user.token= encodeURIComponent(token['data']['access_token']);
-        console.log("old: "+user._id);
-        console.log("old: "+user.token);
-        console.log("old: "+token['data']['access_token']);
         user.save();
         res
           .cookie('x_auth', user.token)
