@@ -4,20 +4,26 @@
     width: 60%;
     height: 80%;
   
-    /* 최상단 위치 */
-    z-index: 999;
+    /* 항상 background보다 앞에 위치해야 백그라운드 클릭 이벤트 발생(이벤트 버블링 방지) */
+    z-index: 100;
     
     /* 중앙 배치 */
     /* top, bottom, left, right 는 브라우저 기준으로 작동한다. */
     /* translate는 본인의 크기 기준으로 작동한다. */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     position: fixed;
   
     /* 모달창 디자인 */
-    background-color: gray;
-    border: 1px solid black;
-    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 16px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    white-space: pre-line;
 
     /*모달창 애니메이션 */
     animation-duration: 0.5s;
@@ -26,13 +32,20 @@
     animation-fill-mode: forwards;
   }
   
-/* 모달창 내부 X버튼 */
-.close {
+/* 모달창 내부 X버튼 아직 페이드 아웃 미적용*/
+.close_btn {
+  z-index: 101;
+  border: none;
   position: absolute;
-  right: 10px;
-  top: 10px;
-  animation-name: fadeOut;
-  animation-duration: 0.5s;
+  top: 5%;
+  left: 5%;
+  animation: fadeOut 0.5s; 
+  color: rgb(34, 34, 34);
+}
+
+.close_btn:hover {
+  background: rgb(247, 247, 247);
+  color: rgb(0, 0, 0);
 }
 
 /*배경 블러처리 디자인 및 가장 뒤에 있는 레이어*/
@@ -42,7 +55,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 998;
+  z-index: 99;
 
   /*자식 요소 중앙 정렬*/
   display: flex;
@@ -54,8 +67,19 @@
   height: 100%;
 
   /*배경 블러 처리*/
-  background-color: rgba(255,255,255,0.15);
-  backdrop-filter: blur(1px);
+  background-color: rgba(121, 121, 121, 0.5);
+}
+
+.title {
+  display: flex;
+  flex: 0.15;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgb(235, 235, 235);
+  z-index: 101;
+
+  font-size: 16px;
+  font-family: 'NanumSquareRoundExtraBold';
 }
 
 @keyframes fadeIn {

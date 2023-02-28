@@ -4,7 +4,6 @@ import { useBodyScrollLock } from './Sections/ScrollLock';
 
 function ModalBasic({ setModalOpen }) {
     const scroll = useBodyScrollLock();
-
     // 모달 끄기 
     const closeModal = useCallback(() => {
         setModalOpen(false);
@@ -38,14 +37,17 @@ function ModalBasic({ setModalOpen }) {
     
 
     return (
-        <div className={styles.background} onClick={closeModal}>       
-            <div className={styles.container}>
-                <button button className={styles.close} onClick={closeModal}>
-                    X
-                </button>
-                <p>모달창입니다.</p>
+        <>
+        <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet"></link>
+        <div className={styles.background} onClick={closeModal}></div>
+        <div className={styles.container}>
+            <div className={styles.title}> 필터
+            <button button className={styles.close_btn} onClick={closeModal}>
+                X
+            </button>
             </div>
-        </div>
+            <p>모달창입니다.<br/>여기에 필터 항목들 추가할 예정<br/>필터항목 1<br/>필터항목 2<br/>필터항목 3<br/>필터항목 4</p>
+        </div></>
     );
 }
 export default ModalBasic;
