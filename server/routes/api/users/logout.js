@@ -23,7 +23,6 @@ router.get('/', auth, (req, res) => {
               Authorization: `Bearer ${req.cookies.x_auth}`,
           }
         });
-        console.log(msg);
       }
       res.clearCookie('x_auth');
       res.clearCookie('x_auth_type'); //인증 쿠키 로그아웃시에 삭제
