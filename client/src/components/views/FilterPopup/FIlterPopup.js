@@ -42,9 +42,9 @@ function ModalBasic({ setModalOpen }) {
         <div className={styles.background} onClick={closeModal}></div>
         <div className={styles.container}>
             <div className={styles.title}> 필터
-            <button button className={styles.close_btn} onClick={closeModal}>
-                X
-            </button>
+                <button button className={styles.close_btn} onClick={closeModal}>
+                    X
+                </button>
             </div>
             <p>모달창입니다.<br/>여기에 필터 항목들 추가할 예정<br/>필터항목 1<br/>필터항목 2<br/>필터항목 3<br/>필터항목 4</p>
         </div></>
