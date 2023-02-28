@@ -9,6 +9,8 @@ import { Row, Col, Button } from 'antd';
 import Checkbox from './Sections/CheckBox';
 import { m_category_Num } from './Sections/Datas';
 
+import ModalBasic from '../FilterPopup/FIlterPopup'; // 필터 모달창 기능
+
 function LandingPage() {
   const [Postpages, setPostPages] = useState([]); // 여러 게시글을 담을 수 있게 배열 사용
   const [Skip, setSkip] = useState(0);
@@ -17,6 +19,9 @@ function LandingPage() {
 
   //필터 박스 기능
   const [Filters, setFilters] = useState({ m_category_Num: [] });
+
+  //필터 모달창 노충 여부
+  const [modalOpen, setModalOpen] = useState(false);
 
   // 검색 기능
   // const [SearchTerm, setSearchTerm] = useState('');
@@ -146,6 +151,12 @@ function LandingPage() {
     showFilterResults(newFilters);
   };
 
+  // 필터 모달창 기능
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
+
   // 검색 기능
   /*
   const updateSearchTerm = (newSearchTerm) => {
@@ -176,6 +187,10 @@ function LandingPage() {
           list={m_category_Num}
           handleFilters={(filters) => handleFilters(filters, 'm_category_Num')}
         />
+
+        {/*필터 모달창*/}
+        <button onClick={showModal}>모달 띄우기</button>
+        {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
 
         {/* TODO: '검색 기능'의 성능을 높이기 위해 어떤 알고리즘을 사용할 것인지
         <div
