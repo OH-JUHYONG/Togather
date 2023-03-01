@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { kakaoLogin, loginUser } from '../../../_actions/user_action';
+import { githubLogin, kakaoLogin, loginUser } from '../../../_actions/user_action';
 import { useNavigate } from 'react-router-dom';
 import { Input } from 'antd';
 import kakaologo from './kakaoIcon.png';
+import githublogo from './github.png';
 
 import './LoginPage.css';
 
@@ -55,6 +56,15 @@ function LoginPage() {
           >
             {/* TODO: kakaoIcon 오류 발생 */}
             <img className="loginpage-social-login_img" src={kakaologo} alt='kaakologo'></img>
+          </button>
+          <button
+            className="loginpage-social-login_button"
+            type="github"
+            onClick={() =>
+              githubLogin().then((appData) => (window.location.href = appData))
+            }
+          >
+            <img className="loginpage-social-login_img" src={githublogo} alt='githublogo'></img>
           </button>
         </div>
         <form className="loginpage_form" onSubmit={onSubmitHandler}>

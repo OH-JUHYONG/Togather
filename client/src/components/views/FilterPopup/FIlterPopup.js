@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './FilterPopup.module.css';
+import { Category } from './Sections/Category';
 import { useBodyScrollLock } from './Sections/ScrollLock';
 
 function ModalBasic({ setModalOpen }) {
@@ -46,7 +47,7 @@ function ModalBasic({ setModalOpen }) {
                     X
                 </button>
             </div>
-            <p>모달창입니다.<br/>여기에 필터 항목들 추가할 예정<br/>필터항목 1<br/>필터항목 2<br/>필터항목 3<br/>필터항목 4</p>
+            <Category/>
         </div></>
     );
 }

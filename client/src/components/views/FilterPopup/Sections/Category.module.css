@@ -1,0 +1,28 @@
+.category {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+.category__name {
+    display: flex;
+    flex: 0.5;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0px 30px;
+  }
+  
+.category__name button {
+  width: 150%;
+  border: 1px solid rgb(34 , 34, 34);
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.category__name button:hover{
+  border: 1px solid rgb(34 , 34, 34);
+  background-color: rgba(34, 34, 34, 0.1);
+} 
+  

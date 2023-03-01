@@ -9,6 +9,7 @@ const postPageRouter = require('./users/postpage');
 const bookmarkRouter = require('./users/bookmark');
 const removebookmarkRouter = require('./users/removeFromBookmark');
 const kakaoRouter = require('./users/kakao/kakaoMiddle');
+const githubRouter = require('./users/github/githubMiddle');
 // 해당 주소로 가기위한 미들웨어 장착
 
 router.use('/users/auth', authRouter);
@@ -19,6 +20,7 @@ router.use('/users/postpage', postPageRouter);
 router.use('/users/bookmark', bookmarkRouter);
 router.use('/users/removeFromBookmark', removebookmarkRouter);
 router.use('/users/kakao', kakaoRouter);
+router.use('/users/github', githubRouter);
 //각 부분마다 라우터 사용
 
 router.get('/', (req, res) => {
