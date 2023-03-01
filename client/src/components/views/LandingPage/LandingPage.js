@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Row, Col, Button } from 'antd';
+import './LandingPage.css';
 
 // 상>>중 카테고리
 // import HighCategory from '../Category/HighCategory/HighCategory';
@@ -79,13 +80,26 @@ function LandingPage() {
     if (postpage.m_category_Num === 1) {
       return (
         <Col lg={8} md={12} xs={24} key={index}>
-          <div>
-            <a href={`/post/${postpage._id}`}>
-              <div>{postpage.m_category}</div>
-              <div>{postpage.divison}</div>
-              <div>{postpage.title}</div>
-              <div>모집 인원: {postpage.headcount}</div>
-              <div>마감일: {postpage.day.substring(0, 10)} 까지</div>
+          <div className="landingpage-postpage_div">
+            <a
+              className="landingpage-postpage_a"
+              href={`/post/${postpage._id}`}
+            >
+              <div className="landingpage-postpage_category">
+                {postpage.m_category}
+              </div>
+              <div className="landingpage-postpage_division">
+                {postpage.divison}
+              </div>
+              <div className="landingpage-postpage_content_title">
+                {postpage.title}
+              </div>
+              <div className="landingpage-postpage_content">
+                모집 인원: {postpage.headcount}
+              </div>
+              <div className="landingpage-postpage_content">
+                마감일: {postpage.day.substring(0, 10)} 까지
+              </div>
             </a>
           </div>
           <br />
@@ -97,13 +111,26 @@ function LandingPage() {
     else if (postpage.m_category_Num === 2) {
       return (
         <Col lg={8} md={12} xs={24} key={index}>
-          <div>
-            <a href={`/post/${postpage._id}`}>
-              <div>{postpage.m_category}</div>
-              <div>{postpage.competition}</div>
-              <div>{postpage.title}</div>
-              <div>모집 인원: {postpage.headcount}</div>
-              <div>마감일: {postpage.day.substring(0, 10)} 까지</div>
+          <div className="landingpage-postpage_div">
+            <a
+              className="landingpage-postpage_a"
+              href={`/post/${postpage._id}`}
+            >
+              <div className="landingpage-postpage_category">
+                {postpage.m_category}
+              </div>
+              <div className="landingpage-postpage_division">
+                {postpage.competition}
+              </div>
+              <div className="landingpage-postpage_content_title">
+                {postpage.title}
+              </div>
+              <div className="landingpage-postpage_content">
+                모집 인원: {postpage.headcount}
+              </div>
+              <div className="landingpage-postpage_content">
+                마감일: {postpage.day.substring(0, 10)} 까지
+              </div>
             </a>
           </div>
           <br />
@@ -115,13 +142,26 @@ function LandingPage() {
     else {
       return (
         <Col lg={8} md={12} xs={24} key={index}>
-          <div>
-            <a href={`/post/${postpage._id}`}>
-              <div>{postpage.m_category}</div>
-              <div>{postpage.field}</div>
-              <div>{postpage.title}</div>
-              <div>모집 인원: {postpage.headcount}</div>
-              <div>마감일: {postpage.day.substring(0, 10)} 까지</div>
+          <div className="landingpage-postpage_div">
+            <a
+              className="landingpage-postpage_a"
+              href={`/post/${postpage._id}`}
+            >
+              <div className="landingpage-postpage_category">
+                {postpage.m_category}
+              </div>
+              <div className="landingpage-postpage_division">
+                {postpage.field}
+              </div>
+              <div className="landingpage-postpage_content_title">
+                {postpage.title}
+              </div>
+              <div className="landingpage-postpage_content">
+                모집 인원: {postpage.headcount}
+              </div>
+              <div className="landingpage-postpage_content">
+                마감일: {postpage.day.substring(0, 10)} 까지
+              </div>
             </a>
           </div>
           <br />
@@ -155,7 +195,6 @@ function LandingPage() {
   const showModal = () => {
     setModalOpen(true);
   };
-
 
   // 검색 기능
   /*
