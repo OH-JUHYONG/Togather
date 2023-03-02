@@ -16,19 +16,18 @@ const getToken = async (code) => {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
         },
       });
-      return response;
+      return encodeURIComponent(response['data']['access_token']);
     } catch (err) {
        console.error(err);
     }
 }
 
 const getKakaoInfo = async (req) => {
-  const token = encodeURIComponent(req['data']['access_token']); //토큰 요청할때 kapi에서 인코더문제가 있어서 추가
   const url = 'https://kapi.kakao.com/v1/user/access_token_info';
   try {
     const email = await axios.get(url,{
       headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${req}`,
       },
   });
     return email['data']['id'];

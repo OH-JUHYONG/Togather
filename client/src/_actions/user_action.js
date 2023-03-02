@@ -117,9 +117,9 @@ export function removeBookmarkItem(postpageId) {
 
 // ---------------밑에 부분은 action기능 필요에 의해 추가
 
-export function kakaoLogin() {
+export function socialLogin(req) {
   const request = axios
-    .get(`${USER_SERVER}/kakao/login/`)
+    .get(`${USER_SERVER}/${req}/login/`)
     .then((response) => response.data)
     .catch((err) => {
       alert('창을 여는 중에 오류가 발생하였습니다.');
@@ -127,14 +127,3 @@ export function kakaoLogin() {
     });
   return request;
 } //팝업창을 없애고 라우터 리다이렉트로 홈으로 돌아가도록 구현
-
-export function githubLogin() {
-  const request = axios
-    .get(`${USER_SERVER}/github/login`)
-    .then((response) => response.data)
-    .catch((err) => {
-      alert('창을 여는 중에 오류가 발생하였습니다.');
-      console.log(err);
-    });
-    return request;
-} 

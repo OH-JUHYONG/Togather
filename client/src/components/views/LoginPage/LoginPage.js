@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { githubLogin, kakaoLogin, loginUser } from '../../../_actions/user_action';
+import { githubLogin, socialLogin, loginUser } from '../../../_actions/user_action';
 import { useNavigate } from 'react-router-dom';
 import { Input } from 'antd';
 import kakaologo from './kakaoIcon.png';
 import githublogo from './github.png';
+import googlelogo from './google.png';
 
 import './LoginPage.css';
 
@@ -49,9 +50,8 @@ function LoginPage() {
         <div className="loginpage-social-login">
           <button
             className="loginpage-social-login_button"
-            type="kakao"
             onClick={() =>
-              kakaoLogin().then((appData) => (window.location.href = appData))
+              socialLogin('kakao').then((appData) => (window.location.href = appData))
             }
           >
             {/* TODO: kakaoIcon 오류 발생 */}
@@ -59,12 +59,20 @@ function LoginPage() {
           </button>
           <button
             className="loginpage-social-login_button"
-            type="github"
             onClick={() =>
-              githubLogin().then((appData) => (window.location.href = appData))
+              socialLogin('github').then((appData) => (window.location.href = appData))
             }
           >
             <img className="loginpage-social-login_img" src={githublogo} alt='githublogo'></img>
+          </button>
+
+          <button
+            className="loginpage-social-login_button"
+            onClick={() =>
+              socialLogin('google').then((appData) => (window.location.href = appData))
+            }
+          >
+            <img className="loginpage-social-login_img" src={googlelogo} alt='googlelogo'></img>
           </button>
         </div>
         <form className="loginpage_form" onSubmit={onSubmitHandler}>

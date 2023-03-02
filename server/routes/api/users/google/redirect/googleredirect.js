@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const google = require('../../../../../models/Google/LoginModel');
 const { User } = require('../../../../../models/User');
-const kakaomodel = require('../../../../../models/Kakao/LoginModel');
-const axios = require('axios');
 const dev = require('../../../../../config/dev');
 
 router.get('/', async(req,res) => {
     const code = req.query.code;
-    const token= await kakaomodel.getToken(code); //카카오 인가코드 및 토큰 발행 처리 함수
-    const email = await kakaomodel.getKakaoInfo(token);
+    const token = await google.getToken(code);
+    const email = await google.getGoogleInfo(token);
+
+    console.log(email);
+
     User.findOne( {email: email}, (err,user) => {
         if (!user) {
           user = new User({
@@ -23,10 +25,11 @@ router.get('/', async(req,res) => {
         user.save();
         res
           .cookie('x_auth', user.token)
-          .cookie('x_auth_type', 'kakao')
+          .cookie('x_auth_type', 'google')
           .status(200)
           .redirect(dev.client_URL);
       });
+
 })
 
 module.exports = router;
