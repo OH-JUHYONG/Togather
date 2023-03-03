@@ -60,19 +60,6 @@ function LandingPage() {
     });
   };
 
-  // 더보기 버튼
-  // const loadMoreHandler = () => {
-  //   let skip = Skip + Limit; // 기존의 불러온 정보 갯수 + Limit
-
-  //   let body = {
-  //     skip: skip,
-  //     limit: Limit,
-  //     loadMore: true,
-  //   };
-  //   getPage(body);
-  //   setSkip(skip);
-  // };
-
   const renderCards = Postpages.map((postpage, index) => {
     console.log('postpage', postpage);
 
@@ -221,14 +208,17 @@ function LandingPage() {
        */}
 
       {/* 필터 박스 */}
-      <div style={{ width: '75%', margin: '3rem auto' }}>
+      <div style={{ width: '80%', margin: '3rem auto' }}>
         <Checkbox
+          className="Category-filter_checklist"
           list={m_category_Num}
           handleFilters={(filters) => handleFilters(filters, 'm_category_Num')}
         />
 
         {/*필터 모달창*/}
-        <button onClick={showModal}>모달 띄우기</button>
+        <button className="landingpage-model_button" onClick={showModal}>
+          모달 띄우기
+        </button>
         {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
 
         {/* TODO: '검색 기능'의 성능을 높이기 위해 어떤 알고리즘을 사용할 것인지
@@ -247,13 +237,6 @@ function LandingPage() {
         <Row gutter={[16, 16]}>{renderCards}</Row>
         <br />
         <br />
-        {/* TODO: 더보기 버튼 refactoring
-        더보기 버튼
-        {PostSize >= Limit && (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button onClick={loadMoreHandler}>더보기</Button>
-          </div>
-        )} */}
       </div>
     </>
   );

@@ -8,6 +8,8 @@ const registerRouter = require('./users/register');
 const postPageRouter = require('./users/postpage');
 const bookmarkRouter = require('./users/bookmark');
 const removebookmarkRouter = require('./users/removeFromBookmark');
+const mywritepageRouter = require('./users/mywritepage');
+
 const kakaoRouter = require('./users/kakao/kakaoMiddle');
 const githubRouter = require('./users/github/githubMiddle');
 const googleRouter = require('./users/google/googleMiddle');
@@ -20,6 +22,8 @@ router.use('/users/register', registerRouter);
 router.use('/users/postpage', postPageRouter);
 router.use('/users/bookmark', bookmarkRouter);
 router.use('/users/removeFromBookmark', removebookmarkRouter);
+router.use('/users/mywritepage', mywritepageRouter);
+
 router.use('/users/kakao', kakaoRouter);
 router.use('/users/github', githubRouter);
 router.use('/users/google', googleRouter);

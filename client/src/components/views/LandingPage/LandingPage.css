@@ -1,51 +1,4 @@
-/* 게시물 관련 디자인 */
-.landingpage-postpage_div {
-  display: flex;
-  justify-content: center;
-  border-radius: 20px;
-  border: 2px solid #0063b2;
-  width: 35vh;
-  height: 25vh;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.landingpage-postpage_category {
-  text-align: center;
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 10px;
-  color: #0063b2;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.landingpage-postpage_division {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 5px;
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.landingpage-postpage_content_title {
-  text-align: center;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.landingpage-postpage_content {
-  text-align: left;
-  font-size: 15px;
-  margin-left: 15px;
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* 카테고리 필터 관련 디자인 */
 
 /* 모달 관련 디자인 */
 .landingpage-model_button {
@@ -57,4 +10,61 @@
   padding: 5px 10px;
   background-color: #0063b2;
   color: #ffffff;
+}
+
+/* 게시물 관련 디자인 */
+.landingpage-postpage {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0% 1%;
+}
+
+.landingpage-postpage_div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10%;
+  border: 2px solid #0063b2;
+  padding: 5%;
+
+  width: 32vh;
+  height: 25vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.landingpage-postpage_category {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 2%;
+  color: #0063b2;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.landingpage-postpage_division {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 3%;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.landingpage-postpage_content_title {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 5%;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.landingpage-postpage_content {
+  text-align: left;
+  font-size: 15px;
+  margin-left: 15px;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
 }

@@ -103,6 +103,11 @@ function PostPageInfoEduStudy(props) {
               </span>
             </li>
           </ul>
+          <ul>
+            {props.detail.m_hashtag.map((hashtag) => (
+              <li>{hashtag}</li>
+            ))}
+          </ul>
         </section>
         <div className="PostPageInfo_Edu_detailcontent">
           <h2 className="PostPageInfo_Edu_h2">상세 설명</h2>

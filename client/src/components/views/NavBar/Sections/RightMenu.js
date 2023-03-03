@@ -10,7 +10,7 @@ import { HeartFilled } from '@ant-design/icons';
 const { SubMenu } = Menu;
 
 const RightMenu = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user); // 유저 정보를 가져오기 위한 코드
   const navigate = useNavigate();
 
   const navigateToLogin = () => {
@@ -58,6 +58,10 @@ const RightMenu = () => {
             <Menu.ItemGroup title="동아리(추후 공개예정)" />
           </SubMenu>
         </Menu>
+
+        <Button className="my_writing_page">
+          <a href="/mywritepage">내 게시물</a>
+        </Button>
 
         <div style={{ paddingBottom: 5 }}>
           <Badge

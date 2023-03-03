@@ -69,6 +69,16 @@
   border-bottom: 3px solid #f2f2f2;
 }
 
+.PostPageInfo_Edu_hashtag {
+  padding-top: 10px;
+  position: relative;
+  display: flex;
+}
+
+.PostPageInfo_Edu_hashtag-element {
+  margin-left: 10px;
+}
+
 .PostPageInfo_Edu_detail {
   width: 100%;
   margin: 40px auto 0;

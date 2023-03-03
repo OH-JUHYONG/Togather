@@ -40,6 +40,16 @@
   padding-right: 20px;
 }
 
+.my_writing_page {
+  margin-right: 20px;
+  padding-top: 10px;
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
 .logout_button {
   margin-left: 20px;
   padding-top: 10px;
