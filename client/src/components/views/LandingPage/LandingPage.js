@@ -66,93 +66,90 @@ function LandingPage() {
     // 교육>>학교 수업 게시글 형태
     if (postpage.m_category_Num === 1) {
       return (
-        <Col lg={8} md={12} xs={24} key={index}>
-          <div className="landingpage-postpage_div">
-            <a
-              className="landingpage-postpage_a"
-              href={`/post/${postpage._id}`}
-            >
-              <div className="landingpage-postpage_category">
-                {postpage.m_category}
-              </div>
-              <div className="landingpage-postpage_division">
-                {postpage.divison}
-              </div>
-              <div className="landingpage-postpage_content_title">
-                {postpage.title}
-              </div>
-              <div className="landingpage-postpage_content">
-                모집 인원: {postpage.headcount}
-              </div>
-              <div className="landingpage-postpage_content">
-                마감일: {postpage.day.substring(0, 10)} 까지
-              </div>
-            </a>
-          </div>
-          <br />
-        </Col>
+        <a className="landingpage_postpage__a" href={`/post/${postpage._id}`}>
+          <li className="landingpage_postpage__li">
+            <div className="landingpage-postpage_category">
+              {postpage.m_category}
+            </div>
+            <div className="landingpage-postpage_division">
+              {postpage.divison}
+            </div>
+            <div className="landingpage-postpage_content_title">
+              {postpage.title}
+            </div>
+            <div className="landingpage-postpage_hashtag">
+              {postpage.m_hashtag.map((hashtag) => (
+                <Button>{hashtag}</Button>
+              ))}
+            </div>
+            <div className="landingpage-postpage_headcount">
+              모집 인원: {postpage.headcount}
+            </div>
+            <div className="landingpage-postpage_deadline">
+              마감일: {postpage.day.substring(0, 10)} 까지
+            </div>
+          </li>
+        </a>
       );
     }
 
     // 교육>>대회&공모전 게시글 형태
     else if (postpage.m_category_Num === 2) {
       return (
-        <Col lg={8} md={12} xs={24} key={index}>
-          <div className="landingpage-postpage_div">
-            <a
-              className="landingpage-postpage_a"
-              href={`/post/${postpage._id}`}
-            >
-              <div className="landingpage-postpage_category">
-                {postpage.m_category}
-              </div>
-              <div className="landingpage-postpage_division">
-                {postpage.competition}
-              </div>
-              <div className="landingpage-postpage_content_title">
-                {postpage.title}
-              </div>
-              <div className="landingpage-postpage_content">
-                모집 인원: {postpage.headcount}
-              </div>
-              <div className="landingpage-postpage_content">
-                마감일: {postpage.day.substring(0, 10)} 까지
-              </div>
-            </a>
-          </div>
-          <br />
-        </Col>
+        <a className="landingpage_postpage__a" href={`/post/${postpage._id}`}>
+          <li className="landingpage_postpage__li">
+            <div className="landingpage-postpage_category">
+              {postpage.m_category}
+            </div>
+            <div className="landingpage-postpage_division">
+              {postpage.competition}
+            </div>
+            <div className="landingpage-postpage_content_title">
+              {postpage.title}
+            </div>
+            <div className="landingpage-postpage_hashtag">
+              {postpage.m_hashtag.map((hashtag) => (
+                <Button>{hashtag}</Button>
+              ))}
+            </div>
+            <div className="landingpage-postpage_headcount">
+              모집 인원: {postpage.headcount}
+            </div>
+            <div className="landingpage-postpage_deadline">
+              마감일: {postpage.day.substring(0, 10)} 까지
+            </div>
+          </li>
+        </a>
       );
     }
 
     //  교육>>스터디 게시글 형태
     else {
       return (
-        <Col lg={8} md={12} xs={24} key={index}>
-          <div className="landingpage-postpage_div">
-            <a
-              className="landingpage-postpage_a"
-              href={`/post/${postpage._id}`}
-            >
-              <div className="landingpage-postpage_category">
-                {postpage.m_category}
-              </div>
-              <div className="landingpage-postpage_division">
-                {postpage.field}
-              </div>
-              <div className="landingpage-postpage_content_title">
-                {postpage.title}
-              </div>
-              <div className="landingpage-postpage_content">
-                모집 인원: {postpage.headcount}
-              </div>
-              <div className="landingpage-postpage_content">
-                마감일: {postpage.day.substring(0, 10)} 까지
-              </div>
-            </a>
-          </div>
-          <br />
-        </Col>
+        <a className="landingpage_postpage__a" href={`/post/${postpage._id}`}>
+          <li className="landingpage_postpage__li">
+            <div className="landingpage-postpage_category">
+              {postpage.m_category}
+            </div>
+            <div className="landingpage-postpage_division">
+              {postpage.field}
+            </div>
+            <div className="landingpage-postpage_content_title">
+              {postpage.title}
+            </div>
+            <div className="landingpage-postpage_hashtag">
+              {postpage.m_hashtag.map((hashtag) => (
+                <Button>{hashtag}</Button>
+              ))}
+            </div>
+            <div className="landingpage-postpage_headcount">
+              모집 인원: {postpage.headcount}
+            </div>
+            <div className="landingpage-postpage_deadline">
+              마감일: {postpage.day.substring(0, 10)} 까지
+            </div>
+          </li>
+        </a>
       );
     }
   });
@@ -208,7 +205,7 @@ function LandingPage() {
        */}
 
       {/* 필터 박스 */}
-      <div style={{ width: '80%', margin: '3rem auto' }}>
+      <div style={{ width: '88%', margin: '3rem auto' }}>
         <Checkbox
           className="Category-filter_checklist"
           list={m_category_Num}
@@ -234,9 +231,10 @@ function LandingPage() {
         */}
 
         {/* 작성한 게시글을 불러옴 */}
-        <Row gutter={[16, 16]}>{renderCards}</Row>
-        <br />
-        <br />
+        {/* <Row gutter={[16, 16]}>{renderCards}</Row> */}
+        <div className="landingpage_postpage">
+          <ul className="landingpage_postpage_list">{renderCards}</ul>
+        </div>
       </div>
     </>
   );

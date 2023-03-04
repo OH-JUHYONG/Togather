@@ -13,27 +13,6 @@
 }
 
 /* 게시물 관련 디자인 */
-.landingpage-postpage {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin: 0% 1%;
-}
-
-.landingpage-postpage_div {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 10%;
-  border: 2px solid #0063b2;
-  padding: 5%;
-
-  width: 32vh;
-  height: 25vh;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
 .landingpage-postpage_category {
   text-align: center;
   font-size: 22px;
@@ -61,10 +40,58 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.landingpage-postpage_content {
-  text-align: left;
-  font-size: 15px;
-  margin-left: 15px;
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
+.landingpage-postpage_hashtag {
+  padding-bottom: 24px;
+  border-bottom: 3px solid #f2f2f2;
 }
+
+.landingpage-postpage_headcount {
+  padding-top: 10px;
+}
+
+/*  hola! 참고하여 간격 맞춤  */
+.landingpage_postpage {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.landingpage_postpage_list {
+  padding: 10px;
+  grid-gap: 20px;
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.landingpage_postpage_list ul {
+  list-style: none;
+  margin: 0;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.landingpage_postpage__a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 20px 0;
+  width: 300px;
+  height: 340px;
+  background: #fff;
+  border: 2px solid #d1d1d1;
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+
+.landingpage_postpage__li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  padding: 0;
+  margin: 0;
+}
+/* ---------------------------------------------------------  */

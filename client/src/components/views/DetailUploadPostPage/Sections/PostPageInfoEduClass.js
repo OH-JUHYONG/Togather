@@ -99,7 +99,10 @@ function PostPageInfoEduClass(props) {
           </ul>
           <div className="PostPageInfo_Edu_hashtag">
             {props.detail.m_hashtag.map((hashtag) => (
-              <Button className="PostPageInfo_Edu_hashtag-element">
+              <Button
+                key={hashtag}
+                className="PostPageInfo_Edu_hashtag-element"
+              >
                 {hashtag}
               </Button>
             ))}

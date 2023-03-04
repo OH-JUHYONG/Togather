@@ -97,6 +97,16 @@ function PostPageInfoEduCompetition(props) {
               </span>
             </li>
           </ul>
+          <div className="PostPageInfo_Edu_hashtag">
+            {props.detail.m_hashtag.map((hashtag) => (
+              <Button
+                key={hashtag}
+                className="PostPageInfo_Edu_hashtag-element"
+              >
+                {hashtag}
+              </Button>
+            ))}
+          </div>
         </section>
         <div className="PostPageInfo_Edu_detailcontent">
           <h2 className="PostPageInfo_Edu_h2">상세 설명</h2>

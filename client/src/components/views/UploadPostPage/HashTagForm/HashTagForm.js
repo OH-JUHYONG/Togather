@@ -27,6 +27,9 @@ function HashTagForm({ tags, setTags }) {
   };
   const handleInputConfirm = () => {
     if (inputValue && tags.indexOf(inputValue) === -1) {
+      if (setTags.size > 5) {
+        alert('더 이상 추가할 수 없습니다.');
+      }
       setTags([...tags, inputValue]);
     }
     setInputVisible(false);
