@@ -17,71 +17,17 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import '@toast-ui/editor/dist/i18n/ko-kr'; // 기본언어 영어를 한국어로 바꿔줌
 // -------------------------------- //
 
+// 공통적인 Option
+import HeadCountOption from './CommonOption/HeadCountOption'; // 모집인원 option
+import ProgessOption from './CommonOption/ProgressOption'; // 진행방식 option
+import ContactOption from './CommonOption/ContactOption'; // 연락방법 option
+
+// 스터디에만 있는 Option
+import FieldOption from './studyOption/FieldOption';
+import TargetOption from './studyOption/TargetOption';
+// -------------------------------- //
+
 const { Option } = Select; // antd 'Select' 적용하기 위한 Option
-
-// 스터디 분야 option
-const FieldArray = [
-  { key: 1, value: '어학' },
-  { key: 2, value: '취업' },
-  { key: 3, value: '프로그래밍' },
-  { key: 4, value: '고시/공무원' },
-  { key: 5, value: 'IT 프로젝트' },
-  { key: 6, value: '편입' },
-  { key: 7, value: '자격증' },
-  { key: 8, value: '취양/교양' },
-  { key: 9, value: '기타' },
-];
-
-const TargetArray = [
-  { key: 1, value: '제한없음' },
-  { key: 2, value: '1학년만' },
-  { key: 3, value: '1학년 이상' },
-  { key: 4, value: '2학년만' },
-  { key: 5, value: '2학년 이상' },
-  { key: 6, value: '3학년만' },
-  { key: 7, value: '3학년 이하' },
-  { key: 8, value: '4학년만' },
-  { key: 9, value: '4학년 이하' },
-  { key: 10, value: '4학년 이상' },
-  { key: 11, value: '4학년 이상' },
-  { key: 12, value: '취준생/졸업생' },
-  { key: 13, value: '기타' },
-];
-
-// 모집 인원 option
-const HeadCountArray = [
-  { key: 1, value: '인원 미정' },
-  { key: 2, value: '2명' },
-  { key: 3, value: '3명' },
-  { key: 4, value: '4명' },
-  { key: 5, value: '5명' },
-  { key: 6, value: '6명' },
-  { key: 7, value: '7명' },
-  { key: 8, value: '8명' },
-  { key: 9, value: '9명' },
-  { key: 10, value: '10명' },
-  { key: 11, value: '제한없음' },
-];
-
-// 진행 방식 option
-const ProgessArray = [
-  { key: 1, value: '대면' },
-  { key: 2, value: '비대면' },
-  { key: 3, value: '혼용' },
-  { key: 4, value: '추후 결정' },
-];
-
-// 연락 방법 option
-const ContactArray = [
-  {
-    key: 1,
-    value: '카카오톡 오픈채팅',
-    placeholder: '오픈 채팅 링크를 입력해주세요.',
-  },
-  { key: 2, value: '디스코드', placeholder: '디스코드 링크를 입력해주세요.' },
-  { key: 3, value: '이메일', placeholder: '이메일 주소를 입력해주세요.' },
-  { key: 4, value: '전화번호', placeholder: '전화번호를 입력해주새요.' },
-];
 
 const ClassUploadPage = () => {
   const user = useSelector((state) => state.user); // 유저 정보를 가져오기 위한 명령어
@@ -170,14 +116,14 @@ const ClassUploadPage = () => {
         m_category: '스터디',
         m_category_Num: 3,
         m_hashtag: tags.map((tag) => (tag[0] === '#' ? tag : '#' + tag)), // 해시태그 저장시 '#' 붙여주기 위한 작업
-        field: FieldArray[Field - 1].value,
-        target: TargetArray[Target - 1].value,
+        field: FieldOption[Field - 1].value,
+        target: TargetOption[Target - 1].value,
         target_Num: Target,
         title: Title,
-        headcount: HeadCountArray[HeadCount - 1].value,
+        headcount: HeadCountOption[HeadCount - 1].value,
         day: SelectedDate,
-        progress: ProgessArray[Progress - 1].value,
-        contact: ContactArray[Contact - 1].value,
+        progress: ProgessOption[Progress - 1].value,
+        contact: ContactOption[Contact - 1].value,
         contactinfo: Contactinfo,
         description: Description,
       };
@@ -202,7 +148,7 @@ const ClassUploadPage = () => {
             onChange={fieldChangeHandler}
             value={Field}
           >
-            {FieldArray.map((item) => (
+            {FieldOption.map((item) => (
               <Option key={item.key} value={item.key}>
                 {item.value}
               </Option>
@@ -224,7 +170,7 @@ const ClassUploadPage = () => {
             onChange={targetChangeHandler}
             value={Target}
           >
-            {TargetArray.map((item) => (
+            {TargetOption.map((item) => (
               <Option key={item.key} value={item.key}>
                 {item.value}
               </Option>
@@ -238,7 +184,7 @@ const ClassUploadPage = () => {
             onChange={headcounterChangeHandler}
             value={HeadCount}
           >
-            {HeadCountArray.map((item) => (
+            {HeadCountOption.map((item) => (
               <Option key={item.key} value={item.key}>
                 {item.value}
               </Option>
@@ -259,7 +205,7 @@ const ClassUploadPage = () => {
             onChange={progressChangeHandler}
             value={Progress}
           >
-            {ProgessArray.map((item) => (
+            {ProgessOption.map((item) => (
               <Option key={item.key} value={item.key}>
                 {item.value}
               </Option>
@@ -273,7 +219,7 @@ const ClassUploadPage = () => {
             onChange={contactChangeHandler}
             value={Contact}
           >
-            {ContactArray.map((item) => (
+            {ContactOption.map((item) => (
               <Option key={item.key} value={item.key}>
                 {item.value}
               </Option>
@@ -283,7 +229,7 @@ const ClassUploadPage = () => {
             style={{ width: '500px' }}
             onChange={contactinfoChangeHandler}
             value={Contactinfo}
-            placeholder={ContactArray[Contact - 1].placeholder}
+            placeholder={ContactOption[Contact - 1].placeholder}
           />
         </Form.Item>
 

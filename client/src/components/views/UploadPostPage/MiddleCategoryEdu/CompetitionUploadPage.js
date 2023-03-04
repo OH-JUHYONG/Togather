@@ -17,50 +17,16 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import '@toast-ui/editor/dist/i18n/ko-kr'; // 기본언어 영어를 한국어로 바꿔줌
 // -------------------------------- //
 
+// 공통적인 Option
+import HeadCountOption from './CommonOption/HeadCountOption'; // 모집인원 option
+import ProgessOption from './CommonOption/ProgressOption'; // 진행방식 option
+import ContactOption from './CommonOption/ContactOption'; // 연락방법 option
+
+// 대회&공모전에만 있는 Option
+import CompetitionOption from './competitionOption/CompetitionOption'; // 대회&공모전 option
+// -------------------------------- //
+
 const { Option } = Select; // antd 'Select' 적용하기 위한 Option
-
-// 대회&공모전 option
-const CompetitionArray = [
-  { key: 1, value: '2023년 컴퓨터인공지능학부 작품경진대회' },
-  { key: 2, value: '2023년 컴퓨터인공지능학부 게임경진대회' },
-  { key: 3, value: '[공간정보AI] 2023년 공간정보AI 창의과제 경진대회' },
-  { key: 4, value: '[SW중심대학사업단] 2023년 SW 캡스톤디자인 경진대회' },
-  { key: 5, value: '기타' },
-];
-
-// 모집 인원 option
-const HeadCountArray = [
-  { key: 1, value: '인원 미정' },
-  { key: 2, value: '2명' },
-  { key: 3, value: '3명' },
-  { key: 4, value: '4명' },
-  { key: 5, value: '5명' },
-  { key: 6, value: '6명' },
-  { key: 7, value: '7명' },
-  { key: 8, value: '8명' },
-  { key: 9, value: '9명' },
-  { key: 10, value: '10명' },
-];
-
-// 진행 방식 option
-const ProgessArray = [
-  { key: 1, value: '대면' },
-  { key: 2, value: '비대면' },
-  { key: 3, value: '혼용' },
-  { key: 4, value: '추후 결정' },
-];
-
-// 연락 방법 option
-const ContactArray = [
-  {
-    key: 1,
-    value: '카카오톡 오픈채팅',
-    placeholder: '오픈 채팅 링크를 입력해주세요.',
-  },
-  { key: 2, value: '디스코드', placeholder: '디스코드 링크를 입력해주세요.' },
-  { key: 3, value: '이메일', placeholder: '이메일 주소를 입력해주세요.' },
-  { key: 4, value: '전화번호', placeholder: '전화번호를 입력해주새요.' },
-];
 
 const CompetitionUploadPage = () => {
   const user = useSelector((state) => state.user); // 유저 정보를 가져오기 위한 명령어
@@ -142,12 +108,12 @@ const CompetitionUploadPage = () => {
         m_category: '대회&공모전',
         m_category_Num: 2,
         m_hashtag: tags.map((tag) => (tag[0] === '#' ? tag : '#' + tag)), // 해시태그 저장시 '#' 붙여주기 위한 작업
-        competition: CompetitionArray[Competition - 1].value,
+        competition: CompetitionOption[Competition - 1].value,
         title: Title,
-        headcount: HeadCountArray[HeadCount - 1].value,
+        headcount: HeadCountOption[HeadCount - 1].value,
         day: SelectedDate,
-        progress: ProgessArray[Progress - 1].value,
-        contact: ContactArray[Contact - 1].value,
+        progress: ProgessOption[Progress - 1].value,
+        contact: ContactOption[Contact - 1].value,
         contactinfo: Contactinfo,
         description: Description,
       };
@@ -172,7 +138,7 @@ const CompetitionUploadPage = () => {
             onChange={competitionChangeHandler}
             value={Competition}
           >
-            {CompetitionArray.map((item) => (
+            {CompetitionOption.map((item) => (
               <Option key={item.key} value={item.key}>
                 {item.value}
               </Option>
@@ -194,7 +160,7 @@ const CompetitionUploadPage = () => {
             onChange={headcounterChangeHandler}
             value={HeadCount}
           >
-            {HeadCountArray.map((item) => (
+            {HeadCountOption.map((item) => (
               <Option key={item.key} value={item.key}>
                 {item.value}
               </Option>
@@ -215,7 +181,7 @@ const CompetitionUploadPage = () => {
             onChange={progressChangeHandler}
             value={Progress}
           >
-            {ProgessArray.map((item) => (
+            {ProgessOption.map((item) => (
               <Option key={item.key} value={item.key}>
                 {item.value}
               </Option>
@@ -229,7 +195,7 @@ const CompetitionUploadPage = () => {
             onChange={contactChangeHandler}
             value={Contact}
           >
-            {ContactArray.map((item) => (
+            {ContactOption.map((item) => (
               <Option key={item.key} value={item.key}>
                 {item.value}
               </Option>
@@ -239,7 +205,7 @@ const CompetitionUploadPage = () => {
             style={{ width: '500px' }}
             onChange={contactinfoChangeHandler}
             value={Contactinfo}
-            placeholder={ContactArray[Contact - 1].placeholder}
+            placeholder={ContactOption[Contact - 1].placeholder}
           />
         </Form.Item>
 
