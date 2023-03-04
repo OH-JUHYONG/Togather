@@ -91,4 +91,30 @@ router.get('/postpage_by_id', (req, res) => {
     });
 });
 
+router.post('/postpage/aggregate', (req, res) => {
+  const selectNum = req.body['m_category_Num'];
+  const tagarr = ['dumy', 'divison', 'competition', 'field'];
+  PostPage.aggregate(
+    [
+      { $match: { m_category_Num: selectNum } },
+      {
+        $group: {
+          _id: '$' + tagarr[selectNum],
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $sort: {
+          count: -1,
+        },
+      },
+    ],
+    [],
+    async (err, postInfo) => {
+      if (err) return res.json({ success: false, err });
+      return res.json(postInfo);
+    },
+  );
+});
+
 module.exports = router;

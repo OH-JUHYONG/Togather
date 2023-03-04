@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const KakaoLogout = async(req) => {
+    try {
     if(req.x_auth_type === 'kakao')
       {
         const url = `https://kapi.kakao.com/v1/user/logout`;
@@ -9,7 +10,7 @@ const KakaoLogout = async(req) => {
               Authorization: `Bearer ${req.x_auth}`,
           }
         });
-    }
+    }} catch (err) { console.log(err); }
 }
 
 module.exports = {
