@@ -1,20 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { Button, Form, Input, Select } from 'antd';
-import DatePicker from 'react-datepicker'; // 달려을 가져오기 위한 명령어
-import Axios from 'axios';
 import { useSelector } from 'react-redux'; // user 정보를 가져오기 위한 설정
 import { useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 
+import DatePicker from 'react-datepicker'; // 달려을 가져오기 위한 명령어
 import 'react-datepicker/dist/react-datepicker.css'; // 날짜 출력 template
-import HashTagForm from '../HashTagForm/HashTagForm'; // 해시태그 폼
 
-// Text Editor(TOAST UI Editor)
-import { Editor } from '@toast-ui/react-editor';
-import '@toast-ui/editor/dist/toastui-editor.css';
-import colorSyntax from '@toast-ui/editor-plugin-color-syntax'; // 플러그인 추가(Color picker)
-import 'tui-color-picker/dist/tui-color-picker.css';
-import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
-import '@toast-ui/editor/dist/i18n/ko-kr'; // 기본언어 영어를 한국어로 바꿔줌
+import HashTagForm from '../HashTagForm/HashTagForm'; // 해시태그 폼
+import TextEditor from '../TextEditor/TextEditor'; // TextEditor
 // -------------------------------- //
 
 // 공통적인 Option
@@ -29,7 +23,7 @@ import TargetOption from './studyOption/TargetOption';
 
 const { Option } = Select; // antd 'Select' 적용하기 위한 Option
 
-const ClassUploadPage = () => {
+const StudyUploadPage = () => {
   const user = useSelector((state) => state.user); // 유저 정보를 가져오기 위한 명령어
   const navigate = useNavigate();
 
@@ -44,9 +38,8 @@ const ClassUploadPage = () => {
   const [Contact, setContact] = useState(1); // 연락 방법
   const [Contactinfo, setContactinfo] = useState(''); // 연락 정보
 
-  const [Description, setDescription] = useState(''); // 상세 설명
-
   const [tags, setTags] = useState([]); // Child가 사용할 parent의 variable 선언, Parent에서 미리 설정하여 넘겨줌
+  const [Description, setDescription] = useState(''); // 상세 설명, 마찬가지로 Child가 사용할 parent의 variable 선언, Parent에서 미리 설정하여 넘겨줌
 
   const fieldChangeHandler = (key) => {
     setField(key);
@@ -78,12 +71,6 @@ const ClassUploadPage = () => {
 
   const contactinfoChangeHandler = (event) => {
     setContactinfo(event.currentTarget.value);
-  };
-
-  // Tosat UI
-  const descriptionChangeHandler = () => {
-    const data = editorRef.current.getInstance().getHTML();
-    setDescription(data);
   };
 
   const submitHandler = (event) => {
@@ -238,18 +225,11 @@ const ClassUploadPage = () => {
           <HashTagForm tags={tags} setTags={setTags} />
         </Form.Item>
 
+        {/* child에게 parent의 변수를 넘겨주기 (child가 사용하도록) */}
         <Form.Item label="상세 설명">
-          <Editor
-            placeholder="상세한 설명을 해주세요!"
-            previewStyle="vertical"
-            height="600px"
-            initialEditType="wysiwyg"
-            useCommandShortcut={false}
-            plugins={[colorSyntax]}
-            onChange={descriptionChangeHandler}
-            language="ko-KR"
-            hideModeSwitch="true" // 'markdown' 'wysiwyg' 중 한가지 타입만 사용하고 싶을때
-            ref={editorRef} // 작업한 텍스트를 가져오기 위한 ref
+          <TextEditor
+            description={Description}
+            setDescription={setDescription}
           />
         </Form.Item>
 
@@ -261,4 +241,4 @@ const ClassUploadPage = () => {
   );
 };
 
-export default ClassUploadPage;
+export default StudyUploadPage;
