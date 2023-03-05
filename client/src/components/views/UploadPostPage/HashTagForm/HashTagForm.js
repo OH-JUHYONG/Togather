@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { Input, Tag, theme } from 'antd';
+import { Collapse, Input, Tag, theme } from 'antd';
 import { TweenOneGroup } from 'rc-tween-one';
 
 function HashTagForm({ tags, setTags }) {
@@ -26,12 +26,26 @@ function HashTagForm({ tags, setTags }) {
     setInputValue(e.target.value);
   };
   const handleInputConfirm = () => {
-    if (inputValue && tags.indexOf(inputValue) === -1) {
-      if (setTags.size > 5) {
-        alert('더 이상 추가할 수 없습니다.');
-      }
+    // 태그 길이 12글자 이하로 재한
+    if (inputValue.length > 12) {
+      console.log(inputValue.length);
+      alert('12글자 이하로 작성해주세요');
+    }
+
+    if (
+      inputValue.length <= 12 &&
+      inputValue &&
+      tags.indexOf(inputValue) === -1 &&
+      tags.length < 5
+    ) {
       setTags([...tags, inputValue]);
     }
+
+    // 태그 갯수 제한
+    if (tags.length === 5) {
+      alert('더 이상 추가할 수 없습니다.');
+    }
+
     setInputVisible(false);
     setInputValue('');
   };

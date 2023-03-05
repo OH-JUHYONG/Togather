@@ -196,7 +196,7 @@ const CompetitionUploadPage = () => {
         </Form.Item>
 
         {/* child에게 parent의 변수를 넘겨주기 (child가 사용하도록) */}
-        <Form.Item label="해시태그로 본인/팀 소개를 해보세요">
+        <Form.Item label="해시태그로 본인/팀 소개를 해보세요(5개 이하)">
           <HashTagForm tags={tags} setTags={setTags} />
         </Form.Item>
 
