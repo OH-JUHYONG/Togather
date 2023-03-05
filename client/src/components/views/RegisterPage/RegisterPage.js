@@ -4,6 +4,8 @@ import { registerUser } from '../../../_actions/user_action';
 import { useNavigate } from 'react-router-dom';
 import './RegisterPage.css';
 
+import NavBar from '../NavBar/NavBar';
+
 function RegisterPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,42 +56,45 @@ function RegisterPage() {
   };
 
   return (
-    <div className="registerpage">
-      <h1 className="registerpage-form_h1">Sign Up</h1>
-      <form className="registerpage-form" onSubmit={onSubmitHandler}>
-        <input
-          className="registerpage-form_input"
-          type="text"
-          value={Name}
-          onChange={onNameHandler}
-          placeholder="Name"
-        />
-        <input
-          className="registerpage-form_input"
-          type="email"
-          value={Email}
-          onChange={onEmailHandler}
-          placeholder="Email"
-        />
-        <input
-          className="registerpage-form_input"
-          type="password"
-          value={Password}
-          onChange={onPasswordHandler}
-          placeholder="Password"
-        />
-        <input
-          className="registerpage-form_input"
-          type="password"
-          value={ConfirmPassword}
-          onChange={onConfirmPasswordHandler}
-          placeholder="Confirm your password"
-        />
-        <button className="registerpage-form_button" type="submit">
-          Register
-        </button>
-      </form>
-    </div>
+    <>
+      <NavBar />
+      <div className="registerpage">
+        <h1 className="registerpage-form_h1">Sign Up</h1>
+        <form className="registerpage-form" onSubmit={onSubmitHandler}>
+          <input
+            className="registerpage-form_input"
+            type="text"
+            value={Name}
+            onChange={onNameHandler}
+            placeholder="Name"
+          />
+          <input
+            className="registerpage-form_input"
+            type="email"
+            value={Email}
+            onChange={onEmailHandler}
+            placeholder="Email"
+          />
+          <input
+            className="registerpage-form_input"
+            type="password"
+            value={Password}
+            onChange={onPasswordHandler}
+            placeholder="Password"
+          />
+          <input
+            className="registerpage-form_input"
+            type="password"
+            value={ConfirmPassword}
+            onChange={onConfirmPasswordHandler}
+            placeholder="Confirm your password"
+          />
+          <button className="registerpage-form_button" type="submit">
+            Register
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 

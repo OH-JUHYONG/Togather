@@ -11,14 +11,17 @@ function NavBar() {
   };
 
   return (
-    <nav className="navbar">
-      <button className="navbar-left_button" onClick={navigateToLandingPage}>
-        Togather
-      </button>
-      <div>
+    <div className="status-bar">
+      <div className="status-bar__column">
+        <button className="navbar-left_button" onClick={navigateToLandingPage}>
+          Togather
+        </button>
+      </div>
+
+      <div className="status-bar__column">
         <RightMenu />
       </div>
-    </nav>
+    </div>
   );
 }
 

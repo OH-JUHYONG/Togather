@@ -34,20 +34,24 @@ const RightMenu = () => {
   if (user.userData && !user.userData.isAuth) {
     // 로그인 안한 경우
     return (
-      <div className="beforlogin-state">
-        <button onClick={navigateToLogin}>로그인</button>
-        <button onClick={navigateToRegister}>회원가입</button>
-      </div>
+      <>
+        <button className="beforelogin-state" onClick={navigateToLogin}>
+          로그인
+        </button>
+        <button className="beforelogin-state" onClick={navigateToRegister}>
+          회원가입
+        </button>
+      </>
     );
   } else {
     // 로그인 한 경우
     return (
-      <div className="afterlogin-state">
-        <Menu className="writing_menu" mode="horizontal">
+      <>
+        <Menu className="afterlogin-state__writing_menu" mode="horizontal">
           <SubMenu
             key="test"
             title="글쓰기"
-            style={{ fontSize: '18px', fontWeight: 600 }}
+            className="afterlogin-state__writingMenu_submenu"
           >
             <Menu.ItemGroup title="교육">
               <Menu.Item>
@@ -59,30 +63,38 @@ const RightMenu = () => {
           </SubMenu>
         </Menu>
 
-        <Button className="my_writing_page">
-          <a href="/mywritepage">내 게시물</a>
-        </Button>
-
-        <div style={{ paddingBottom: 5 }}>
+        <div className="afterlogin-state__Bookmark">
           <Badge
-            style={{ marginTop: 10 }}
+            style={{
+              marginTop: 10,
+            }}
             count={user.userData && user.userData.bookmark.length}
           >
             <a
               href="/users/bookmark"
-              style={{ color: '#66777', marginRight: 2 }}
+              style={{
+                color: '#66777',
+                marginRight: 2,
+              }}
             >
               <HeartFilled
-                style={{ color: '#ff7875', fontSize: 25, marginTop: 10 }}
+                style={{
+                  color: '#ff7875',
+                  fontSize: 25,
+                  marginTop: 10,
+                }}
               />
             </a>
           </Badge>
         </div>
 
-        <Button className="logout_button" onClick={logoutHandler}>
+        <Button
+          className="afterlogin-state__logout_button"
+          onClick={logoutHandler}
+        >
           로그아웃
         </Button>
-      </div>
+      </>
     );
   }
 };

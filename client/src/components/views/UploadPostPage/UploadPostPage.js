@@ -9,6 +9,8 @@ import ClassUploadPage from './MiddleCategoryEdu/ClassUploadPage';
 import CompetitionUploadPage from './MiddleCategoryEdu/CompetitionUploadPage';
 import StudyUploadPage from './MiddleCategoryEdu/StudyUploadPage';
 
+import Navbar from '../NavBar/NavBar';
+
 const UploadPostPage = () => {
   const [ClassCategory, setClassCategory] = useState(true); // 중 카테고리 - 학교 수업
   const [CompetitionCategory, setCompetitionCategory] = useState(false); // 중 카테고리 - 대회 & 공모전
@@ -34,26 +36,32 @@ const UploadPostPage = () => {
 
   return (
     <>
-      <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-        <div className="middle-category">
-          <div className="middle-category__name">
-            <Button onClick={handleClassButtonClick} disabled={ClassCategory}>
-              학교 수업
-            </Button>
-          </div>
-          <div className="middle-category__name">
-            <Button
-              onClick={handleCompetitionButtonClick}
-              disabled={CompetitionCategory}
-            >
-              대회&공모전
-            </Button>
-          </div>
-          <div className="middle-category__name">
-            <Button onClick={handleStudyButtonClick} disabled={StudyCategory}>
-              스터디
-            </Button>
-          </div>
+      <Navbar />
+      <div className="uploadpostpage">
+        <div className="uploadpostpage_Edu_middlecategory">
+          <Button
+            className="uploadpostpage_Edu_middlecategory__Button"
+            onClick={handleClassButtonClick}
+            disabled={ClassCategory}
+          >
+            학교 수업
+          </Button>
+
+          <Button
+            className="uploadpostpage_Edu_middlecategory__Button"
+            onClick={handleCompetitionButtonClick}
+            disabled={CompetitionCategory}
+          >
+            대회&공모전
+          </Button>
+
+          <Button
+            className="uploadpostpage_Edu_middlecategory__Button"
+            onClick={handleStudyButtonClick}
+            disabled={StudyCategory}
+          >
+            스터디
+          </Button>
         </div>
 
         {ClassCategory && <ClassUploadPage />}

@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Row, Col, Button } from 'antd';
 import './LandingPage.css';
-
-// 상>>중 카테고리
-// import HighCategory from '../Category/HighCategory/HighCategory';
+import NavBar from '../NavBar/NavBar';
 
 // import SearchFeature from './Sections/SearchFeature'; // 검색 기능
 import Checkbox from './Sections/CheckBox';
@@ -200,6 +198,7 @@ function LandingPage() {
 
   return (
     <>
+      <NavBar />
       {/* TODO: 필터 박스 적용시 HighCategory를 어떻게 처리할 것인지 생각해보기 
        <HighCategory /> 
        */}

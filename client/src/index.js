@@ -10,8 +10,6 @@ import { createRoot } from 'react-dom/client';
 
 import './index.css';
 
-import NavBar from './components/views/NavBar/NavBar';
-
 // Redux를 연결해 주는 역할
 const createStoreWithMiddleware = redux.applyMiddleware(
   promiseMiddleware,
@@ -30,7 +28,6 @@ root.render(
           window.__REDUX_DEVTOOLS_EXTENSION__(),
       )}
     >
-      <NavBar />
       <App />
     </Provider>
   </BrowserRouter>,

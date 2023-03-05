@@ -4,6 +4,7 @@ import {
   getbookmarkItems,
   removeBookmarkItem,
 } from '../../../_actions/user_action';
+import NavBar from '../NavBar/NavBar';
 import UserCardBlock from './Sections/UserCardBlock';
 
 function BookmarkPage(props) {
@@ -28,16 +29,20 @@ function BookmarkPage(props) {
   };
 
   return (
-    <div style={{ width: '85%', margin: '3rem auto' }}>
-      <h1>저장 목록</h1>
+    <>
+      <NavBar />
 
-      <div>
-        <UserCardBlock
-          postpages={props.user.postpagedetail}
-          removeItem={removeFromBookmark}
-        />
+      <div style={{ width: '85%', margin: '3rem auto' }}>
+        <h1>저장 목록</h1>
+
+        <div>
+          <UserCardBlock
+            postpages={props.user.postpagedetail}
+            removeItem={removeFromBookmark}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

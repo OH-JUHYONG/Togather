@@ -6,6 +6,8 @@ import PostPageInfoEduClass from './Sections/PostPageInfoEduClass';
 import PostPageInfoEduCompetition from './Sections/PostPageInfoEduCompetition';
 import PostPageInfoEduStudy from './Sections/PostPageInfoEduStudy';
 
+import NavBar from '../NavBar/NavBar';
+
 function DetailUploadPostPage() {
   const { postpageID } = useParams(); // 기존에 user.match.params.postpageID로 params를 가져오는 방식이 useParams로 바뀜
   const [PostpageInfo, setPostpageInfo] = useState({});
@@ -26,11 +28,26 @@ function DetailUploadPostPage() {
     );
 
   if (PostpageInfo.m_category_Num === 1) {
-    return <PostPageInfoEduClass detail={PostpageInfo} />;
+    return (
+      <>
+        <NavBar />
+        <PostPageInfoEduClass detail={PostpageInfo} />
+      </>
+    );
   } else if (PostpageInfo.m_category_Num === 2) {
-    return <PostPageInfoEduCompetition detail={PostpageInfo} />;
+    return (
+      <>
+        <NavBar />
+        <PostPageInfoEduCompetition detail={PostpageInfo} />
+      </>
+    );
   } else if (PostpageInfo.m_category_Num === 3) {
-    return <PostPageInfoEduStudy detail={PostpageInfo} />;
+    return (
+      <>
+        <NavBar />
+        <PostPageInfoEduStudy detail={PostpageInfo} />
+      </>
+    );
   }
 }
 
