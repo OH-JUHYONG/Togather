@@ -7,13 +7,14 @@ import {
 
 import NavBar from '../NavBar/NavBar';
 import UserCardBlock from './Sections/UserCardBlock';
+import './BookmarkPage.css';
 
 function BookmarkPage(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     let bookmarkItems = [];
-    
+
     // 리덕스 User state안에 bookmark 안에 글이 들어있는지 확인
     if (props.user.userData && props.user.userData.bookmark) {
       if (props.user.userData.bookmark.length > 0) {
@@ -37,11 +38,13 @@ function BookmarkPage(props) {
       <div style={{ width: '85%', margin: '3rem auto' }}>
         <h1>저장 목록</h1>
 
-        <div>
-          <UserCardBlock
-            postpages={props.user.postpagedetail}
-            removeItem={removeFromBookmark}
-          />
+        <div className="bookmarkpage">
+          <ul className="bookmarkpage-postpage_list">
+            <UserCardBlock
+              postpages={props.user.postpagedetail}
+              removeItem={removeFromBookmark}
+            />
+          </ul>
         </div>
       </div>
     </>

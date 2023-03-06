@@ -1,5 +1,5 @@
 /* 게시물 관련 디자인 */
-.landingpage-postpage_div {
+/* .landingpage-postpage_div {
   display: flex;
   justify-content: center;
   border-radius: 20px;
@@ -45,10 +45,10 @@
   margin-left: 15px;
   color: #000000;
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
 /* 모달 관련 디자인 */
-.landingpage-model_button {
+/* .landingpage-model_button {
   margin: 10px 0px;
   border: 0;
   border-radius: 10%;
@@ -57,4 +57,4 @@
   padding: 5px 10px;
   background-color: #0063b2;
   color: #ffffff;
-}
+} */

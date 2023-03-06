@@ -1,0 +1,83 @@
+/* 게시물 관련 디자인 */
+.bookmarkpage-postpage_category {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 2%;
+  color: #0063b2;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bookmarkpage-postpage_division {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 3%;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bookmarkpage-postpage_content_title {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 5%;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bookmarkpage-postpage_hashtag {
+  padding-bottom: 24px;
+  border-bottom: 3px solid #f2f2f2;
+}
+
+.bookmarkpage-postpage_headcount {
+  padding-top: 10px;
+}
+
+/*  hola! 참고하여 간격 맞춤  */
+.bookmarkpage {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.bookmarkpage-postpage_list {
+  padding: 10px;
+  grid-gap: 20px;
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bookmarkpage-postpage_list ul {
+  list-style: none;
+  margin: 0;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.bookmarkpage-postpage_a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 20px 0;
+  width: 300px;
+  height: 340px;
+  background: #fff;
+  border: 2px solid #d1d1d1;
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+}
+
+.bookmarkpage-postpage_li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  padding: 0;
+  margin: 0;
+}
+/* ---------------------------------------------------------  */
