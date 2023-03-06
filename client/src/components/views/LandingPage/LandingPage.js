@@ -29,7 +29,6 @@ function LandingPage() {
   useEffect(() => {
     let body = {
       skip: Skip,
-      // limit: Limit,
     };
 
     getPage(body);

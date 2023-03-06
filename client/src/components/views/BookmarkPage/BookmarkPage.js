@@ -4,6 +4,7 @@ import {
   getbookmarkItems,
   removeBookmarkItem,
 } from '../../../_actions/user_action';
+
 import NavBar from '../NavBar/NavBar';
 import UserCardBlock from './Sections/UserCardBlock';
 
@@ -12,6 +13,7 @@ function BookmarkPage(props) {
 
   useEffect(() => {
     let bookmarkItems = [];
+    
     // 리덕스 User state안에 bookmark 안에 글이 들어있는지 확인
     if (props.user.userData && props.user.userData.bookmark) {
       if (props.user.userData.bookmark.length > 0) {

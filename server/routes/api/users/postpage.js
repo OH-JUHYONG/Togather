@@ -65,14 +65,12 @@ router.post('/postpages', (req, res) => {
 });
 
 router.get('/postpage_by_id', (req, res) => {
-  // query(` `)를 이용해서 정보를 가져올때는 body가 아닌 query이다.
   let type = req.query.type;
   let postpageIds = req.query.id;
 
-  if (type === 'array') {
-    // id = 124321546, 213534242, 125466 이거를
-    // postpageIds = ['124321546', '213534242', '125466'] 이런식으로 바꿔주기
+  let attribute = req.query.attribute;
 
+  if (type === 'array') {
     let ids = req.query.id.split(',');
     postpageIds = ids.map((item) => {
       return item;
@@ -81,14 +79,21 @@ router.get('/postpage_by_id', (req, res) => {
 
   console.log('postpageIds', postpageIds);
 
-  // postpageID를 이용해서 DB에서 postpageID와 같은 게시글의 정보를 가져온다.
-
-  PostPage.find({ _id: { $in: postpageIds } })
-    .populate('writer')
-    .exec((err, postpageInfo) => {
-      if (err) return res.status(400).send(err);
-      return res.status(200).send(postpageInfo);
-    });
+  if (attribute === 'writer') {
+    PostPage.find({ writer: { $in: postpageIds } })
+      .populate('writer')
+      .exec((err, postpageInfo) => {
+        if (err) return res.status(400).send(err);
+        return res.status(200).send(postpageInfo);
+      });
+  } else {
+    PostPage.find({ _id: { $in: postpageIds } })
+      .populate('writer')
+      .exec((err, postpageInfo) => {
+        if (err) return res.status(400).send(err);
+        return res.status(200).send(postpageInfo);
+      });
+  }
 });
 
 router.post('/postpage/aggregate', (req, res) => {

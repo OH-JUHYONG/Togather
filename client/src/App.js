@@ -8,6 +8,7 @@ import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import UploadPostPage from './components/views/UploadPostPage/UploadPostPage.js';
 import DetailUploadPostPage from './components/views/DetailUploadPostPage/DetailUploadPostPage.js';
 import BookmarkPage from './components/views/BookmarkPage/BookmarkPage';
+import MyPage from './components/views/MyPage/MyPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         element={Auth(DetailUploadPostPage, null)}
       />
       <Route exact path="/users/bookmark" element={Auth(BookmarkPage, true)} />
+      <Route exact path="/MyPage" element={Auth(MyPage, true)} />
     </Routes>
   );
 }

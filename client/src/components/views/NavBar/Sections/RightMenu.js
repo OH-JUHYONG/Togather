@@ -63,6 +63,10 @@ const RightMenu = () => {
           </SubMenu>
         </Menu>
 
+        <Button>
+          <a href="/MyPage">내 작성글</a>
+        </Button>
+
         <div className="afterlogin-state__Bookmark">
           <Badge
             style={{
