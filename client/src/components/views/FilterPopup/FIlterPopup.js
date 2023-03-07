@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './FilterPopup.module.css';
-import { Category } from './Sections/Category';
+import Category from './Sections/Category';
 import { useBodyScrollLock } from './Sections/ScrollLock';
+import { DatePicker } from 'antd';
+import HeadCount from './Sections/HeadCount';
+const { RangePicker } = DatePicker;
 
 function ModalBasic({ setModalOpen }) {
   const scroll = useBodyScrollLock();
@@ -45,7 +48,9 @@ function ModalBasic({ setModalOpen }) {
             X
           </button>
         </div>
-        <Category key={width} />
+        <Category />
+        <RangePicker />
+        <HeadCount />
       </div>
     </>
   );

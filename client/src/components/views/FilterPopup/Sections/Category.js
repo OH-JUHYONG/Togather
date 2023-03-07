@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Category.module.css';
 import { Midtag } from './MidTag';
 
-export const Category = () => {
+const Category = () => {
   const [Category, setCategory] = useState([false, true, false, false]); // 중 카테고리 - 1.학교 수업 2.대회 & 공모전 3.스터디
   const [CurCategory, setCurCategory] = useState(1);
 
@@ -38,3 +38,5 @@ export const Category = () => {
     </>
   );
 };
+
+export default Category;
