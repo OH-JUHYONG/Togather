@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Slider, InputNumber, Row, Col } from 'antd';
 
-const HeadCount = () => {
+const HeadCount = (prop) => {
   const [inputValue, setInputValue] = useState([1, 3]);
   const onChange = (newArr) => {
     setInputValue(newArr);
+    console.log(newArr, inputValue);
   };
   const onChangeMin = (newValue) => {
     const temp = [...inputValue];
@@ -22,6 +23,10 @@ const HeadCount = () => {
     8: '최대: 8명',
   };
 
+  useEffect(() => {
+    prop.setValue(inputValue);
+  }, [prop['isSubmmit'], inputValue]); //TODO:나중에 의존성 배열에 제출버튼을 추가하여 제출할때만 부모에게 데이터가 전달되도록 구현
+
   return (
     <>
       <Row>
@@ -29,7 +34,7 @@ const HeadCount = () => {
           <Slider
             range
             marks={marks}
-            onChange={onChange}
+            onChange={setInputValue}
             value={inputValue}
             min={0}
             max={8}

@@ -2,19 +2,22 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './FilterPopup.module.css';
 import Category from './Sections/Category';
 import { useBodyScrollLock } from './Sections/ScrollLock';
-import { DatePicker } from 'antd';
+import { DatePicker, Button } from 'antd';
 import HeadCount from './Sections/HeadCount';
 const { RangePicker } = DatePicker;
 
 function ModalBasic({ setModalOpen }) {
   const scroll = useBodyScrollLock();
+  const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
+  const [isSubmit, setisSubmit] = useState(false);
+  const [curMidtag, setcurMidtag] = useState();
+  const [curTimeRange, setcurTimeRange] = useState([]);
+  const [curHeadCount, setcurHeadCount] = useState([]);
 
   const closeModal = useCallback(() => {
     setModalOpen(false);
   }, [setModalOpen]);
-
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,11 +51,30 @@ function ModalBasic({ setModalOpen }) {
             X
           </button>
         </div>
-        <Category />
-        <RangePicker />
-        <HeadCount />
+        <Category setValue={setcurMidtag} isSubmit={isSubmit} />
+        <RangePicker
+          onChange={(value) => {
+            setcurTimeRange(value.map((value) => value.$d));
+          }}
+        />
+        <HeadCount setValue={setcurHeadCount} isSubmit={isSubmit} />
+        <Button
+          type="primary"
+          size="large"
+          onClick={() => {
+            setisSubmit(true);
+            console.log(curMidtag, curTimeRange, curHeadCount);
+            closeModal();
+          }}
+        >
+          저장
+        </Button>
+        <Button type="default" size="large">
+          닫기
+        </Button>
       </div>
     </>
   );
 }
+
 export default ModalBasic;

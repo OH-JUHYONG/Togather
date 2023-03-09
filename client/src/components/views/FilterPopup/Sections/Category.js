@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styles from './Category.module.css';
-import { Midtag } from './MidTag';
+import Midtag from './MidTag';
 
-const Category = () => {
+const Category = ({ setValue }) => {
   const [Category, setCategory] = useState([false, true, false, false]); // 중 카테고리 - 1.학교 수업 2.대회 & 공모전 3.스터디
   const [CurCategory, setCurCategory] = useState(1);
 
@@ -34,7 +34,9 @@ const Category = () => {
           </div>
         </div>
       </div>
-      <Midtag data-req={CurCategory}></Midtag>
+      <Midtag data-req={CurCategory} setValue={setValue}>
+        {' '}
+      </Midtag>
     </>
   );
 };
